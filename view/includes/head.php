@@ -12,23 +12,23 @@
 
     <title><?php echo ConfigRepositorie::get('title'); ?></title>
     <!-- Bootstrap -->
-    <link href="<?php echo ConfigRepositorie::get('url'); ?>/view/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo MapStructureRepositorie::vendors(); ?>bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link href="<?php echo ConfigRepositorie::get('url'); ?>/view/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo MapStructureRepositorie::vendors(); ?>font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <!-- NProgress -->
-    <link href="<?php echo ConfigRepositorie::get('url'); ?>/view/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="<?php echo MapStructureRepositorie::vendors(); ?>nprogress/nprogress.css" rel="stylesheet">
     <!-- iCheck -->
-    <link href="<?php echo ConfigRepositorie::get('url'); ?>/view/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <link href="<?php echo MapStructureRepositorie::vendors(); ?>iCheck/skins/flat/green.css" rel="stylesheet">
 
     <!-- bootstrap-progressbar -->
-    <link href="<?php echo ConfigRepositorie::get('url'); ?>/view/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <link href="<?php echo MapStructureRepositorie::vendors(); ?>bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
     <!-- JQVMap -->
-    <link href="<?php echo ConfigRepositorie::get('url'); ?>/view/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
+    <link href="<?php echo MapStructureRepositorie::vendors(); ?>jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
     <!-- bootstrap-daterangepicker -->
-    <link href="<?php echo ConfigRepositorie::get('url'); ?>/view/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="<?php echo MapStructureRepositorie::vendors(); ?>bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
     <!-- Custom Theme Style -->
-    <link href="../build/css/custom.min.css" rel="stylesheet">
+    <link href="<?php echo MapStructureRepositorie::build(); ?>css/custom.min.css" rel="stylesheet">
 </head>
 
 <body class="nav-md">
@@ -37,7 +37,7 @@
 <div class="col-md-3 left_col">
     <div class="left_col scroll-view">
         <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella Alela!</span></a>
+            <a href="<?php echo ConfigRepositorie::get('url'); ?>" class="site_title"><i class="fa fa-paw"></i> <span><?php echo ConfigRepositorie::get('title'); ?></span></a>
         </div>
 
         <div class="clearfix"></div>

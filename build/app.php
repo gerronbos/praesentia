@@ -15,5 +15,6 @@ require_once('../model/model.php');
  */
 require_once('../repositories/Repository.php');
 require_once('../repositories/ConfigRepositorie.php');
+require_once('../repositories/MapStructureRepositorie.php');
 
 ?>
