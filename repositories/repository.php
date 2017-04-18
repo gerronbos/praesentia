@@ -3,7 +3,7 @@
 class Repository{
     private $instance = null;
 
-    public function init(){
+    public function init($params = array()){
         if(isset($this) && is_object($this)){
             if(!is_null($this->instance)){
                 return $this->instance;
@@ -12,7 +12,8 @@ class Repository{
             return $this->instance;
         }
         $class = get_called_class();
-        return new $class;
+
+        return new $class($params);
     }
 }
 
