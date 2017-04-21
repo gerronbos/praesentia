@@ -9,6 +9,12 @@ require_once('config.php');
  * Database connecties
  */
 require_once('../model/model.php');
+require_once('../model/Users.php');
+
+/*
+ * Services
+ */
+require_once('../services/auth.php');
 /*
  * Repositories
  * Hier worden dingen berekent of opgehaald
