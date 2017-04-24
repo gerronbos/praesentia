@@ -1,6 +1,6 @@
 <?php  
 return[
-    'url' => 'http://localhost/praesentia',
+    'url' => 'http://praesentia.loc',
     'email' => '',
     'title' => 'Praesentia',
     'db_username' => 'root',

@@ -3,11 +3,12 @@ class MapStructureRepositorie extends Repository{
 
     public function view()
     {
-        return ConfigRepositorie::get('url').'/view/';
+        $configrepositorie = new ConfigRepositorie();
+        return $configrepositorie->get('url').'/view/';
     }
     public function vendors()
     {
-        return self::view().'/vendors/';
+        return self::view().'vendors/';
     }
     public function build()
     {
