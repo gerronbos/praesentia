@@ -33,7 +33,4 @@ require_once('../repositories/ConfigRepositorie.php');
 require_once('../repositories/MapStructureRepositorie.php');
 require_once('../repositories/FormRepositorie.php');
 
-
-
-Services\SessionHandler::save();
 ?>
