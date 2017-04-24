@@ -1,11 +1,11 @@
 <?php  
 return[
-    'url' => 'http://praesentia.loc',
+    'url' => 'http://localhost/praesentia',
     'email' => '',
     'title' => 'Praesentia',
     'db_username' => 'root',
     'db_password' => '',
-    'db_server' => '127.0.0.1',
+    'db_server' => 'localhost',
     'db_name' => 'praesentia'
 ]
 ?>
