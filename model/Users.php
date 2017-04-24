@@ -4,5 +4,4 @@ class Users extends model{
     protected $table = 'users';
     protected $protected = ['password'];
 }
-
 ?>
