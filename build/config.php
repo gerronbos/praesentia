@@ -1,6 +1,6 @@
 <?php  
 return[
- 'url' => 'http://praesentia.loc',
+ 'url' => 'http://localhost/praesentia',
  'email' => '',
  'title' => 'Praesentia'
 ]
