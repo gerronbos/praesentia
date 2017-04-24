@@ -12,6 +12,11 @@ require_once('config.php');
  */
 require_once('../model/model.php');
 require_once('../model/Users.php');
+require_once('../model/Course.php');
+require_once('../model/Group.php');
+require_once('../model/Lecture.php');
+require_once('../model/Presence.php');
+require_once('../model/Room.php');
 
 /*
  * Services
