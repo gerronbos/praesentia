@@ -165,7 +165,7 @@
 .fa-stack-1x,
 .fa-stack-2x {
   position: absolute;
-  left: 0;
+  left: 110%;
   width: 100%;
   text-align: center;
 }
