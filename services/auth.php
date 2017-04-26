@@ -12,7 +12,7 @@ class Auth{
             $user->where($key,'=',$p);
         }
 
-        if(!is_null($user)){
+        if(!is_null($user->first())){
             SessionHandler::setSession('user',$user);
 
             return true;
