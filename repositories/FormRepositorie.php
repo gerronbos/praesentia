@@ -23,10 +23,11 @@ class FormRepositorie extends Repository{
         }
         if(isset($params['params'])){
             $this->params = $params['params'];
+            if(isset($params['params']['name'])){
+            $this->name = $params['params']['name'];
         }
-        if(isset($params['name'])){
-            $this->name = $params['name'];
         }
+        
         $this->createInput();
     }
 

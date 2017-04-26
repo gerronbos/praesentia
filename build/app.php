@@ -32,5 +32,6 @@ require_once('../repositories/Repository.php');
 require_once('../repositories/ConfigRepositorie.php');
 require_once('../repositories/MapStructureRepositorie.php');
 require_once('../repositories/FormRepositorie.php');
+require_once('../repositories/UserRepositorie.php');
 
 ?>
