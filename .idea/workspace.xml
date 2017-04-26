@@ -60,16 +60,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="login.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="login.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view/login.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7153846" vertical-offset="150" max-vertical-offset="1200">
+            <state vertical-scroll-proportion="-19.375" vertical-offset="150" max-vertical-offset="1200">
               <caret line="41" column="14" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
               <folding>
                 <marker date="1493205339000" expanded="true" signature="1395:1485" placeholder="..." />
                 <marker date="1493205339000" expanded="true" signature="1773:1810" placeholder="..." />
                 <marker date="1493205339000" expanded="true" signature="1941:1978" placeholder="..." />
                 <marker date="1493205339000" expanded="true" signature="2116:2155" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FormRepositorie.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/repositories/FormRepositorie.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5769231" vertical-offset="30" max-vertical-offset="1935">
+              <caret line="27" column="42" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
+              <folding>
+                <marker date="1493205604000" expanded="true" signature="3223:3242" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -143,7 +155,6 @@
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/build/classbuilder.php" />
         <option value="$PROJECT_DIR$/view/includes/footer.php" />
-        <option value="$PROJECT_DIR$/repositories/FormRepositorie.php" />
         <option value="$PROJECT_DIR$/model/users.php" />
         <option value="$PROJECT_DIR$/repositories/Repository.php" />
         <option value="$PROJECT_DIR$/model/model.php" />
@@ -162,6 +173,7 @@
         <option value="$PROJECT_DIR$/services/auth.php" />
         <option value="$PROJECT_DIR$/services/sessionhandler.php" />
         <option value="$PROJECT_DIR$/view/login.php" />
+        <option value="$PROJECT_DIR$/repositories/FormRepositorie.php" />
       </list>
     </option>
   </component>
@@ -684,18 +696,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/repositories/FormRepositorie.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36769232" vertical-offset="241" max-vertical-offset="1890">
-          <caret line="32" column="32" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/repositories/Repository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="375">
           <caret line="5" column="4" selection-start-line="5" selection-start-column="4" selection-end-line="16" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -827,13 +832,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/view/login.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7153846" vertical-offset="150" max-vertical-offset="1200">
+        <state vertical-scroll-proportion="-19.375" vertical-offset="150" max-vertical-offset="1200">
           <caret line="41" column="14" selection-start-line="41" selection-start-column="14" selection-end-line="41" selection-end-column="14" />
           <folding>
             <marker date="1493205339000" expanded="true" signature="1395:1485" placeholder="..." />
             <marker date="1493205339000" expanded="true" signature="1773:1810" placeholder="..." />
             <marker date="1493205339000" expanded="true" signature="1941:1978" placeholder="..." />
             <marker date="1493205339000" expanded="true" signature="2116:2155" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/repositories/FormRepositorie.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5769231" vertical-offset="30" max-vertical-offset="1935">
+          <caret line="27" column="42" selection-start-line="27" selection-start-column="42" selection-end-line="27" selection-end-column="42" />
+          <folding>
+            <marker date="1493205604000" expanded="true" signature="3223:3242" placeholder="..." />
           </folding>
         </state>
       </provider>
