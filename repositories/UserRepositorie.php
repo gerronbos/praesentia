@@ -16,6 +16,9 @@ class UserRepositorie extends Repository{
     	$user->email = $email;
     	$user->password = self::makePassword($password);
     	$user->save();
+
+    	NotificationRepositorie::create(Auth::user()->id, $user->id, 'Account aangemaakt.', 1);
+    	exit;
     }
 
     private function makePassword($password){
