@@ -56,4 +56,11 @@ class Auth{
 
         return new $class($params);
     }
+
+    public function updateLogin()
+    {
+        if(SessionHandler::has('user')) {
+            SessionHandler::setSession('user', self::user());
+        }
+    }
 }

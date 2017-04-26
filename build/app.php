@@ -34,4 +34,8 @@ require_once('../repositories/MapStructureRepositorie.php');
 require_once('../repositories/FormRepositorie.php');
 require_once('../repositories/UserRepositorie.php');
 
+
+
+Auth::updateLogin();
+
 ?>
