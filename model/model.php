@@ -134,10 +134,11 @@ class model {
                 $query = "INSERT INTO $this->table ($columns) VALUES ($inserts)";
                 $conn = $this->makeConnection();
                 $result = $conn->query($query);
+
                 if (!$result) {
                     die("Error: " . $query . "<br>" . mysqli_error($conn));
                 }
-                $this->data['id'] = $result->insert_id;
+                //$this->data['id'] = $result->insert_id;
             }
 
 

@@ -25,6 +25,7 @@ class Auth{
     public function user()
     {
         $session = new SessionHandler();
+        //var_dump($session);
         return $session->user;
     }
 

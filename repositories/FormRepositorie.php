@@ -104,12 +104,12 @@ class FormRepositorie extends Repository{
         return $html;
     }
 //Save buttons
-    public function formSaveButton($backurl=null)
+    public function formSaveButton($backurl=null,$forwardurl=null)
     {
-        if(!is_null($backurl)){
+        if(!is_null($backurl xor $forwardurl)){
             $return = "<div class='btn-group' role='group'>";
             $return .= "<a href='$backurl' class='btn btn-default'>Annuleren</a>";
-            $return .= "<button class='btn btn-primary'>Opslaan</button>";
+            $return .= "<a href='$forwardurl' class='btn btn-primary'>Opslaan</a>";
             $return .= "</div>";
         }
         else{
