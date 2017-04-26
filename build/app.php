@@ -17,6 +17,7 @@ require_once('../model/Group.php');
 require_once('../model/Lecture.php');
 require_once('../model/Presence.php');
 require_once('../model/Room.php');
+require_once('../model/Notifications.php');
 
 /*
  * Services
@@ -33,5 +34,10 @@ require_once('../repositories/ConfigRepositorie.php');
 require_once('../repositories/MapStructureRepositorie.php');
 require_once('../repositories/FormRepositorie.php');
 require_once('../repositories/NotificationRepository.php');
+require_once('../repositories/UserRepositorie.php');
+
+
+
+Auth::updateLogin();
 
 ?>

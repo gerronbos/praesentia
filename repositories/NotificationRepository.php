@@ -1,5 +1,4 @@
 <?php
-require_once('../model/Notifications.php');
 use Services\SessionHandler;
 use model\Users;
 use model\Notifications;

@@ -23,7 +23,11 @@ class FormRepositorie extends Repository{
         }
         if(isset($params['params'])){
             $this->params = $params['params'];
+            if(isset($params['params']['name'])){
+            $this->name = $params['params']['name'];
         }
+        }
+        
         $this->createInput();
     }
 
@@ -81,7 +85,7 @@ class FormRepositorie extends Repository{
 
     private function createInput(){
         if(in_array($this->type,['text','password','number'])){
-            $this->input = "<input type='$this->type' class='form-control' id='$this->name' value='$this->value'>";
+            $this->input = "<input type='$this->type' name='$this->name' class='form-control' id='$this->name' value='$this->value'>";
         }
         if($this->type == 'textarea'){
             $this->input = "<textarea id='$this->name' name='$this->name' class='form-control'>$this->value</textarea>";

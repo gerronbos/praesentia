@@ -22,7 +22,6 @@
 
 <table class="table table-bordered"> 
 <?php
-var_dump(Auth::user());
 foreach(NotificationRepository::get(Auth::user()->id)->get() as $entry){
 	echo "<tr>";
 	echo "<td>";

@@ -12,12 +12,13 @@ class Auth{
             $user->where($key,'=',$p);
         }
 
-        if(!is_null($user)){
+        if(!is_null($user->first())){
             SessionHandler::setSession('user',$user);
 
             return true;
         }
         else{
+            SessionHandler::setSession('error','De combinatie van email en wachtwoord is onjuist.');
             return false;
         }
     }
@@ -55,5 +56,12 @@ class Auth{
         $class = get_called_class();
 
         return new $class($params);
+    }
+
+    public function updateLogin()
+    {
+        if(SessionHandler::has('user')) {
+            SessionHandler::setSession('user', self::user());
+        }
     }
 }
