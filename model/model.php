@@ -137,7 +137,7 @@ class model {
                 if (!$result) {
                     die("Error: " . $query . "<br>" . mysqli_error($conn));
                 }
-                //$this->data['id'] = $result->insert_id;
+                $this->data['id'] = $conn->query("SELECT LAST_INSERT_ID()");
             }
 
 
