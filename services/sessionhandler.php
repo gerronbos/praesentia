@@ -35,7 +35,7 @@ class SessionHandler{
     {
         if(isset($this) && is_object($this)) {
             if (isset($_COOKIE[$key])) {
-                unset($_COOKIE[$key]);
+                setcookie($key,null,time() - 3600, '/');
             }
             if (property_exists($this, $key)) {
                 unset($this->{$key});
@@ -75,6 +75,24 @@ class SessionHandler{
         else{
             Self::init()->save();
         }
+    }
+
+    public function has($key)
+    {
+        if(isset($_COOKIE[$key])) {
+            return self::getSession($key);
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function getAndDelete($key)
+    {
+        $session = self::getSession($key);
+        self::deleteSession($key);
+        return $session;
+
     }
 
     private function is_serialized($data){

@@ -18,6 +18,7 @@ class Auth{
             return true;
         }
         else{
+            SessionHandler::setSession('error','De combinatie van email en wachtwoord is onjuist.');
             return false;
         }
     }

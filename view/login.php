@@ -27,11 +27,19 @@ include_once('../build/app.php');
 
 <body class="login">
 <div>
-    <a class="hiddenanchor" id="signup"></a>
     <a class="hiddenanchor" id="signin"></a>
 
     <div class="login_wrapper">
+
         <div class="animate form login_form">
+            <?php
+            if(Services\SessionHandler::has('error')){
+                echo "<div class='alert alert-danger' role='alert'>".
+                    Services\SessionHandler::getAndDelete('error')."
+            </div>";
+            }
+
+            ?>
             <section class="login_content">
                 <?php echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller().'loginController.php','method'=>'POST']); ?>
                     <h1>Login Form</h1>
