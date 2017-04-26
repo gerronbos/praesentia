@@ -25,7 +25,7 @@
 foreach(NotificationRepository::get(Auth::user()->id)->get() as $entry){
 	echo "<tr>";
 	echo "<td>";
-	echo $entry->from_user()->firstname;
+	echo $entry->from_user()->fullname();
 	echo "</td>";
 	echo "<td>";
 	echo $entry->message;
