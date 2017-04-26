@@ -21,6 +21,10 @@
 </div>
 
 <table class="table table-bordered"> 
+<tr>
+<th>from_user</th>
+<th>message</th>
+</tr>
 <?php
 foreach(NotificationRepository::get(Auth::user()->id)->get() as $entry){
 	echo "<tr>";
