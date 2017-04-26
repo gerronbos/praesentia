@@ -22,7 +22,6 @@ class SessionHandler{
     public function setSession($key,$value){
 
         self::init()->__set($key,$value)->save();
-        return $this;
     }
 
     public function getSession($key)

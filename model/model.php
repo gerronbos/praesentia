@@ -68,7 +68,6 @@ class model {
                 }
                 return $this;
             }
-            unset($this);
             return null;
         }
         return self::init()->first();
