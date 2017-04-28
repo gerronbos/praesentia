@@ -1,8 +1,6 @@
 <?php
 use model\Users as User;
 class UserRepositorie extends Repository{
-
-
     public function getUserById($id)
     {
         return User::find($id);
@@ -17,8 +15,7 @@ class UserRepositorie extends Repository{
     	$user->password = self::makePassword($password);
     	$user->save();
 
-    	NotificationRepositorie::create(Auth::user()->id, $user->id, 'Account aangemaakt.', 1);
-    	exit;
+    	NotificationRepository::create(Auth::user()->id, $user->id, 'Account aangemaakt.', 1);
     }
 
     private function makePassword($password){
