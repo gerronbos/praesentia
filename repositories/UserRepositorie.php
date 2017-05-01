@@ -21,4 +21,14 @@ class UserRepositorie extends Repository{
     private function makePassword($password){
     	return $password;
     }
+
+    public function update($user,$firstname, $lastname, $user_number, $email){
+        $user->firstname = $firstname;
+        $user->lastname = $lastname;
+        $user->user_number = $user_number;
+        $user->email = $email;
+        $user->save();
+
+        NotificationRepository::create(Auth::user()->id, $user->id, 'Account aangemaakt.', 1);
+    }
 }
