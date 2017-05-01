@@ -137,7 +137,9 @@ class model {
                 if (!$result) {
                     die("Error: " . $query . "<br>" . mysqli_error($conn));
                 }
-                $this->data['id'] = $conn->query("SELECT LAST_INSERT_ID()");
+                foreach($conn->query("SELECT LAST_INSERT_ID()") as $id){
+                    $this->data['id'] = $id['LAST_INSERT_ID()'];
+                }
             }
 
 

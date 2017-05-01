@@ -10,7 +10,7 @@ include_once('../build/app.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Gentelella Alela! | </title>
+    <title>Windesheim Flevoland</title>
 
     <!-- Bootstrap -->
     <link href="<?php echo MapStructureRepositorie::vendors(); ?>bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -42,7 +42,7 @@ include_once('../build/app.php');
             ?>
             <section class="login_content">
                 <?php echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller().'loginController.php','method'=>'POST']); ?>
-                    <h1>Login Form</h1>
+                    <h1>Login</h1>
                     <div>
                         <input type="text" name="email" class="form-control" placeholder="Username" required="" />
                     </div>
@@ -51,7 +51,7 @@ include_once('../build/app.php');
                     </div>
                     <div>
                         <button class="btn btn-default submit">Log in</button>
-                        <a class="reset_pass" href="#">Lost your password?</a>
+                        <a class="reset_pass" href="#">Wachtwoord vergeten?</a>
                     </div>
 
                     <div class="clearfix"></div>
@@ -60,9 +60,10 @@ include_once('../build/app.php');
                         <div class="clearfix"></div>
                         <br />
 
-                        <div>
-                            <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
-                            <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                        <div class="logo">
+                            <!--<h1><i class="fa fa-paw"></i>Windesheim Flevoland</h1>-->
+                            <img src="../view/images/wf.png" width="70%">
+                            <p>©2017 All Rights Reserved by Team 13</p>
                         </div>
                     </div>
                 <?php echo FormRepositorie::closeForm(); ?>
