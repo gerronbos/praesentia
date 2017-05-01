@@ -19,6 +19,9 @@ class UserRepositorie extends Repository{
     }
 
     private function makePassword($password){
+
+        $password = password_hash($password, PASSWORD_BCRYPT);
+
     	return $password;
     }
 }
