@@ -67,6 +67,10 @@ class FormRepositorie extends Repository{
     {
         return self::init(['type'=>'text','title'=>$title,'value'=>$value,'params'=>$params])->baseHtml();
     }
+    public function Password($title, $value, $params = array())
+    {
+        return self::init(['type'=>'password','title'=>$title,'value'=>$value,'params'=>$params])->baseHtml();
+    }
     public function Textarea($title, $value, $params = array())
     {
         return self::init(['type'=>'textarea','title'=>$title,'value'=>$value,'params'=>$params])->baseHtml();
