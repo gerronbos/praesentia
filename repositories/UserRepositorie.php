@@ -25,13 +25,19 @@ class UserRepositorie extends Repository{
     	return $password;
     }
 
-    public function update($user,$firstname, $lastname, $user_number, $email){
+    public function update($user ,$firstname, $lastname, $user_number, $email){
         $user->firstname = $firstname;
         $user->lastname = $lastname;
         $user->user_number = $user_number;
         $user->email = $email;
         $user->save();
 
-        NotificationRepository::create(Auth::user()->id, $user->id, 'Account aangemaakt.', 1);
+        NotificationRepository::create(Auth::user()->id, $user->id, 'Account gewijzigd.', 1);
+    }
+
+    public function delete($user ,$firstname, $lastname, $user_number, $email, $password){
+        $user->delete();
+
+        NotificationRepository::create(Auth::user()->id, $user->id, 'Account verwijderd.', 1);
     }
 }
