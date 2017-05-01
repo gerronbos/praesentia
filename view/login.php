@@ -62,7 +62,7 @@ include_once('../build/app.php');
 
                         <div class="logo">
                             <!--<h1><i class="fa fa-paw"></i>Windesheim Flevoland</h1>-->
-                            <img src="../view/images/wf.png" width="50%">
+                            <img src="../view/images/wf.png" width="70%">
                             <p>©2017 All Rights Reserved by Team 13</p>
                         </div>
                     </div>
