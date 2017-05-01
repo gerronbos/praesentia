@@ -1,6 +1,6 @@
 <?php
 include('controller.php');
-if(Auth::login(['email' => $_POST['email'],'password'=>$_POST['password']])){
+if(Auth::login([],$_POST['email'],$_POST['password'])){
     header('location:../view/index.php');
     exit;
 }

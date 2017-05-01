@@ -5,22 +5,23 @@ class Auth{
     public function __construct(){
 
     }
-    public function login($params)
+    public function login($params,$email,$password)
     {
-        $user = Users::where('id','!=',0);
-        foreach($params as $key=>$p){
-            $user->where($key,'=',$p);
+        $user = Users::where('email','=',$email)->first();
+        if(is_null($user)){
+            SessionHandler::setSession('error','Combinatie van wachtwoord en email klopt niet.');
+            header('location: '.MapStructureRepositorie::view().'login.php');
+            exit;
         }
-
-        if(!is_null($user->first())){
+        if(password_verify($password,$user->password)){
             SessionHandler::setSession('user',$user);
+            header('location: '.MapStructureRepositorie::view().'index.php');
+            exit;
+        }
+        SessionHandler::setSession('error','Combinatie van wachtwoord en email klopt niet.');
+        header('location: '.MapStructureRepositorie::view().'login.php');
+        exit;
 
-            return true;
-        }
-        else{
-            SessionHandler::setSession('error','De combinatie van email en wachtwoord is onjuist.');
-            return false;
-        }
     }
 
     public function user()
