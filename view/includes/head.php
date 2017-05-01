@@ -1,5 +1,5 @@
 <?php
-    include_once('../build/app.php');
+        include_once($_SERVER['DOCUMENT_ROOT'].'/build/app.php');
     Auth::isLoggedIn();
 ?>
 <!DOCTYPE html>

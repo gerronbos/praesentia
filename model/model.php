@@ -1,7 +1,5 @@
 <?php namespace model;
 
-require_once("../build/app.php");
-
 use ConfigRepositorie;
 
 class model {

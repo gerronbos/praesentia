@@ -27,7 +27,7 @@ class ConfigRepositorie extends Repository{
 
             }
             if(file_exists('../build/config.php')) {
-                $config_doc = fopen('../build/config.php', 'w');
+                $config_doc = fopen($_SERVER['DOCUMENT_ROOT'].'/build/config.php', 'w');
                 fwrite($config_doc, "<?php  \nreturn[\n$config\n]\n?>");
                 fclose($config_doc);
 
@@ -43,7 +43,7 @@ class ConfigRepositorie extends Repository{
 
 
     public function __construct(){
-        $this->config = include('../build/config.php');
+        $this->config = include($_SERVER['DOCUMENT_ROOT'].'/build/config.php');
 
         return $this;
     }
