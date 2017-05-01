@@ -1,5 +1,5 @@
 <?php
-	include_once('includes/head.php');
+	include_once('../includes/head.php');
 	?>
 	
 	<?php
@@ -13,10 +13,10 @@
 	echo FormRepositorie::text('Studentnummer', '', ['name'=>'user_number']);
 	echo FormRepositorie::text('Email', '', ['name'=>'email']);
 	echo FormRepositorie::password('Wachtwoord', '', ['name'=>'password']);	
-	echo FormRepositorie::formSaveButton('#');
+	echo FormRepositorie::formSaveButton('../index.php');
 	echo FormRepositorie::closeForm();
 ?>
 
 <?php
-	include_once('includes/footer.php');
+	include_once('../includes/footer.php');
 ?>

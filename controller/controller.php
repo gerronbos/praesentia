@@ -1,3 +1,3 @@
 <?php
-require_once('../build/app.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/build/app.php');
 ?>
