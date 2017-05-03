@@ -86,6 +86,21 @@ class FormRepositorie extends Repository{
         return self::init(['type'=>'radio','title'=>$title,'value'=>array($value),'params'=>$params])->baseHtml();
     }
 
+    public function file($title, $params = array())
+    {
+        return self::init(['type'=>'file','title'=>$title,'params'=>$params])->baseHtml();
+
+    }
+
+    public function truefalse($title, $value=false, $params = array())
+    {
+        $params['list'] = [1=>'Ja',0=>'Nee'];
+        if(!$value){
+            $value = 1;
+        }
+        return self::init(['type'=>'select','title'=>$title,'value'=>$value,'params'=>$params])->baseHtml();
+    }
+
 
     private function createInput(){
         if(in_array($this->type,['text','password','number'])){
@@ -104,6 +119,25 @@ class FormRepositorie extends Repository{
                 $items .= "><label for='$key'>$key</label><br>";
             }
             $this->input = $items;
+        }
+        if($this->type == 'select'){
+            $itemlist = "";
+            foreach($this->params['list'] as $key=>$l){
+                $itemlist .= "<option value='$key'";
+                if($this->value == $key){
+                    $itemlist .= "selected";
+                }
+                $itemlist .= ">$l</option>";
+            }
+            $this->input = "<select name='$this->name' id='$this->name' class='form-control'>$itemlist</select>";
+        }
+
+        if($this->type == 'file'){
+            $this->input = "<input type='file' name='$this->name' id='$this->name'";
+                if(isset($this->params['multiple']) && $this->params['multiple']){
+                    $this->input .= "multiple";
+                }
+            $this->input .= ">";
         }
     }
     private function baseHtml()
