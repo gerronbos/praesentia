@@ -34,7 +34,7 @@ class UserRepositorie extends Repository{
         NotificationRepository::create(Auth::user()->id, $user->id, 'Account gewijzigd.', 1);
     }
 
-    public function delete($user ,$firstname, $lastname, $user_number, $email, $password){
+    public function delete($user){
         $user->delete();
 
         NotificationRepository::create(Auth::user()->id, $user->id, 'Account verwijderd.', 1);

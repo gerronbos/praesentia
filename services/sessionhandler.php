@@ -39,7 +39,7 @@ class SessionHandler{
             if (property_exists($this, $key)) {
                 unset($this->{$key});
             }
-            return $this->buildSession();
+            return $this->buildSession()->save();
         }
         return self::init()->deleteSession($key);
     }
@@ -49,6 +49,7 @@ class SessionHandler{
 
         foreach($_COOKIE as $key=>$c){
             if($this->is_serialized($c)) {
+                
                 $this->{$key} = unserialize($c);
             }
             else{
