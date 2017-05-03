@@ -1,5 +1,5 @@
 <?php
-    include_once('includes/head.php');
+    include_once('../includes/head.php');
 ?>
 
 	<div class="form-group">
@@ -13,5 +13,5 @@
 	</div>
 
 <?php
-    include_once('includes/footer.php');
+    include_once('../includes/footer.php');
 ?>

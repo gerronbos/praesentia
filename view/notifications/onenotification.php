@@ -1,5 +1,5 @@
 <?php
-    include_once('includes/head.php');
+    include_once('../includes/head.php');
     use model\Notifications;
 
     $notification = Notifications::find($_GET['id']);
@@ -10,5 +10,5 @@
 ?>
 
 <?php
-    include_once('includes/footer.php');
+    include_once('../includes/footer.php');
 ?>

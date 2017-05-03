@@ -5,12 +5,13 @@ use model\Notifications;
 
 class NotificationRepository{
 
-	public function create($from_user,$to_user,$message,$seen){
+	public function create($from_user,$to_user,$message,$seen,$created_at){
 		$notification = new Notifications();
 		$notification->from_user = $from_user;
 		$notification->to_user = $to_user;
 		$notification->message = $message;
 		$notification->seen = 0;
+		$notification->created_at = 'now()';
 
 		$notification->save();
 	}

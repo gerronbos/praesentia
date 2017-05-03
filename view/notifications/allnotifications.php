@@ -1,5 +1,5 @@
 <?php
-    include_once('includes/head.php');
+    include_once('../includes/head.php');
 ?>
 
 <a href="notificationtest.php" class="btn btn-primary">New notification</a>
@@ -49,5 +49,5 @@ echo "</tr>";
 </table>
 
 <?php
-    include_once('includes/footer.php');
+    include_once('../includes/footer.php');
 ?>
