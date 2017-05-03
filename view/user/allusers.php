@@ -4,6 +4,9 @@ include_once('../includes/head.php');
 <div class="x_panel">
 	<div class="x_title">
 		<h2>Gebruikers </h2>
+		<?php
+			echo "<a href='".MapStructureRepositorie::view()."user/userAddOption.php' class='btn btn-primary' style='float: right'>Nieuwe Gebruiker</a>";
+		?>
 		<ul class="nav navbar-right panel_toolbox"></ul>
 		<div class="clearfix"></div>
 	</div>
