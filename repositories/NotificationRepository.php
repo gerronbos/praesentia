@@ -34,8 +34,8 @@ class NotificationRepository{
 		return $notifications;
 	}
 
-	public function setSeen(Notifications $notification,$seen){
-		$notification->unseen=$seen;
+	public function setSeen(Notifications $notification){
+		$notification->unseen=0;
 		$notification->save();
 	}
 }

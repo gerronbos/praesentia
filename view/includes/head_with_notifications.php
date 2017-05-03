@@ -1,5 +1,5 @@
 <?php
-        include_once($_SERVER['DOCUMENT_ROOT'].'/build/app.php');
+    include_once('../build/app.php');
     Auth::isLoggedIn();
 ?>
 <!DOCTYPE html>
@@ -210,7 +210,8 @@
                 <li role="presentation" class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-envelope-o"></i>
-                        <?php  
+                        
+                            <?php  
                             if(count(NotificationRepository::get(Auth::user()->id)->get())){
                                 echo '<span class="badge bg-green">';
                                 echo count(NotificationRepository::get(Auth::user()->id)->get());
@@ -235,6 +236,8 @@ foreach(NotificationRepository::get(Auth::user()->id)->get() as $entry){
     echo "</a></li>";
 }
 ?>
+                        
+                            
                         <li>
                             <div class="text-center">
                                 <a href="allnotifications.php">
