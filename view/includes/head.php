@@ -111,16 +111,16 @@
                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-envelope-o"></i>
                         <?php  
-                            if(count(NotificationRepository::get(Auth::user()->id)->get())){
+                            if(count(NotificationRepository::get(Auth::user()->id,['onlyUnseen'=>1])->get())){
                                 echo '<span class="badge bg-green">';
-                                echo count(NotificationRepository::get(Auth::user()->id)->get());
+                                echo count(NotificationRepository::get(Auth::user()->id,['onlyUnseen'=>1])->get());
                                 echo '</span>';
                             };
                             ?>
                     </a>
                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                         <?php
-foreach(NotificationRepository::get(Auth::user()->id)->get() as $entry){
+foreach(array_slice(NotificationRepository::get(Auth::user()->id,['onlyUnseen'=>1])->get(),0,6) as $entry){
     echo "<li><a href='onenotification.php?id=$entry->id'>";
     echo "<span class='image'><img src='images/img.jpg' alt='Profile Image' /></span>";
     echo "<span>";

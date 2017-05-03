@@ -106,6 +106,7 @@ class model {
                 $update = substr_replace($update, "", -1);
 
                 $query = "UPDATE $this->table SET $update WHERE id=$this->id";
+
                 $conn = $this->makeConnection();
                 $result = $conn->query($query);
                 if (!$result) {

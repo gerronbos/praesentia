@@ -5,12 +5,12 @@ use model\Notifications;
 
 class NotificationRepository{
 
-	public function create($from_user,$to_user,$message,$unseen){
+	public function create($from_user,$to_user,$message,$seen){
 		$notification = new Notifications();
 		$notification->from_user = $from_user;
 		$notification->to_user = $to_user;
 		$notification->message = $message;
-		$notification->unseen = $unseen;
+		$notification->seen = 0;
 
 		$notification->save();
 	}
@@ -22,10 +22,10 @@ class NotificationRepository{
 		$notifications=Notifications::where('to_user','=',$user);
 
 		if(isset($params['onlyUnseen'])){
-			$notifications->where('unseen','=',1);
+			$notifications->where('seen','=',0);
 		}
 		if(isset($params['onlySeen'])){
-			$notifications->where('unseen','=',0);
+			$notifications->where('seen','=',1);
 		}
 		if(isset($params['id'])){
 			$notifications->where('id','=',$params['id']);
@@ -35,7 +35,7 @@ class NotificationRepository{
 	}
 
 	public function setSeen(Notifications $notification){
-		$notification->unseen=0;
+		$notification->seen=1;
 		$notification->save();
 	}
 }
