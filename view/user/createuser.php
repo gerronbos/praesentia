@@ -13,7 +13,7 @@
 	echo FormRepositorie::text('Studentnummer', '', ['name'=>'user_number']);
 	echo FormRepositorie::text('Email', '', ['name'=>'email']);
 	echo FormRepositorie::password('Wachtwoord', '', ['name'=>'password']);	
-	echo FormRepositorie::formSaveButton('../index.php');
+	echo FormRepositorie::formSaveButton("javascript:history.back()");
 	echo FormRepositorie::closeForm();
 ?>
 
