@@ -17,6 +17,7 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/model/Lecture.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/model/Presence.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/model/Room.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/model/Notifications.php');
+require_once($_SERVER['DOCUMENT_ROOT'].'/model/Role.php');
 
 /*
  * Services
@@ -34,6 +35,15 @@ require_once($_SERVER['DOCUMENT_ROOT'].'/repositories/MapStructureRepositorie.ph
 require_once($_SERVER['DOCUMENT_ROOT'].'/repositories/FormRepositorie.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/repositories/NotificationRepository.php');
 require_once($_SERVER['DOCUMENT_ROOT'].'/repositories/UserRepositorie.php');
+
+
+/*
+ * Helpers
+ * Hier worden de functies in gezet die je kunnen helpen met bepaalde gegevens of html elementen te maken
+ */
+
+require_once($_SERVER['DOCUMENT_ROOT'].'/helpers/truefalse.php');
+
 
 
 
