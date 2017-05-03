@@ -110,60 +110,34 @@
                 <li role="presentation" class="dropdown">
                     <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                         <i class="fa fa-envelope-o"></i>
-                        <span class="badge bg-green">6</span>
+                        <?php  
+                            if(count(NotificationRepository::get(Auth::user()->id,['onlyUnseen'=>1])->get())){
+                                echo '<span class="badge bg-green">';
+                                echo count(NotificationRepository::get(Auth::user()->id,['onlyUnseen'=>1])->get());
+                                echo '</span>';
+                            };
+                            ?>
                     </a>
                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                        <li>
-                            <a>
-                                <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a>
-                                <span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-                        <span>
-                          <span>John Smith</span>
-                          <span class="time">3 mins ago</span>
-                        </span>
-                        <span class="message">
-                          Film festivals used to be do-or-die moments for movie makers. They were where...
-                        </span>
-                            </a>
-                        </li>
+                        <?php
+foreach(array_slice(NotificationRepository::get(Auth::user()->id,['onlyUnseen'=>1])->get(),0,6) as $entry){
+    echo "<li><a href='<?php echo MapStructureRepositorie::view(); ?>notifications/onenotification.php?id=$entry->id'>";
+    echo "<span class='image'><img src='images/img.jpg' alt='Profile Image' /></span>";
+    echo "<span>";
+    echo "<span>";
+    echo $entry->from_user()->fullname();
+    echo "</span>";
+    echo "<span>";
+    echo "</span>";
+    echo "<span class='message'>";
+    echo $entry->message;
+    echo "</span>";
+    echo "</a></li>";
+}
+?>
                         <li>
                             <div class="text-center">
-                                <a>
+                                <a href="<?php echo MapStructureRepositorie::view(); ?>notifications/allnotifications.php">
                                     <strong>See All Alerts</strong>
                                     <i class="fa fa-angle-right"></i>
                                 </a>

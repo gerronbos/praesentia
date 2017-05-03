@@ -1,8 +1,9 @@
 <?php
-    include_once('includes/head.php');
+    include_once('../includes/head.php');
 ?>
 
 <a href="notificationtest.php" class="btn btn-primary">New notification</a>
+<a href="notificationintents.php" class="btn btn-primary">Preset notifications</a>
 
 <div class="form-group">
 	<form action="#" method="GET">
@@ -34,11 +35,19 @@ foreach(NotificationRepository::get(Auth::user()->id)->get() as $entry){
 	echo "<td>";
 	echo $entry->message;
 	echo "</td>";
-	echo "</tr>";
+	echo "
+	<td>
+<form action='../controller/notificationController.php' method='POST'>
+<input type='hidden' name='id' value=".$entry->id.">
+<button name='delete' type='submit' class='btn btn-danger'>Delete</button>
+</form>
+</td>
+";
+echo "</tr>";
 }
 ?>
 </table>
 
 <?php
-    include_once('includes/footer.php');
+    include_once('../includes/footer.php');
 ?>
