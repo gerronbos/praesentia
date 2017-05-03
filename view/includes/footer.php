@@ -51,6 +51,9 @@
 <script src="<?php echo MapStructureRepositorie::vendors(); ?>moment/min/moment.min.js"></script>
 <script src="<?php echo MapStructureRepositorie::vendors(); ?>bootstrap-daterangepicker/daterangepicker.js"></script>
 
+<!-- Dropzone Script -->
+<script src="<?php echo MapStructureRepositorie::build(); ?>js/dropzone.js"></script>
+
 <!-- Custom Theme Scripts -->
 <script src="<?php echo MapStructureRepositorie::build(); ?>js/custom.min.js"></script>
 
