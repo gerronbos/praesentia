@@ -31,7 +31,6 @@ class UserRepositorie extends Repository{
         $user->user_number = $user_number;
         $user->email = $email;
         $user->save();
-
         NotificationRepository::create(Auth::user()->id, $user->id, 'Account gewijzigd.', 1);
     }
 

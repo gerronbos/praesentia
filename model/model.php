@@ -9,6 +9,7 @@ class model {
     private $data = [];
     private $called_class = '';
     private $instance = '';
+    private $orderby = '';
     //db settings
     private $servername = "";
     private $username = "";
@@ -190,6 +191,15 @@ class model {
         return self::init()->where($column,$constructor,$value);
     }
 
+    public function orderBy($colum, $order)
+    {
+        if(isset($this) && is_object($this)) {
+            $this->orderby .= "ORDER BY $colum $order";
+            return $this;
+        }
+        return self::init()->orderBy($colum,$order);
+    }
+
     //private functions
     private function makeConnection()
     {
@@ -234,7 +244,7 @@ class model {
 
     private function excecute_query()
     {
-        $query = "SELECT $this->select FROM $this->table $this->query_where $this->realtion_query";
+        $query = "SELECT $this->select FROM $this->table $this->query_where $this->orderby";
 
         $conn = self::makeConnection();
 
