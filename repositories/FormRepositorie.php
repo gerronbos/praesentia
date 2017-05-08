@@ -55,6 +55,9 @@ class FormRepositorie extends Repository{
         if(isset($params['class'])){
             $return .= "class='".$params['class']."' ";
         }
+        if(isset($params['data-toggle'])){
+            $return .= "data-toggle='".$params['data-toggle']."' ";
+        }
 
         return $return.=">";
     }
