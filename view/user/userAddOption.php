@@ -22,7 +22,7 @@ include_once('../includes/head.php');
 	</div>
 	<div id="preview-template" style="text-align: center; " >
 
-		<form action="<?.MapStructureRepositorie::controller().?>/user/userController.php"
+		<form action="<?php MapStructureRepositorie::controller();?>/user/userController.php"
 			class="dropzone"
 			id="my-awesome-dropzone">
 		</form>
