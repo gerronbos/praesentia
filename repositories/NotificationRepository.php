@@ -5,13 +5,13 @@ use model\Notifications;
 
 class NotificationRepository{
 
-	public function create($from_user,$to_user,$message,$seen,$created_at){
+	public function create($from_user,$to_user,$message){
 		$notification = new Notifications();
 		$notification->from_user = $from_user;
 		$notification->to_user = $to_user;
 		$notification->message = $message;
 		$notification->seen = 0;
-		$notification->created_at = 'now()';
+		$notification->created_at = date('Y-m-d H:i:s');
 
 		$notification->save();
 	}
@@ -31,7 +31,6 @@ class NotificationRepository{
 		if(isset($params['id'])){
 			$notifications->where('id','=',$params['id']);
 		}
-
 		return $notifications;
 	}
 
