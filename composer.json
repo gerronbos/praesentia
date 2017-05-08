@@ -1,0 +1,12 @@
+{
+    "autoload": {
+        "classmap": [
+            "model",
+            "repositories",
+            "services"
+        ],
+        "files": [
+            "helpers/truefalse.php"
+        ]
+    }
+}

@@ -58,6 +58,7 @@ class PresenceRepository extends Repository{
     public function delete(Presence $presence)
     {
         $lecture = $presence->Lecutre();
+        var_dump($presence);
         $presence->delete();
         NotificationRepository::create(Auth::user()->id,$input['user_id'],"Aanwezigheid van ");
     }
