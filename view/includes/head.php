@@ -121,7 +121,7 @@
                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                         <?php
 foreach(array_slice(NotificationRepository::get(Auth::user()->id,['onlyUnseen'=>1])->get(),0,6) as $entry){
-    echo "<li><a href='<?php echo MapStructureRepositorie::view(); ?>notifications/onenotification.php?id=$entry->id'>";
+    echo "<li><a href='";echo MapStructureRepositorie::view(); echo"notifications/onenotification.php?id=$entry->id'>";
     echo "<span class='image'><img src='images/img.jpg' alt='Profile Image' /></span>";
     echo "<span>";
     echo "<span>";

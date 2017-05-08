@@ -34,5 +34,5 @@ if(isset($message)){
 NotificationRepository::create(Auth::user()->id,$_POST['to_user'],$message,'1');
 }
 
-header("Location: ../view/allnotifications.php");
+header("Location: ../view/notifications/allnotifications.php");
 ?>
