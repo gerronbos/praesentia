@@ -22,7 +22,6 @@ elseif(isset($_POST['user_edited'])){
 if(isset($_POST['message'])){
 	$message = $_POST['message'];
 }
-
 // If deletion is selected
 if(isset($_POST['delete'])){
 	$notification = Notifications::find($_POST['id']);
