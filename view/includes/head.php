@@ -120,14 +120,11 @@
                     </a>
                     <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                         <?php
-foreach(array_slice(NotificationRepository::get(Auth::user()->id,['onlyUnseen'=>1])->get(),0,6) as $entry){
+foreach(array_slice(NotificationRepository::get(Auth::user()->id,['onlyUnseen'=>1])->orderBy('id','DESC')->get(),0,6) as $entry){
     echo "<li><a href='";echo MapStructureRepositorie::view(); echo"notifications/onenotification.php?id=$entry->id'>";
     echo "<span class='image'><img src='images/img.jpg' alt='Profile Image' /></span>";
     echo "<span>";
-    echo "<span>";
     echo $entry->from_user()->fullname();
-    echo "</span>";
-    echo "<span>";
     echo "</span>";
     echo "<span class='message'>";
     echo $entry->message;
@@ -138,7 +135,7 @@ foreach(array_slice(NotificationRepository::get(Auth::user()->id,['onlyUnseen'=>
                         <li>
                             <div class="text-center">
                                 <a href="<?php echo MapStructureRepositorie::view(); ?>notifications/allnotifications.php">
-                                    <strong>See All Alerts</strong>
+                                    <strong>Alle berichten</strong>
                                     <i class="fa fa-angle-right"></i>
                                 </a>
                             </div>

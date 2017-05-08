@@ -1,21 +1,24 @@
 <?php
     include_once('../includes/head.php');
     use model\Notifications;
-    $notification = Notifications::find($_GET['id']);
+    $entry = Notifications::find($_GET['id']);
     echo '<a href="allnotifications.php" class="btn btn-primary">Naar Overzicht</a>';
-    echo '<div class="panel panel-info"><div class="panel-heading">';
-    echo '<b>'.$notification->from_user()->fullname().'</b>';
-    echo '</div><div class="panel-body">';
-    echo $notification->message;
-    echo '</div><div class="panel-footer">';
-	echo "
+    echo '<a href="onenotification.php?id='.$entry->id.'" class="list-group-item">';
+    echo '<h4 class="list-group-item-heading">';
+    echo $entry->from_user()->fullname();
+    echo "<span class='pull-right'>
 	<form action='../../controller/notificationController.php' method='POST'>
-	<input type='hidden' name='id' value='".$notification->id."'>
-	<button name='delete' type='submit' class='btn btn-xs btn-danger'>Delete</button>
+	<input type='hidden' name='id' value='".$entry->id."'>
+	<button name='delete' type='submit' class='btn-link glyphicon glyphicon-remove'></button>
 	</form>
+	</span>
 	";
-	echo "</div></div>";
-    NotificationRepository::setSeen($notification); 
+    echo '</h4>';
+    echo '<p class="list-group-item-text">';
+    echo $entry->message;
+    echo '</p>';
+	echo "</a>";
+    NotificationRepository::setSeen($entry); 
 
 ?>
 
