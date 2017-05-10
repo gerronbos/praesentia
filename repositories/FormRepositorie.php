@@ -8,15 +8,18 @@ class FormRepositorie extends Repository{
     private $type = null;
     private $value = null;
     private $name = null;
+    private $id = null;
 
     public function __construct($params = array())
     {
         if(isset($params['type'])){
             $this->type = $params['type'];
         }
+
         if(isset($params['title'])){
             $this->title = $params['title'];
             $this->name = str_ireplace(' ','_',$params['title']);
+            $this->id = str_ireplace(' ','_',$params['title']);
         }
         if(isset($params['value'])){
             $this->value = $params['value'];
@@ -24,8 +27,11 @@ class FormRepositorie extends Repository{
         if(isset($params['params'])){
             $this->params = $params['params'];
             if(isset($params['params']['name'])){
-            $this->name = $params['params']['name'];
-        }
+                $this->name = $params['params']['name'];
+            }
+            if(isset($params['params']['id'])){
+                $this->id = $params['params']['id'];
+            }
         }
         
         $this->createInput();
@@ -58,8 +64,12 @@ class FormRepositorie extends Repository{
         if(isset($params['data-toggle'])){
             $return .= "data-toggle='".$params['data-toggle']."' ";
         }
+        $return .= ">";
+        if(isset($params['send_type'])){
+            $return .= "<input type='hidden' name='".$params['send_type']."' value='1'>";
+        }
 
-        return $return.=">";
+        return $return;
     }
     public function closeForm($params = array())
     {
@@ -107,10 +117,10 @@ class FormRepositorie extends Repository{
 
     private function createInput(){
         if(in_array($this->type,['text','password','number'])){
-            $this->input = "<input type='$this->type' name='$this->name' class='form-control' id='$this->name' value='$this->value'>";
+            $this->input = "<input type='$this->type' name='$this->name' class='form-control' id='$this->id' value='$this->value'>";
         }
         if($this->type == 'textarea'){
-            $this->input = "<textarea id='$this->name' name='$this->name' class='form-control'>$this->value</textarea>";
+            $this->input = "<textarea id='$this->id' name='$this->name' class='form-control'>$this->value</textarea>";
         }
         if(in_array($this->type,['radio','checkbox'])){
             $items = '<br>';
@@ -132,11 +142,11 @@ class FormRepositorie extends Repository{
                 }
                 $itemlist .= ">$l</option>";
             }
-            $this->input = "<select name='$this->name' id='$this->name' class='form-control'>$itemlist</select>";
+            $this->input = "<select name='$this->name' id='$this->id' class='form-control'>$itemlist</select>";
         }
 
         if($this->type == 'file'){
-            $this->input = "<input type='file' name='$this->name' id='$this->name'";
+            $this->input = "<input type='file' name='$this->name' id='$this->id'";
                 if(isset($this->params['multiple']) && $this->params['multiple']){
                     $this->input .= "multiple";
                 }

@@ -9,6 +9,7 @@ return array(
     'Auth' => $baseDir . '/services/auth.php',
     'ConfigRepositorie' => $baseDir . '/repositories/ConfigRepositorie.php',
     'FormRepositorie' => $baseDir . '/repositories/FormRepositorie.php',
+    'LectureRepository' => $baseDir . '/repositories/LectureRepository.php',
     'MapStructureRepositorie' => $baseDir . '/repositories/MapStructureRepositorie.php',
     'NotificationRepository' => $baseDir . '/repositories/NotificationRepository.php',
     'PresenceRepository' => $baseDir . '/repositories/PresenceRepository.php',

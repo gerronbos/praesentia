@@ -5,7 +5,7 @@
             <li><a href="<?php echo ConfigRepositorie::get('url'); ?>"><i class="fa fa-home"></i> Home</a></li>
             <li><a><i class="fa fa-edit"></i> Absentie <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
-                    <li><a href="form.html">Absentie invullen</a></li>
+                    <li><a href="<?php echo MapStructureRepositorie::view(); ?>presence/index.php">Absentie invullen</a></li>
                     <li><a href="form_advanced.html">Aanwezigheid</a></li>
                 </ul>
             </li>

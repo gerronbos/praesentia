@@ -2,10 +2,16 @@
 
 use model\Presence;
 use model\Lecture;
-use NotificationRepository;
 
 class PresenceRepository extends Repository{
 
+    public function set(Lecture $lecture, $present)
+    {
+        foreach($lecture->Group()->Users() as $u){
+            self::create(['user_id'=>$u->id,'lecture_id'=>$lecture->id,'present'=> (in_array($u->id,$present) ? false : true)]);
+        }
+
+    }
     public function get($params = array())
     {
         $presence = Presence::where('id','!=',0);
@@ -31,8 +37,9 @@ class PresenceRepository extends Repository{
         $presence->save();
 
         ($input['present'])? $present = 'aanwezig' : $present = 'afwezig';
-
-        NotificationRepository::create(Auth::user()->id,$input['user_id'],"Aanwezigheid op $present gezet.");
+        $lecture = $presence->Lecutre();
+        $course = $lecture->course();
+        NotificationRepository::create(Auth::user()->id,$input['user_id'],"Aanwezigheid voor $course->name op ".date('y-m-d',strtotime($lecture->date))." is op $present gezet.");
     }
 
     public function edit(Presence $presence, $input = array())
@@ -49,8 +56,11 @@ class PresenceRepository extends Repository{
 
         $presence->save();
         ($input['present'])? $present = 'aanwezig' : $present = 'afwezig';
+        $lecture = $presence->Lecutre();
+        $course = $lecture->course();
+        $user = $presence->user();
 
-        NotificationRepository::create(Auth::user()->id,$input['user_id'],"Aanwezigheid op $present gezet.");
+        NotificationRepository::create(Auth::user()->id,$input['user_id'],"Aanwezigheid voor $course->name op ".date('y-m-d',strtotime($lecture->date))." is op $present gezet.");
 
 
     }
@@ -58,8 +68,9 @@ class PresenceRepository extends Repository{
     public function delete(Presence $presence)
     {
         $lecture = $presence->Lecutre();
-        var_dump($presence);
+        $course = $lecture->course();
+        $user = $presence->user();
         $presence->delete();
-        NotificationRepository::create(Auth::user()->id,$input['user_id'],"Aanwezigheid van ");
+        NotificationRepository::create(Auth::user()->id,$user->id,"Aanwezigheid voor $course->name op ".date('y-m-d',strtotime($lecture->date))." is verwijderd.");
     }
 }

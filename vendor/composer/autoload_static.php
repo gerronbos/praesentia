@@ -14,6 +14,7 @@ class ComposerStaticInitcd537467c5ba460042f21d53039c1010
         'Auth' => __DIR__ . '/../..' . '/services/auth.php',
         'ConfigRepositorie' => __DIR__ . '/../..' . '/repositories/ConfigRepositorie.php',
         'FormRepositorie' => __DIR__ . '/../..' . '/repositories/FormRepositorie.php',
+        'LectureRepository' => __DIR__ . '/../..' . '/repositories/LectureRepository.php',
         'MapStructureRepositorie' => __DIR__ . '/../..' . '/repositories/MapStructureRepositorie.php',
         'NotificationRepository' => __DIR__ . '/../..' . '/repositories/NotificationRepository.php',
         'PresenceRepository' => __DIR__ . '/../..' . '/repositories/PresenceRepository.php',

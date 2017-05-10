@@ -8,6 +8,11 @@ class Lecture extends model{
         $course = new Course();
         return $course->find($this->course_id);
     }
+    public function Group()
+    {
+        $group = new Group();
+        return $group->find($this->group_id);
+    }
 }
 
 ?>

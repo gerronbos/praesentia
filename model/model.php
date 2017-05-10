@@ -42,8 +42,20 @@ class model {
             return $return;
         }
         return self::init()->get();
+    }
 
-
+    public function lists($value,$key = null)
+    {
+        $return = [];
+        foreach($this->get() as $i){
+            if($key){
+                $return[$i->$key] = $i->$value;
+            }
+            else{
+                $return[] = $i->$value;
+            }
+        }
+        return $return;
     }
 
     public function find($id)
@@ -177,7 +189,9 @@ class model {
         if(isset($this) && is_object($this)) {
             $return = '';
             $return .= $column;
+            $return .= " ";
             $return .= $constructor;
+            $return .= " ";
             $return .= "'$value'";
 
             if ($this->query_where) {
@@ -189,6 +203,21 @@ class model {
             return $this;
         }
         return self::init()->where($column,$constructor,$value);
+    }
+
+    public function whereIn($column, $list = array())
+    {
+        if(isset($this) && is_object($this)) {
+            if($this->query_where){
+                $this->query_where .= ' AND ';
+            }
+            else{
+                $this->query_where .= 'where ';
+            }
+            $this->query_where .= "`$column` IN('".implode("','",$list)."')";
+            return $this;
+        }
+        return self::init()->whereIn($column,$list);
     }
 
     public function orderBy($colum, $order)
@@ -231,20 +260,15 @@ class model {
             $this->set_data_empty();
         }
     }
-    private function join($table, $this_foreign, $model_foreign){
+    public function join($table, $this_foreign, $model_foreign){
         $this->realtion_query = "INNER JOIN $table ON ".$this->table.".".$model_foreign." = ".$table.'.'.$this_foreign;
-        $this->select = $table.'.*';
-        $result = $this->excecute_query();
-        while($row = $result->fetch_assoc()){
-            $this->data = $row;
-        }
 
         return $this;
     }
 
     private function excecute_query()
     {
-        $query = "SELECT $this->select FROM $this->table $this->query_where $this->orderby";
+        $query = "SELECT $this->select FROM $this->table $this->realtion_query $this->query_where $this->orderby";
 
         $conn = self::makeConnection();
 
