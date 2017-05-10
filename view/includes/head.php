@@ -1,6 +1,5 @@
 <?php
         include_once($_SERVER['DOCUMENT_ROOT'].'/build/app.php');
-$users = model\Group::find(1)->Users();
     Auth::isLoggedIn();
 ?>
 <!DOCTYPE html>
