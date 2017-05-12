@@ -14,6 +14,7 @@ return array(
     'NotificationRepository' => $baseDir . '/repositories/NotificationRepository.php',
     'PresenceRepository' => $baseDir . '/repositories/PresenceRepository.php',
     'Repository' => $baseDir . '/repositories/repository.php',
+    'RoleRepository' => $baseDir . '/repositories/RoleRepository.php',
     'Services\\SessionHandler' => $baseDir . '/services/sessionhandler.php',
     'UserRepositorie' => $baseDir . '/repositories/UserRepositorie.php',
     'model\\Course' => $baseDir . '/model/Course.php',

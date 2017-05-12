@@ -9,17 +9,21 @@ include_once('../includes/head.php');
         </div>
         <div class="x_content">
             <?php
-            echo FormRepositorie::text('title','');
-            echo FormRepositorie::truefalse('Gebruikers');
+            echo FormRepositorie::openForm(['method'=>'POST','url'=>MapStructureRepositorie::controller()."roles/roleController.php",'send_type'=>'create']);
+            echo FormRepositorie::text('title','',['required'=>1]);
+            echo FormRepositorie::truefalse('Gebruikers','',['name'=>'users']);
             echo "<p class='help-class'>Hierbij wordt verstaan de volgende dingen:<br>Gebruikers toevoegen<br>Gebruikers wijzigen<br> Gebruikers verwijderen<br> Gebruikers inzien</p>";
-            echo FormRepositorie::truefalse('Aanwezigheid');
+            echo FormRepositorie::truefalse('Aanwezigheid','',['name'=>'presence']);
             echo "<p class='help-class'>Hierbij wordt verstaan de volgende dingen:<br>Aanwezigheid inzien<br>Aanweizgheid invullen voor joun klas</p>";
-            echo FormRepositorie::truefalse('Colleges');
+            echo FormRepositorie::truefalse('Colleges','',['name'=>'lectures']);
             echo "<p class='help-class'>Hierbij wordt verstaan de volgende dingen:<br>Colleges aanmaken<br>Colleges wijzigen<br> Colleges verwijderen<br> Gebruikers koppelen aan colleges<br> Colleges inzien</p>";
-            echo FormRepositorie::truefalse('Klassen');
+            echo FormRepositorie::truefalse('Klassen','',['name'=>'groups']);
             echo "<p class='help-class'>Hierbij wordt verstaan de volgende dingen:<br>Klassen toevoegen<br>Klassen wijzigen<br> Klassen verwijderen<br>Gebruikers koppelen aan klassen<br> Klassen inzien</p>";
-            echo FormRepositorie::truefalse('Lokalen');
+            echo FormRepositorie::truefalse('Lokalen','',['name'=>'rooms']);
             echo "<p class='help-class'>Hierbij wordt verstaan de volgende dingen:<br>Lokalen toevoegen<br>Lokalen wijzigen<br> Lokalen verwijderen<br>Gebruikers koppelen aan lokalen<br> Colleges koppelen aan lokalen<br> Lokalen inzien</p>";
+            echo Formrepositorie::formSaveButton(MapStructureRepositorie::view()."roles/index.php");
+            echo Formrepositorie::closeForm();
+
             ?>
         </div>
     </div>

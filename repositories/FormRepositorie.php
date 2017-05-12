@@ -28,9 +28,11 @@ class FormRepositorie extends Repository{
             $this->params = $params['params'];
             if(isset($params['params']['name'])){
                 $this->name = $params['params']['name'];
+                unset($params['params']['name']);
             }
             if(isset($params['params']['id'])){
                 $this->id = $params['params']['id'];
+                unset($params['params']['id']);
             }
         }
         
@@ -116,16 +118,22 @@ class FormRepositorie extends Repository{
 
 
     private function createInput(){
+        $params = '';
+        foreach($this->params as $key=>$p){
+
+            $params .= strval("$key='$p'");
+        }
+
         if(in_array($this->type,['text','password','number'])){
-            $this->input = "<input type='$this->type' name='$this->name' class='form-control' id='$this->id' value='$this->value'>";
+            $this->input = "<input type='$this->type' name='$this->name' class='form-control' id='$this->id' value='$this->value' $params >";
         }
         if($this->type == 'textarea'){
-            $this->input = "<textarea id='$this->id' name='$this->name' class='form-control'>$this->value</textarea>";
+            $this->input = "<textarea id='$this->id' name='$this->name' class='form-control' $params >$this->value</textarea>";
         }
         if(in_array($this->type,['radio','checkbox'])){
             $items = '<br>';
             foreach($this->params['list'] as $key=>$l){
-                $items .= "<input type='$this->type' name='$this->name' id='$key' style='margin-right: 10px;'";
+                $items .= "<input type='$this->type' name='$this->name' id='$key' style='margin-right: 10px;' $params";
                 if(in_array($key,$this->value)){
                     $items .= "checked";
                 }
@@ -142,7 +150,7 @@ class FormRepositorie extends Repository{
                 }
                 $itemlist .= ">$l</option>";
             }
-            $this->input = "<select name='$this->name' id='$this->id' class='form-control'>$itemlist</select>";
+            $this->input = "<select name='$this->name' id='$this->id' class='form-control' $params >$itemlist</select>";
         }
 
         if($this->type == 'file'){
@@ -150,7 +158,7 @@ class FormRepositorie extends Repository{
                 if(isset($this->params['multiple']) && $this->params['multiple']){
                     $this->input .= "multiple";
                 }
-            $this->input .= ">";
+            $this->input .= " $params >";
         }
     }
     private function baseHtml()

@@ -1,6 +1,10 @@
 <?php
 include_once('../includes/head.php');
+if(Services\SessionHandler::has('alert_roles')){
+    echo '<div class="col-lg-12"><div class="alert alert-success" role="alert">'.Services\SessionHandler::getAndDelete('alert_roles').'</div></div>';
+}
 ?>
+
     <div class="x_panel">
         <div class="x_title">
             <h2>Rechten sjabloon</h2>

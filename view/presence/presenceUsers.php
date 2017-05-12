@@ -1,6 +1,6 @@
 <?php
 include_once('../includes/head.php');
-$lecture_data = Services\SessionHandler::getSession('lecture_data2');
+$lecture_data = Services\SessionHandler::getSession('lecture_data');
 
 $lecture = $lecture_data['lecture'];
 $group = $lecture_data['group'];
