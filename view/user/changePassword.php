@@ -35,8 +35,8 @@ include_once('../includes/head.php');
 				<div class="col-sm-6 col-sm-offset-3">
 					<?php 	
 					echo FormRepositorie::openForm(); 
-					echo FormRepositorie::password('Oude Wachtwoord', '', ['name' => 'password']);
-					echo FormRepositorie::password('Nieuwe Wachtwoord', '', ['name' => 'password1', 'id' => 'password1']);
+					echo FormRepositorie::password('', '', ['name' => 'password', 'placeholder' => 'Oude Wachtwoord']);
+					echo FormRepositorie::password('', '', ['name' => 'password1', 'id' => 'password1', 'placeholder' => 'Nieuwe Wachtwoord']);
 					?>
 					<div class="row">
 						<div class="col-sm-6">
@@ -47,9 +47,9 @@ include_once('../includes/head.php');
 							<span id="lcase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Minimaal 1 kleine letter<br>
 							<span id="num" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Minimaal 1 Number
 						</div>
-					</div><br>
+					</div>
 					<?php
-					echo FormRepositorie::password('Herhaal wachtwoord', '', ['name' => 'password2', 'id' => 'password2']);
+					echo FormRepositorie::password('', '', ['name' => 'password2', 'id' => 'password2', 'placeholder' => 'Herhaal Wachtwoord']);
 					?>
 					<div class="row">
 						<div class="col-sm-12">
@@ -60,10 +60,23 @@ include_once('../includes/head.php');
 					echo FormRepositorie::formSaveButton("javascript:history.back()");
 					echo FormRepositorie::closeForm();
 					?>
-			</div><!--/col-sm-6--> 
-		</div><!--/row-->
+				</div><!--/col-sm-6--> 
+			</div><!--/row-->
+		</div>
 	</div>
-</div>
-<?php
-include_once('../includes/footer.php');
-?>
+	<?php
+	include_once('../includes/footer.php');
+	?>
+	<script>
+		$("#password").change(function()){
+			console.log('hi');
+			$.ajax({
+				url: "<?php echo MapStructureRepositorie::controller().'user/userController.php?passwordCheck=1' ?>"
+				method: 'GET',
+				data: {password:$(this).attr('value')},
+				success: function(data){
+					console.log(data);
+				}
+			});
+		}
+	</script>

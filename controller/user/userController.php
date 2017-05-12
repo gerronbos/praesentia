@@ -32,4 +32,8 @@
 		header("location:".MapStructureRepositorie::view()."user/allusers.php");
 		exit;
 	}
+	if (isset($_GET['passwordCheck'])) {
+		echo 1; 
+		exit;
+	}
 ?>
