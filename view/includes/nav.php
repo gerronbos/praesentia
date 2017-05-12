@@ -14,6 +14,7 @@
                     <li><a href="<?php echo MapStructureRepositorie::view(); ?>user/allusers.php">Overzicht</a></li>
                     <li><a href="<?php echo MapStructureRepositorie::view(); ?>user/createuser.php">Nieuw gebruiker aanmaken</a></li>
                     <li><a href="<?php echo MapStructureRepositorie::view(); ?>roles/index.php">Rechten</a></li>
+                    <li><a href="<?php echo MapStructureRepositorie::view(); ?>user/changePassword.php">Wachtwoord veranderen</a></li>
                 </ul>
             </li>
         </ul>
