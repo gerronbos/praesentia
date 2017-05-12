@@ -22,7 +22,6 @@ elseif(isset($_POST['user_edited'])){
 if(isset($_POST['message'])){
 	$message = $_POST['message'];
 }
-
 // If deletion is selected
 if(isset($_POST['delete'])){
 	$notification = Notifications::find($_POST['id']);
@@ -34,5 +33,5 @@ if(isset($message)){
 NotificationRepository::create(Auth::user()->id,$_POST['to_user'],$message,'1');
 }
 
-header("Location: ../view/allnotifications.php");
+header("Location: ../view/notifications/allnotifications.php");
 ?>

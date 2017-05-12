@@ -52,6 +52,7 @@ include_once('../build/app.php');
                     <div>
                         <button class="btn btn-default submit">Log in</button>
                         <a class="reset_pass" href="#">Wachtwoord vergeten?</a>
+                        <?php echo FormRepositorie::checkbox('Gegevens onthouden?', '', ['name' => 'onthouden']) ?>
                     </div>
 
                     <div class="clearfix"></div>
