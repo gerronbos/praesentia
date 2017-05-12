@@ -32,6 +32,10 @@
 		header("location:".MapStructureRepositorie::view()."user/allusers.php");
 		exit;
 	}
+	if (isset($_GET['passwordCheck'])) {
+		echo 1; 
+		exit;
+	}
     if(isset($_POST['csv'])){
         if(isset($_FILES['file']['name']))
             $target = MapStructureRepositorie::uploads();
