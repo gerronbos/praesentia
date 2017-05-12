@@ -52,7 +52,7 @@
 <script src="<?php echo MapStructureRepositorie::vendors(); ?>bootstrap-daterangepicker/daterangepicker.js"></script>
 
 <!-- Password Validator -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script>
+<script src="<?php echo MapStructureRepositorie::build(); ?>js/validator.js"></script>
 
 <!-- Dropzone Script -->
 <script src="<?php echo MapStructureRepositorie::build(); ?>js/dropzone.js"></script>
