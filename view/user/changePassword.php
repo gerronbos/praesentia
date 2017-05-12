@@ -8,35 +8,13 @@ include_once('../includes/head.php');
 		<div class="clearfix"></div>
 	</div>
 	<div class="x_content">
-		<!--<?php
-			/*echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller(). 'user/userController.php', 'file' => 1, 'method' => 'POST', 'data-toggle' => 'validator']);
-			echo FormRepositorie::password('Oude wachtwoord', '', ['name' => 'oldPassword']);
-			echo FormRepositorie::password('Nieuwe wachtwoord', '', ['name' => 'newPassword']);
-			echo FormRepositorie::password('Herhaal nieuwe wachtwoord', '', ['name' => 'newPasswordHer']);
-			echo FormRepositorie::formSaveButton('javascript:history.back()');
-			echo FormRepositorie::closeForm();*/
-			?>
-			<div class="form-group">
-				<label for="inputPassword" class="control-label">Password</label>
-				<div class="form-inline row">
-					<div class="form-group col-sm-6">
-					<? echo FormRepositorie::password('Oude Wachtwoord', '')?>
-						<div class="help-block">Minimum of 6 characters</div>
-					</div>
-					<div class="form-group col-sm-6">
-						<input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
-						<div class="help-block with-errors"></div>
-					</div>
-				</div>
-			</div>
-		</div>-->
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
 					<?php 	
-					echo FormRepositorie::openForm(); 
-					echo FormRepositorie::password('', '', ['name' => 'password','id'=>'password', 'placeholder' => 'Oude Wachtwoord']);
-					echo FormRepositorie::password('', '', ['name' => 'password1', 'id' => 'password1', 'placeholder' => 'Nieuwe Wachtwoord']);
+					echo FormRepositorie::openForm('url' => MapStructureRepositorie::controller(). 'user/userController.php?update=1', 'file' => 1, 'method' => 'POST'); 
+					echo FormRepositorie::password('Oude Wachtwoord', '', ['name' => 'password','id'=>'password', 'placeholder' => 'Oude Wachtwoord']);
+					echo FormRepositorie::password('Nieuwe Wachtwoord', '', ['name' => 'password1', 'id' => 'password1', 'placeholder' => 'Nieuwe Wachtwoord']);
 					?>
 					<div class="row">
 						<div class="col-sm-6">
@@ -49,7 +27,7 @@ include_once('../includes/head.php');
 						</div>
 					</div>
 					<?php
-					echo FormRepositorie::password('', '', ['name' => 'password2', 'id' => 'password2', 'placeholder' => 'Herhaal Wachtwoord']);
+					echo FormRepositorie::password('Herhaal Wachtwoord', '', ['name' => 'password2', 'id' => 'password2', 'placeholder' => 'Herhaal Wachtwoord']);
 					?>
 					<div class="row">
 						<div class="col-sm-12">
@@ -75,10 +53,12 @@ include_once('../includes/head.php');
 				data: {password:this.value,passwordCheck:1},
 				success: function(data){
 					if(data == 1){
-                        $('#password').parent().
+                        $('#password').parent().addClass('has-success');
+                        $('#password').parent().removeClass('has-error');
                     }
                     else{
-                        $('#password').css('background','red');
+                        $('#password').parent().addClass('has-error');
+                        $('#password').parent().removeClass('has-success');
                     }
 				}
 			});

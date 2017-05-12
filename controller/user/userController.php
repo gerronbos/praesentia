@@ -16,7 +16,7 @@
 	$user = model\Users::find($_GET["user_id"]);
 
 	if(isset($_GET['update'])){
-		UserRepositorie::update($user, $_POST['firstname'], $_POST['lastname'], $_POST['user_number'], $_POST['email']);
+		UserRepositorie::update($user, $_POST['data']);
 		Services\SessionHandler::setSession('user_edit_succes', 'Gebruiker succesvol gewijzigd.');
 		header('location:'.MapStructureRepositorie::view().'user/updateuser.php');
 		exit;
