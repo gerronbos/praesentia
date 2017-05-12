@@ -20,7 +20,7 @@ include_once('../includes/head.php');
 				<label for="inputPassword" class="control-label">Password</label>
 				<div class="form-inline row">
 					<div class="form-group col-sm-6">
-					<? echo FormRepositorie::password('Oude Wachtwoord', '', )?>
+					<? echo FormRepositorie::password('Oude Wachtwoord', '')?>
 						<div class="help-block">Minimum of 6 characters</div>
 					</div>
 					<div class="form-group col-sm-6">
@@ -35,7 +35,7 @@ include_once('../includes/head.php');
 				<div class="col-sm-6 col-sm-offset-3">
 					<?php 	
 					echo FormRepositorie::openForm(); 
-					echo FormRepositorie::password('', '', ['name' => 'password', 'placeholder' => 'Oude Wachtwoord']);
+					echo FormRepositorie::password('', '', ['name' => 'password','id'=>'password', 'placeholder' => 'Oude Wachtwoord']);
 					echo FormRepositorie::password('', '', ['name' => 'password1', 'id' => 'password1', 'placeholder' => 'Nieuwe Wachtwoord']);
 					?>
 					<div class="row">
@@ -68,15 +68,19 @@ include_once('../includes/head.php');
 	include_once('../includes/footer.php');
 	?>
 	<script>
-		$("#password").change(function()){
-			console.log('hi');
+		$("#password").keyup(function(){
 			$.ajax({
-				url: "<?php echo MapStructureRepositorie::controller().'user/userController.php?passwordCheck=1' ?>"
+				url: "<?php echo MapStructureRepositorie::controller().'user/userController.php' ?>",
 				method: 'GET',
-				data: {password:$(this).attr('value')},
+				data: {password:this.value,passwordCheck:1},
 				success: function(data){
-					console.log(data);
+					if(data == 1){
+                        $('#password').css('background','green');
+                    }
+                    else{
+                        $('#password').css('background','red');
+                    }
 				}
 			});
-		}
+		});
 	</script>
