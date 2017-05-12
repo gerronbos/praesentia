@@ -9,6 +9,7 @@ class FormRepositorie extends Repository{
     private $value = null;
     private $name = null;
     private $id = null;
+    private $list = array();
 
     public function __construct($params = array())
     {
@@ -24,6 +25,11 @@ class FormRepositorie extends Repository{
         if(isset($params['value'])){
             $this->value = $params['value'];
         }
+        if(isset($params['params']['list'])){
+
+            $this->list = $params['params']['list'];
+            unset($params['params']['list']);
+        }
         if(isset($params['params'])){
             $this->params = $params['params'];
             if(isset($params['params']['name'])){
@@ -35,8 +41,11 @@ class FormRepositorie extends Repository{
                 unset($params['params']['id']);
             }
         }
+
+
         
         $this->createInput();
+
     }
 
     public function openForm($params = array())
@@ -120,7 +129,6 @@ class FormRepositorie extends Repository{
     private function createInput(){
         $params = '';
         foreach($this->params as $key=>$p){
-
             $params .= strval("$key='$p'");
         }
 
@@ -132,7 +140,7 @@ class FormRepositorie extends Repository{
         }
         if(in_array($this->type,['radio','checkbox'])){
             $items = '<br>';
-            foreach($this->params['list'] as $key=>$l){
+            foreach($this->list as $key=>$l){
                 $items .= "<input type='$this->type' name='$this->name' id='$key' style='margin-right: 10px;' $params";
                 if(in_array($key,$this->value)){
                     $items .= "checked";
@@ -142,8 +150,9 @@ class FormRepositorie extends Repository{
             $this->input = $items;
         }
         if($this->type == 'select'){
+
             $itemlist = "";
-            foreach($this->params['list'] as $key=>$l){
+            foreach($this->list as $key=>$l){
                 $itemlist .= "<option value='$key'";
                 if($this->value == $key){
                     $itemlist .= "selected";

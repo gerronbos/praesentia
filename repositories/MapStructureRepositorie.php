@@ -22,6 +22,10 @@ class MapStructureRepositorie extends Repository{
     {
         return ConfigRepositorie::get('url').'/model/';
     }
+    public function uploads()
+    {
+        return ConfigRepositorie::get('url').'/uploads/';
+    }
     public function repositories()
     {
         return ConfigRepositorie::get('url').'/repositories/';
