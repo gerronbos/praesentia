@@ -9,7 +9,10 @@
 		header('location:'.MapStructureRepositorie::view().'user/createuser.php');
 		exit;
 	}
-
+    if (isset($_GET['passwordCheck'])) {
+        echo (password_verify($_GET['password'],Auth::user()->password)) ? 1: 0;
+        exit;
+    }
 	$user = model\Users::find($_GET["user_id"]);
 
 	if(isset($_GET['update'])){
@@ -30,10 +33,6 @@
 		Services\SessionHandler::setSession('user_delete_succes', 'Gebruiker succesvol verwijderd.');
 
 		header("location:".MapStructureRepositorie::view()."user/allusers.php");
-		exit;
-	}
-	if (isset($_GET['passwordCheck'])) {
-		echo 1; 
 		exit;
 	}
     if(isset($_POST['csv'])){
