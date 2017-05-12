@@ -75,7 +75,7 @@ include_once('../includes/head.php');
 				data: {password:this.value,passwordCheck:1},
 				success: function(data){
 					if(data == 1){
-                        $('#password').css('background','green');
+                        $('#password').parent().
                     }
                     else{
                         $('#password').css('background','red');

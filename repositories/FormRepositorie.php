@@ -172,7 +172,7 @@ class FormRepositorie extends Repository{
     }
     private function baseHtml()
     {
-        $html = "<div class='form-group'><label for='$this->name'>$this->title</label>$this->input </div>";
+        $html = "<div class='form-group'><label class='control-label' for='$this->name'>$this->title</label>$this->input </div>";
         return $html;
     }
 //Save buttons
