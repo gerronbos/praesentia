@@ -54,7 +54,7 @@ include_once('../build/app.php');
                         <a class="reset_pass" href="#">Wachtwoord vergeten?</a>
                     </div>
                     <div class="pull-left">
-                        <input type="checkbox" name="stayLoggedIn" id="stayLoggedIn" value="1"> <label for="stayLoggedIn">- Blijf ingelogd</label>
+                        <input type="checkbox" name="stayLoggedIn" id="stayLoggedIn" value="1"> <label for="stayLoggedIn"> Blijf ingelogd</label>
                     </div>
 
                     <div class="clearfix"></div>
