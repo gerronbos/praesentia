@@ -56,7 +56,7 @@ class UserRepositorie extends Repository{
 
     public function update($user ,$data = array()){
         if (isset($data['firstname'])) {
-            $user->firstname = $date['firstname'];
+            $user->firstname = $data['firstname'];
         }
         if (isset($data['lastname'])) {
             $user->lastname = $data['lastname'];
@@ -71,6 +71,7 @@ class UserRepositorie extends Repository{
             $user->password = self::makePassword($data['password']);
         }
         $user->save();
+        GroupRepository::assignToGroup($data['group_id'],$user->id);
         NotificationRepository::create(Auth::user()->id, $user->id, 'Account gewijzigd.', 1);
     }
 

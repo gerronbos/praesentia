@@ -115,6 +115,11 @@ class FormRepositorie extends Repository{
         $params['list'] = $list;
         return self::init(['type'=>'radio','title'=>$title,'value'=>array($value),'params'=>$params])->baseHtml();
     }
+    public function select($title,$list = array(), $value, $params = array())
+    {
+        $params['list'] = $list;
+        return self::init(['type'=>'select','title'=>$title,'value'=>$value,'params'=>$params])->baseHtml();
+    }
 
     public function file($title, $params = array())
     {
@@ -160,7 +165,7 @@ class FormRepositorie extends Repository{
             $itemlist = "";
             foreach($this->list as $key=>$l){
                 $itemlist .= "<option value='$key'";
-                if(strval($this->value) == strval($key)){
+                 if(strval($this->value) == strval($key)){
                     $itemlist .= "selected";
                 }
                 $itemlist .= ">$l</option>";

@@ -13,6 +13,7 @@
 	echo FormRepositorie::text('Achternaam', $user->lastname, ['name'=>'lastname']);
 	echo FormRepositorie::text('Studentnummer', $user->user_number, ['name'=>'user_number']);
 	echo FormRepositorie::text('Email', $user->email, ['name'=>'email']);	
+	echo FormRepositorie::select('Groep', GroupRepository::getGroupsArray(), '1', ['name'=>'group_id']);
 	echo FormRepositorie::formSaveButton('allusers.php');
 	echo FormRepositorie::closeForm();
 ?>
