@@ -47,25 +47,26 @@ include_once('../includes/head.php');
 			</div><!--/row-->
 		</div>
 	</div>
-	<?php
-	include_once('../includes/footer.php');
-	?>
-	<script>
-		$("#password").keyup(function(){
-			$.ajax({
-				url: "<?php echo MapStructureRepositorie::controller().'user/userController.php' ?>",
-				method: 'GET',
-				data: {password:this.value,passwordCheck:1},
-				success: function(data){
-					if(data == 1){
-                        $('#password').parent().addClass('has-success');
-                        $('#password').parent().removeClass('has-error');
-                    }
-                    else{
-                        $('#password').parent().addClass('has-error');
-                        $('#password').parent().removeClass('has-success');
-                    }
+</div>
+<?php
+include_once('../includes/footer.php');
+?>
+<script>
+	$("#password").keyup(function(){
+		$.ajax({
+			url: "<?php echo MapStructureRepositorie::controller().'user/userController.php' ?>",
+			method: 'GET',
+			data: {password:this.value,passwordCheck:1},
+			success: function(data){
+				if(data == 1){
+					$('#password').parent().addClass('has-success');
+					$('#password').parent().removeClass('has-error');
 				}
-			});
+				else{
+					$('#password').parent().addClass('has-error');
+					$('#password').parent().removeClass('has-success');
+				}
+			}
 		});
-	</script>
+	});
+</script>
