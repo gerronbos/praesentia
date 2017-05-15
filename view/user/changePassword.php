@@ -18,8 +18,8 @@ include_once('../includes/head.php');
 				<div class="col-sm-6 col-sm-offset-3">
 					<?php 	
 					echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller(). 'user/userController.php?user_id='.Auth::user()->id.'&updatePassword=1', 'file' => 1, 'method' => 'POST']); 
-					echo FormRepositorie::password('Oude Wachtwoord', '', ['name' => 'passwordOld','id'=>'password', 'placeholder' => 'Oude Wachtwoord']);
-					echo FormRepositorie::password('Nieuwe Wachtwoord', '', ['name' => 'password', 'id' => 'password1', 'placeholder' => 'Nieuwe Wachtwoord']);
+					echo FormRepositorie::password('Oude Wachtwoord', '', ['name' => 'passwordOld','id'=>'password', 'placeholder' => 'Oude Wachtwoord', 'required' => 1]);
+					echo FormRepositorie::password('Nieuwe Wachtwoord', '', ['name' => 'password', 'id' => 'password1', 'placeholder' => 'Nieuwe Wachtwoord', 'required' => 1]);
 					?>
 					<div class="row">
 						<div class="col-sm-6">
@@ -32,7 +32,7 @@ include_once('../includes/head.php');
 						</div>
 					</div>
 					<?php
-					echo FormRepositorie::password('Herhaal Wachtwoord', '', ['name' => 'password2', 'id' => 'password2', 'placeholder' => 'Herhaal Wachtwoord']);
+					echo FormRepositorie::password('Herhaal Wachtwoord', '', ['name' => 'password2', 'id' => 'password2', 'placeholder' => 'Herhaal Wachtwoord', 'required' => 1]);
 					?>
 					<div class="row">
 						<div class="col-sm-12">
