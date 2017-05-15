@@ -23,12 +23,12 @@ include_once('../includes/head.php');
 					?>
 					<div class="row">
 						<div class="col-sm-6">
-							<span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Minimaal 6 Karakters Lang<br>
-							<span id="ucase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Minimaal 1 Hoofdletter
+							<span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Minimaal 6 karakters lang<br>
+							<span id="ucase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Minimaal 1 hoofdletter
 						</div>
 						<div class="col-sm-6">
 							<span id="lcase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Minimaal 1 kleine letter<br>
-							<span id="num" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Minimaal 1 Number
+							<span id="num" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Minimaal 1 nummer
 						</div>
 					</div>
 					<?php
