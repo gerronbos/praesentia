@@ -12,7 +12,7 @@ include_once('../includes/head.php');
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
 					<?php 	
-					echo FormRepositorie::openForm('url' => MapStructureRepositorie::controller(). 'user/userController.php?update=1', 'file' => 1, 'method' => 'POST'); 
+					echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller(). 'user/userController.php?update=1', 'file' => 1, 'method' => 'POST']); 
 					echo FormRepositorie::password('Oude Wachtwoord', '', ['name' => 'password','id'=>'password', 'placeholder' => 'Oude Wachtwoord']);
 					echo FormRepositorie::password('Nieuwe Wachtwoord', '', ['name' => 'password1', 'id' => 'password1', 'placeholder' => 'Nieuwe Wachtwoord']);
 					?>
