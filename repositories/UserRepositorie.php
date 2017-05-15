@@ -54,11 +54,22 @@ class UserRepositorie extends Repository{
 
     }
 
-    public function update($user ,$firstname, $lastname, $user_number, $email){
-        $user->firstname = $firstname;
-        $user->lastname = $lastname;
-        $user->user_number = $user_number;
-        $user->email = $email;
+    public function update($user ,$data = array()){
+        if (isset($data['firstname'])) {
+            $user->firstname = $date['firstname'];
+        }
+        if (isset($data['lastname'])) {
+            $user->lastname = $data['lastname'];
+        }
+        if (isset($data['user_number'])) {
+            $user->user_number = $data['user_number'];
+        }
+        if (isset($data['email'])) {
+            $user->email = $data['email'];
+        }
+        if (isset($data['password'])) {
+            $user->password = self::makePassword($data['password']);
+        }
         $user->save();
         NotificationRepository::create(Auth::user()->id, $user->id, 'Account gewijzigd.', 1);
     }

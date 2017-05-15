@@ -7,49 +7,32 @@ include_once('../includes/head.php');
 		<ul class="nav navbar-right panel_toolbox"></ul>
 		<div class="clearfix"></div>
 	</div>
+	<?php
+	if(Services\SessionHandler::has('user_edit_succes')){
+		echo '<div class="col-lg-12"><div class="alert alert-success" role="alert">'.Services\SessionHandler::getAndDelete('user_edit_succes').'</div></div>';
+	}
+	?>
 	<div class="x_content">
-		<!--<?php
-			/*echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller(). 'user/userController.php', 'file' => 1, 'method' => 'POST', 'data-toggle' => 'validator']);
-			echo FormRepositorie::password('Oude wachtwoord', '', ['name' => 'oldPassword']);
-			echo FormRepositorie::password('Nieuwe wachtwoord', '', ['name' => 'newPassword']);
-			echo FormRepositorie::password('Herhaal nieuwe wachtwoord', '', ['name' => 'newPasswordHer']);
-			echo FormRepositorie::formSaveButton('javascript:history.back()');
-			echo FormRepositorie::closeForm();*/
-			?>
-			<div class="form-group">
-				<label for="inputPassword" class="control-label">Password</label>
-				<div class="form-inline row">
-					<div class="form-group col-sm-6">
-					<? echo FormRepositorie::password('Oude Wachtwoord', '')?>
-						<div class="help-block">Minimum of 6 characters</div>
-					</div>
-					<div class="form-group col-sm-6">
-						<input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" data-match-error="Whoops, these don't match" placeholder="Confirm" required>
-						<div class="help-block with-errors"></div>
-					</div>
-				</div>
-			</div>
-		</div>-->
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
 					<?php 	
-					echo FormRepositorie::openForm(); 
-					echo FormRepositorie::password('', '', ['name' => 'password','id'=>'password', 'placeholder' => 'Oude Wachtwoord']);
-					echo FormRepositorie::password('', '', ['name' => 'password1', 'id' => 'password1', 'placeholder' => 'Nieuwe Wachtwoord']);
+					echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller(). 'user/userController.php?user_id='.Auth::user()->id.'&updatePassword=1', 'file' => 1, 'method' => 'POST']); 
+					echo FormRepositorie::password('Oude Wachtwoord', '', ['name' => 'passwordOld','id'=>'password', 'placeholder' => 'Oude Wachtwoord', 'required' => 1]);
+					echo FormRepositorie::password('Nieuwe Wachtwoord', '', ['name' => 'password', 'id' => 'password1', 'placeholder' => 'Nieuwe Wachtwoord', 'required' => 1]);
 					?>
 					<div class="row">
 						<div class="col-sm-6">
-							<span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Minimaal 6 Karakters Lang<br>
-							<span id="ucase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Minimaal 1 Hoofdletter
+							<span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Minimaal 6 karakters lang<br>
+							<span id="ucase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Minimaal 1 hoofdletter
 						</div>
 						<div class="col-sm-6">
 							<span id="lcase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Minimaal 1 kleine letter<br>
-							<span id="num" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Minimaal 1 Number
+							<span id="num" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Minimaal 1 nummer
 						</div>
 					</div>
 					<?php
-					echo FormRepositorie::password('', '', ['name' => 'password2', 'id' => 'password2', 'placeholder' => 'Herhaal Wachtwoord']);
+					echo FormRepositorie::password('Herhaal Wachtwoord', '', ['name' => 'password2', 'id' => 'password2', 'placeholder' => 'Herhaal Wachtwoord', 'required' => 1]);
 					?>
 					<div class="row">
 						<div class="col-sm-12">
@@ -64,23 +47,26 @@ include_once('../includes/head.php');
 			</div><!--/row-->
 		</div>
 	</div>
-	<?php
-	include_once('../includes/footer.php');
-	?>
-	<script>
-		$("#password").keyup(function(){
-			$.ajax({
-				url: "<?php echo MapStructureRepositorie::controller().'user/userController.php' ?>",
-				method: 'GET',
-				data: {password:this.value,passwordCheck:1},
-				success: function(data){
-					if(data == 1){
-                        $('#password').parent().
-                    }
-                    else{
-                        $('#password').css('background','red');
-                    }
+</div>
+<?php
+include_once('../includes/footer.php');
+?>
+<script>
+	$("#password").keyup(function(){
+		$.ajax({
+			url: "<?php echo MapStructureRepositorie::controller().'user/userController.php' ?>",
+			method: 'GET',
+			data: {password:this.value,passwordCheck:1},
+			success: function(data){
+				if(data == 1){
+					$('#password').parent().addClass('has-success');
+					$('#password').parent().removeClass('has-error');
 				}
-			});
+				else{
+					$('#password').parent().addClass('has-error');
+					$('#password').parent().removeClass('has-success');
+				}
+			}
 		});
-	</script>
+	});
+</script>

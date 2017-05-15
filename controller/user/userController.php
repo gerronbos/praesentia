@@ -16,11 +16,18 @@
 	$user = model\Users::find($_GET["user_id"]);
 
 	if(isset($_GET['update'])){
-		UserRepositorie::update($user, $_POST['firstname'], $_POST['lastname'], $_POST['user_number'], $_POST['email']);
+		UserRepositorie::update($user, $_POST);
 		Services\SessionHandler::setSession('user_edit_succes', 'Gebruiker succesvol gewijzigd.');
 		header('location:'.MapStructureRepositorie::view().'user/updateuser.php');
 		exit;
 	}
+
+    if(isset($_GET['updatePassword'])){
+        UserRepositorie::update($user, $_POST);
+        Services\SessionHandler::setSession('user_edit_succes', 'Wachtwoord succesvol gewijzigd.');
+        header('location:'.MapStructureRepositorie::view().'user/changePassword.php');
+        exit;
+    }
 	if(isset($_GET['update_view'])){
 		Services\SessionHandler::deleteSession("edit_user");
 		Services\SessionHandler::setSession("edit_user", $user);
