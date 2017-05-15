@@ -1,5 +1,6 @@
 <?php
 include_once('../includes/head.php');
+$role = new \model\Role();
 ?>
     <div class="x_panel">
         <div class="x_title">
