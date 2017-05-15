@@ -20,7 +20,7 @@ if(Services\SessionHandler::has('alert_roles')){
                 <?php
                 if(count(model\Role::get())) {
                     foreach (model\Role::get() as $role) {
-                        echo "<tr><td>$role->title</td><td>".trueorfalse($role->users)."</td><td>".trueorfalse($role->presence)."</td><td>".trueorfalse($role->lectures)."</td><td>".trueorfalse($role->groups)."</td><td>".trueorfalse($role->rooms)."</td><td><button class='btn btn-primary'>Wijzig</button><button class='btn btn-danger'>Verwijder</button><a href='".MapStructureRepositorie::view()."roles/link.php?role_id=$role->id' class='btn btn-info'>Koppelen</a></td></tr>";
+                        echo "<tr><td>$role->title</td><td>".trueorfalse($role->users)."</td><td>".trueorfalse($role->presence)."</td><td>".trueorfalse($role->lectures)."</td><td>".trueorfalse($role->groups)."</td><td>".trueorfalse($role->rooms)."</td><td><a href='".MapStructureRepositorie::controller()."roles/roleController.php?update=1&role_id=$role->id' class='btn btn-primary'>Wijzig</a><button class='btn btn-danger'>Verwijder</button><a href='".MapStructureRepositorie::view()."roles/link.php?role_id=$role->id' class='btn btn-info'>Koppelen</a></td></tr>";
                     }
                 }
                 else{

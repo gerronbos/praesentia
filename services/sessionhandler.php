@@ -7,7 +7,8 @@ class SessionHandler{
     }
     public function __get($key){
         if(property_exists($this,$key)){
-            return $this->$key;
+            $return = $this->$key;
+            return $return['value'];
         }
         else{
             return null;
@@ -19,9 +20,14 @@ class SessionHandler{
         return $this;
     }
 
-    public function setSession($key,$value){
+    public function setSession($key,$value,$time = 900){
+        if(isset($this) && is_object($this)) {
 
-        self::init()->__set($key,$value)->save();
+            $this->{$key} = ['time'=>$time,'value'=>$value];
+            $this->save();
+            return $this;
+        }
+        self::init()->setSession($key,$value,$time);
     }
 
     public function getSession($key)
@@ -48,7 +54,6 @@ class SessionHandler{
 
     public function buildSession()
     {
-
         foreach($_COOKIE as $key=>$c){
             if($this->is_serialized($c)) {
                 
@@ -66,9 +71,9 @@ class SessionHandler{
         if(isset($this) && is_object($this)) {
             foreach (get_object_vars($this) as $key => $i) {
                 if (is_array($i) || is_object($i)) {
-                    setcookie($key, serialize($i), time()+15*60, '/');
+                    setcookie($key, serialize($i), time()+$i['time'], '/');
                 } else {
-                    setcookie($key, $i, time()+15*60, '/');
+                    setcookie($key, $i, time()+$i['time'], '/');
                 }
             }
 

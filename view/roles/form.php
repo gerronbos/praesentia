@@ -1,6 +1,6 @@
 <?php
 echo FormRepositorie::text('title',$role->title,['required'=>1]);
-echo FormRepositorie::truefalse('Gebruikers',$role->user,['name'=>'users']);
+echo FormRepositorie::truefalse('Gebruikers',$role->users,['name'=>'users']);
 echo "<p class='help-class'>Hierbij worden de volgende rechten verstaan:<br>Gebruikers toevoegen<br>Gebruikers wijzigen<br> Gebruikers verwijderen<br> Gebruikers inzien</p>";
 echo FormRepositorie::truefalse('Aanwezigheid',$role->presence,['name'=>'presence']);
 echo "<p class='help-class'>Hierbij worden de volgende rechten vestaan:<br>Aanwezigheid inzien<br>Aanweizgheid invullen voor jouw klas</p>";

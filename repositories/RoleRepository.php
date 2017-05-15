@@ -15,6 +15,18 @@ class RoleRepository extends Repository{
         $role->save();
     }
 
+    public function update($role,$input){
+        $role->title = $input['title'];
+        $role->users = $input['users'];
+        $role->presence = $input['presence'];
+        $role->lectures = $input['lectures'];
+        $role->groups = $input['groups'];
+        $role->rooms = $input['rooms'];
+
+        $role->save();
+
+    }
+
     public function updateUserRole(\model\UserRoles  $userRole, $data = array()){
 
         $userRole->title = $data['title'];

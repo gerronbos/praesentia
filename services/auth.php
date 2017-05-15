@@ -14,7 +14,13 @@ class Auth{
             exit;
         }
         if(password_verify($password,$user->password)){
-            SessionHandler::setSession('user',$user);
+            if(isset($params['stayloggedin']) && $params['stayloggedin']){
+                $time = 3600 * 24 * 10;
+            }
+            else{
+                $time = 1800;
+            }
+            SessionHandler::setSession('user',$user,$time);
             header('location: '.MapStructureRepositorie::view().'index.php');
             exit;
         }
@@ -27,7 +33,8 @@ class Auth{
     public function user()
     {
         $session = new SessionHandler();
-        return $session->user;
+        $user = $session->user;
+        return $user['value'];
     }
 
     public function isLoggedIn(){
@@ -61,7 +68,9 @@ class Auth{
     public function updateLogin()
     {
         if(SessionHandler::has('user')) {
-            SessionHandler::setSession('user', self::user());
+            $session = new SessionHandler();
+            $user = $session->user;
+            SessionHandler::setSession('user', $user['value'],$user['time']);
         }
     }
 }
