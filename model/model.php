@@ -105,7 +105,6 @@ class model {
                 $update = '';
                 foreach ($this->data as $key => $d) {
                     if ($key != 'id') {
-                        if ($d) {
                             if (is_numeric($d)) {
                                 $update .= "$key=$d,";
 
@@ -113,7 +112,6 @@ class model {
                                 $update .= "$key='$d',";
 
                             }
-                        }
                     }
                 }
                 $update = substr_replace($update, "", -1);

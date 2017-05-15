@@ -29,6 +29,7 @@ class ComposerStaticInitcd537467c5ba460042f21d53039c1010
         'model\\Presence' => __DIR__ . '/../..' . '/model/Presence.php',
         'model\\Role' => __DIR__ . '/../..' . '/model/Role.php',
         'model\\Room' => __DIR__ . '/../..' . '/model/Room.php',
+        'model\\UserRoles' => __DIR__ . '/../..' . '/model/UserRoles.php',
         'model\\Users' => __DIR__ . '/../..' . '/model/Users.php',
         'model\\model' => __DIR__ . '/../..' . '/model/model.php',
     );

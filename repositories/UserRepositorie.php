@@ -24,6 +24,35 @@ class UserRepositorie extends Repository{
 
     	return $password;
     }
+    public static function generateRandomPassword($length = 8)
+    {
+        $numbers = [0,1,2,3,4,5,6,7,8,9];
+        $alfabeth = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+
+        $options = ['number','alfabeth'];
+        $password = '';
+
+        for($i=0; $i<$length; $i++){
+            //number or alfabeth
+            $type = $options[rand(0,1)];
+            if($type == 'number'){
+                $password.= $numbers[rand(0,count($numbers)-1)];
+            }
+            else{
+                $uppercase = rand(0,1);
+
+                if($uppercase){
+                    $password.= strtoupper($alfabeth[rand(0,count($alfabeth)-1)]);
+                }
+                else{
+                    $password.= strtolower($alfabeth[rand(0,count($alfabeth)-1)]);
+                }
+            }
+        }
+        return $password;
+
+    }
 
     public function update($user ,$firstname, $lastname, $user_number, $email){
         $user->firstname = $firstname;

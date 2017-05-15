@@ -14,4 +14,18 @@ class RoleRepository extends Repository{
 
         $role->save();
     }
+
+    public function updateUserRole(\model\UserRoles  $userRole, $data = array()){
+
+        $userRole->title = $data['title'];
+        $userRole->user = $data['users'];
+        $userRole->presence = $data['presence'];
+        $userRole->lectures = $data['lectures'];
+        $userRole->groups = $data['groups'];
+        $userRole->rooms = $data['rooms'];
+        $userRole->save();
+
+
+        NotificationRepository::create(Auth::user()->id,$userRole->user_id,'Uw rechten zijn gewijzigd');
+    }
 }

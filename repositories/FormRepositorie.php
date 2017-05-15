@@ -23,7 +23,13 @@ class FormRepositorie extends Repository{
             $this->id = str_ireplace(' ','_',$params['title']);
         }
         if(isset($params['value'])){
-            $this->value = $params['value'];
+            if(!is_array($params['value'])) {
+                $this->value = strval($params['value']);
+            }
+            else{
+                $this->value = $params['value'];
+
+            }
         }
         if(isset($params['params']['list'])){
 
@@ -119,7 +125,7 @@ class FormRepositorie extends Repository{
     public function truefalse($title, $value=false, $params = array())
     {
         $params['list'] = [1=>'Ja',0=>'Nee'];
-        if(!$value){
+        if(!isset($value)){
             $value = 1;
         }
         return self::init(['type'=>'select','title'=>$title,'value'=>$value,'params'=>$params])->baseHtml();
@@ -154,7 +160,7 @@ class FormRepositorie extends Repository{
             $itemlist = "";
             foreach($this->list as $key=>$l){
                 $itemlist .= "<option value='$key'";
-                if($this->value == $key){
+                if(strval($this->value) == strval($key)){
                     $itemlist .= "selected";
                 }
                 $itemlist .= ">$l</option>";

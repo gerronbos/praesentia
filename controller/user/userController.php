@@ -35,6 +35,12 @@
 		header("location:".MapStructureRepositorie::view()."user/allusers.php");
 		exit;
 	}
+    if(isset($_GET['show'])){
+        Services\SessionHandler::setSession('user_data',$user);
+
+        header("location:".MapStructureRepositorie::view()."user/profile.php");
+        exit;
+    }
     if(isset($_POST['csv'])){
         if(isset($_FILES['file']['name']))
             $target = MapStructureRepositorie::uploads();

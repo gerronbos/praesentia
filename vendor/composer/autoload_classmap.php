@@ -24,6 +24,7 @@ return array(
     'model\\Presence' => $baseDir . '/model/Presence.php',
     'model\\Role' => $baseDir . '/model/Role.php',
     'model\\Room' => $baseDir . '/model/Room.php',
+    'model\\UserRoles' => $baseDir . '/model/UserRoles.php',
     'model\\Users' => $baseDir . '/model/Users.php',
     'model\\model' => $baseDir . '/model/model.php',
 );
