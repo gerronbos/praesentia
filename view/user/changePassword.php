@@ -7,14 +7,19 @@ include_once('../includes/head.php');
 		<ul class="nav navbar-right panel_toolbox"></ul>
 		<div class="clearfix"></div>
 	</div>
+	<?php
+	if(Services\SessionHandler::has('user_edit_succes')){
+		echo '<div class="col-lg-12"><div class="alert alert-success" role="alert">'.Services\SessionHandler::getAndDelete('user_edit_succes').'</div></div>';
+	}
+	?>
 	<div class="x_content">
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
 					<?php 	
-					echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller(). 'user/userController.php?update=1', 'file' => 1, 'method' => 'POST']); 
-					echo FormRepositorie::password('Oude Wachtwoord', '', ['name' => 'password','id'=>'password', 'placeholder' => 'Oude Wachtwoord']);
-					echo FormRepositorie::password('Nieuwe Wachtwoord', '', ['name' => 'password1', 'id' => 'password1', 'placeholder' => 'Nieuwe Wachtwoord']);
+					echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller(). 'user/userController.php?user_id='.Auth::user()->id.'&updatePassword=1', 'file' => 1, 'method' => 'POST']); 
+					echo FormRepositorie::password('Oude Wachtwoord', '', ['name' => 'passwordOld','id'=>'password', 'placeholder' => 'Oude Wachtwoord']);
+					echo FormRepositorie::password('Nieuwe Wachtwoord', '', ['name' => 'password', 'id' => 'password1', 'placeholder' => 'Nieuwe Wachtwoord']);
 					?>
 					<div class="row">
 						<div class="col-sm-6">
