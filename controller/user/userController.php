@@ -75,7 +75,10 @@
             $email = $row['E-mailadres'];
             $password = '123';
 
-            UserRepositorie::create($firstname, $lastname, $user_number, $email, $password);
+            $user = UserRepositorie::create($firstname, $lastname, $user_number, $email, $password);
+            if(isset($_POST['group_id'])){
+            	GroupRepository::assignToGroup($_POST['group_id'],$user->id);
+            }
         }
     }
 ?>

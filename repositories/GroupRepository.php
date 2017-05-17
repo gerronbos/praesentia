@@ -1,6 +1,16 @@
 <?php
+use model\Group;
 use model\Group_has_users;
 class GroupRepository extends Repository{
+
+    public function create($name,$school_year,$period,$education_id){
+        $group = new Group();
+        $group->name = $name;
+        $group->school_year = $school_year;
+        $group->period = $period;
+        $group->education_id = $education_id;
+        $group->save();
+    }
 
     public function getGroupsArray(){
         $groups = model\Group::get();
@@ -9,6 +19,10 @@ class GroupRepository extends Repository{
             $return[$group->id] = $group->name;
         }
         return $return;
+    }
+
+    public function getGroup($id){
+        $group = model\Group::find($id);
     }
 
     public function assignToGroup($group_id,$user_id){
