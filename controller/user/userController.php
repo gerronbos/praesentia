@@ -87,6 +87,8 @@
 		exit;
 	}
     if(isset($_GET['show'])){
+
+        UserRepositorie::generateRandomPassword();
         Services\SessionHandler::setSession('user_data',$user);
 
         header("location:".MapStructureRepositorie::view()."user/profile.php");
