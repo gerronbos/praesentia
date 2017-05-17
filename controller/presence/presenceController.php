@@ -31,6 +31,7 @@ if(isset($_POST['set'])){
 
     $url = MapStructureRepositorie::controller().'presence/presenceController.php?get=1&id='.$lecture['lecture']->id;
 
+
     header("location:".$url);
     exit;
 }

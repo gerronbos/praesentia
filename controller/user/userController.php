@@ -42,10 +42,8 @@
             $password = '123';
 
             $user = model\Users::where('user_number','=',$user_number)->first();
-            if($user){
-                GroupRepository::update('0',intval($group->id),$user->id);
-            }else{
-            $user = UserRepositorie::create($firstname, $lastname, $user_number, $email, $password);
+            if(!$user){
+                $user = UserRepositorie::create($firstname, $lastname, $user_number, $email, $password);
             }
 
             $group = model\Group::where('name','=',$row['Groepsnaam'])->first();
@@ -54,8 +52,9 @@
                 $group = model\Group::where('name','=',$row['Groepsnaam'])->first();
             }
 
-            GroupRepository::assignToGroup('1',intval($group->id),$user->id);
+            GroupRepository::assignToGroup(intval($group->id),$user->id);
         }
+        exit;
     }
 	$user = model\Users::find($_GET["user_id"]);
 
