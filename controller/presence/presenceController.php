@@ -12,10 +12,8 @@ if(isset($_GET['get'])){
         'presence_data' => model\Presence::where('lecture_id','=',$_GET['id'])->lists('present','user_id'),
         'group' => model\Lecture::find($_GET['id'])->Group()
     ];
-
-    Services\SessionHandler::deleteSession('lecture_data');
-    Services\SessionHandler::save();
-
+    var_dump($return);
+    exit;
     Services\SessionHandler::setSession('lecture_data',$return);
     Services\SessionHandler::save();
 
