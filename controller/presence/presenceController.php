@@ -12,10 +12,8 @@ if(isset($_GET['get'])){
         'presence_data' => model\Presence::where('lecture_id','=',$_GET['id'])->lists('present','user_id'),
         'group' => model\Lecture::find($_GET['id'])->Group()
     ];
-    var_dump($return);
-    exit;
-    Services\SessionHandler::setSession('lecture_data',$return);
-    Services\SessionHandler::save();
+
+    $cookies = Services\SessionHandler::setSession('lecture_data',$return);
 
     header("location:".MapStructureRepositorie::view().'presence/presenceUsers.php');
     exit;
@@ -29,7 +27,11 @@ if(isset($_POST['set'])){
 
     Services\SessionHandler::deleteSession('lecture_data');
 
-    header("location:".MapStructureRepositorie::controller().'presence/presenceController.php?get='.$lecture->id);
+
+
+    $url = MapStructureRepositorie::controller().'presence/presenceController.php?get=1&id='.$lecture['lecture']->id;
+
+    header("location:".$url);
     exit;
 }
 
