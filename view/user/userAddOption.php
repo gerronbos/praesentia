@@ -20,10 +20,16 @@ include_once('../includes/head.php');
 		echo FormRepositorie::closeForm();*/
 		?>
 	</div>
-	<div id="preview-template" style="text-align: center; " >
-        <?php echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller()."/user/userController.php",'class'=>'dropzone','id'=>'my-awesome-dropzone','send_type'=>'csv']); ?>
 
-		<?php echo FormRepositorie::closeForm(); ?>
+	<div id="preview-template" style="text-align: center; " >
+	<div id='testdropzone'></div>
+
+        <?php echo FormRepositorie::select('Groep', GroupRepository::getGroupsArray(), '1', ['name'=>'group_id','id'=>'group_id']);
+
+
+        echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller()."/user/userController.php",'class'=>'dropzone','id'=>'dropzone','send_type'=>'csv']); 
+
+		echo FormRepositorie::closeForm(); ?>
 	</div>
 </div>
 </div>
@@ -31,3 +37,27 @@ include_once('../includes/head.php');
 <?php
 include_once('../includes/footer.php');
 ?>
+
+<script>
+Dropzone.autoDiscover = false;
+    var Dropzone = new Dropzone('#dropzone',{
+        url: "<?php echo MapStructureRepositorie::controller().'/user/userController.php';?>",
+        addRemoveLinks: true,
+        success: function (file, response) {
+            var imgName = response;
+            file.previewElement.classList.add("dz-success");
+            console.log("Successfully uploaded :" + imgName);
+        },
+        error: function (file, response) {
+            file.previewElement.classList.add("dz-error");
+        }
+    });
+
+    Dropzone.on('sending',function(file, xhr, formData){
+    	var group_id = $('#group_id option:selected').attr('value');
+    	
+    	formData.append('group_id',group_id);
+    	formData.append('csv',1);
+    	console.log(formData.values());
+    });
+</script>

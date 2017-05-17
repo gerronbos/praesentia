@@ -9,12 +9,17 @@
                     <li><a href="form_advanced.html">Aanwezigheid</a></li>
                 </ul>
             </li>
-            <li><a><i class="fa fa-desktop"></i> Gebruikers <span class="fa fa-chevron-down"></span></a>
+            <li><a><i class="fa fa-user"></i> Gebruikers <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">
                     <li><a href="<?php echo MapStructureRepositorie::view(); ?>user/allusers.php">Overzicht</a></li>
                     <li><a href="<?php echo MapStructureRepositorie::view(); ?>user/createuser.php">Nieuw gebruiker aanmaken</a></li>
                     <li><a href="<?php echo MapStructureRepositorie::view(); ?>roles/index.php">Rechten</a></li>
                     <li><a href="<?php echo MapStructureRepositorie::view(); ?>user/changePassword.php">Wachtwoord veranderen</a></li>
+                </ul>
+            </li>
+            <li><a><i class="fa fa-users"></i> Klassen <span class="fa fa-chevron-down"></span></a>
+                <ul class="nav child_menu">
+                    <li><a href="<?php echo MapStructureRepositorie::view(); ?>group/allgroups.php">Overzicht</a></li>
                 </ul>
             </li>
         </ul>

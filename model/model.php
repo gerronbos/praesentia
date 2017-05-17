@@ -185,13 +185,16 @@ class model {
     //where
     public function where($column,$constructor,$value){
         if(isset($this) && is_object($this)) {
+        	if(!strpos($column,'.')){
+        		$column = $this->table.'.'.$column;
+        	}
             $return = '';
             $return .= $column;
             $return .= " ";
             $return .= $constructor;
             $return .= " ";
             $return .= "'$value'";
-
+            
             if ($this->query_where) {
                 $this->query_where .= ' AND ';
             } else {
@@ -206,13 +209,16 @@ class model {
     public function whereIn($column, $list = array())
     {
         if(isset($this) && is_object($this)) {
+        	if(!strpos($column,'.')){
+        		$column = $this->table.'.'.$column;
+        	}
             if($this->query_where){
                 $this->query_where .= ' AND ';
             }
             else{
                 $this->query_where .= 'where ';
             }
-            $this->query_where .= "`$column` IN('".implode("','",$list)."')";
+            $this->query_where .= "$column IN('".implode("','",$list)."')";
             return $this;
         }
         return self::init()->whereIn($column,$list);
@@ -267,7 +273,6 @@ class model {
     private function excecute_query()
     {
         $query = "SELECT $this->select FROM $this->table $this->realtion_query $this->query_where $this->orderby";
-
         $conn = self::makeConnection();
 
         $result = $conn->query($query);
