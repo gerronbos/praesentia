@@ -40,4 +40,9 @@ class RoleRepository extends Repository{
 
         NotificationRepository::create(Auth::user()->id,$userRole->user_id,'Uw rechten zijn gewijzigd');
     }
+
+    public function delete(Role $role)
+    {
+        $role->delete();
+    }
 }

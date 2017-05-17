@@ -29,6 +29,15 @@ if(isset($_POST['update'])){
     exit;
 }
 
+if(isset($_POST['delete'])){
+    $role = \model\Role::find($_POST['id']);
+    RoleRepository::delete($role);
+
+    Services\SessionHandler::setSession('alert_roles','Rechten Sjabloon succesvol verwijderd!');
+    Header('location:'.MapStructureRepositorie::view()."roles/index.php");
+    exit;
+}
+
 if(isset($_GET['user_roles'])){
     $user = new \model\Users();
     $user->find($_GET['user_id']);
