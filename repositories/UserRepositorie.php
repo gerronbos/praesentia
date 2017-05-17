@@ -52,6 +52,7 @@ class UserRepositorie extends Repository{
                 }
             }
         }
+
         return $password;
 
     }
