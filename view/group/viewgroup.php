@@ -21,10 +21,7 @@ $group = Services\SessionHandler::getSession('group_data');
 
 
 		echo "<table class='table table-bordered'><tr><th>Naam</th><th>Gebruikersnummer</th><th>Email</th><th>Opties</th></tr>";
-		var_dump($group->Users());
-		exit();
 		foreach($group->Users() as $user){
-
 			echo "<tr><td>".$user->fullname()."</td><td>$user->user_number</td><td>$user->email</td><td>
 			<a href='".MapStructureRepositorie::controller()."user/userController.php?update_view=1&user_id=$user->id' class='btn btn-primary'>Wijzigen</a>
 			<a href='".MapStructureRepositorie::controller()."user/userController.php?delete_user=1&user_id=$user->id' class='btn btn-danger'>Verwijderen</a>

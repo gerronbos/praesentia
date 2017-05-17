@@ -32,15 +32,9 @@ class GroupRepository extends Repository{
         }
         $group_has_users->group_id = $group_id;
         $group_has_users->user_id = $user_id;
-    	$group_has_users->update();
+    	$group_has_users->save();
 
-    	NotificationRepository::create(Auth::user()->id, $user->id, 'Account aan groep gekoppeld.', 1);
-    }
-
-    public function unassignToGroup($group_id,$user_id){
-        $group_has_users->delete();
-
-        NotificationRepository::create(Auth::user()->id, $user->id, 'Account ontkoppeld van groep.', 1);
+    	NotificationRepository::create(Auth::user()->id, $user_id, 'Account aan groep gekoppeld.', 1);
     }
 }
 ?>

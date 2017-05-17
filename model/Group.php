@@ -7,8 +7,6 @@ class Group extends model{
     public function Users()
     {
         $user_ids = $this->join('group_has_users','group_id','id')->lists('user_id');
-        var_dump($user_ids);
-        exit();
         $users = new Users();
         $users->whereIn('id',$user_ids)->get();
         return $users->whereIn('id',$user_ids)->get();
