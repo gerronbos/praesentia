@@ -70,6 +70,12 @@ $user = Services\SessionHandler::getSession('user_data');
                     <ul class="dropdown-menu">
                         <li><a href="<?php echo MapStructureRepositorie::controller()."user/userController.php?update_view=1&user_id=".$user->id ?>">Gebruiker wijzigen</a></li>
                         <li><a href="<?php echo MapStructureRepositorie::controller()."roles/roleController.php?user_roles=1&user_id=".$user->id ?>">Rechten wijzigen</a></li>
+
+                        <li>
+
+                        <a href="<?php echo MapStructureRepositorie::controller()."user/userController.php?show=1&user_id=".$user->id ?>">Reset wachtwoord</a>
+
+                        </li>
                     </ul>
                 </div>
               <br />
