@@ -9,7 +9,22 @@ if(!isset($_GET['show'])) {
 }
 
 	if(isset($_GET['create'])){
+        $errors=array();
+        if (model\Users::where('email','=', $_POST['email'])) {
+            $errors[]='Email is al in gebruik';
+        }
+        if (model\Users::where('user_number','=', $_POST['user_number'])) {
+            $errors[]='Gebruikerscode is al in gebruik';
+        }
+        if (count($errors)) {
+            Services\SessionHandler::setSession('create_data', $_POST);
+            Services\SessionHandler::setSession('errors', $errors);
+            header('location:' .MapStructureRepositorie::view(). 'user/createuser.php');
+            exit;
+        }
+
 		UserRepositorie::create($_POST['firstname'], $_POST['lastname'], $_POST['user_number'], $_POST['email'], $_POST['password']);
+
 
 		Services\SessionHandler::setSession('user_add_succes', 'Gebruiker succesvol toegevoegd.');
 		header('location:'.MapStructureRepositorie::view().'user/createuser.php');
