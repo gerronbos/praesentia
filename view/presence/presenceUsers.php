@@ -18,13 +18,17 @@ $user_data = $lecture_data['presence_data'];
         <th>Naam</th><th>Student nummer</th><th>klas</th><th>Aanwezig</th>
     </tr>
     <?php
+    var_dump($user_data);
     foreach($group->Users() as $users){
         echo "<tr><th>".$users->fullname()."</th><th>$users->user_number</th><th>$group->name</th><th><input type='checkbox'";
-        if(isset($user_data[$users->id]) && !$user_data[$users->id]){
+        if(isset($user_data[$users->id]) && !$user_data[$users->id]['present']){
             echo " checked ";
         }
 
         echo "name='present[]' value='$users->id' data-toggle='toggle' data-on='Afwezig' data-off='Aanwezig' data-onstyle='danger' data-offstyle='success'></th></tr>";
+        if(isset($user_data[$users->id]) && $user_data[$users->id]['reason']){
+            echo "<tr><td colspan='4'><i>".$user_data[$users->id]['reason']."</i></td></tr>";
+        }
     }
 
 

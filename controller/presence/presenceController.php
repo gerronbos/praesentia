@@ -12,9 +12,14 @@ if(isset($_GET['delete'])){
 if(isset($_GET['get'])){
     $return = [
         'lecture' => model\Lecture::find($_GET['id']),
-        'presence_data' => model\Presence::where('lecture_id','=',$_GET['id'])->lists('present','user_id'),
+        'presence_data' => [],
         'group' => model\Lecture::find($_GET['id'])->Group()
     ];
+    $presence_data = [];
+    foreach(model\Presence::where('lecture_id','=',$_GET['id'])->get() as $l){
+        $presence_data[$l->user_id] = ['present'=>$l->present,'reason'=>$l->reason];
+    }
+    $return['presence_data'] = $presence_data;
 
     $cookies = Services\SessionHandler::setSession('lecture_data',$return);
 

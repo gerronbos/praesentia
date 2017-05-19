@@ -23,8 +23,8 @@ if(!Auth::user()->can('user')){
 
 
 		echo "<table class='table table-bordered'><tr><th>Naam</th><th>Gebruikersnummer</th><th>Email</th><th>Opties</th></tr>";
-		foreach (model\Users::orderBy('firstname','asc')->get() as $user) {
-			echo "<tr><td>".$user->fullname()."</td><td>$user->user_number</td><td>$user->email</td><td>
+		foreach (model\Users::orderBy('lastname','asc')->get() as $user) {
+			echo "<tr><td>".$user->fullnameReturned()."</td><td>$user->user_number</td><td>$user->email</td><td>
 			<a href='".MapStructureRepositorie::controller()."user/userController.php?update_view=1&user_id=$user->id' class='btn btn-primary'>Wijzigen</a>
 			<a href='".MapStructureRepositorie::controller()."user/userController.php?delete_user=1&user_id=$user->id' class='btn btn-danger'>Verwijderen</a>
 			<a href='".MapStructureRepositorie::controller()."user/userController.php?show=1&user_id=$user->id' class='btn btn-info'>Profiel</a>

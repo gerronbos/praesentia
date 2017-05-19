@@ -6,6 +6,7 @@ class LectureRepository extends Repository{
     public function get($params = array())
     {
         $lecture = Lecture::where('id','!=',0);
+        $lecture->join('lecture_has_groups','lecture_id','id');
 
         if(isset($params['byUser']) && $params['byUser']){
             $lecture->where('user_id','=',$params['byUser']);
@@ -23,6 +24,6 @@ class LectureRepository extends Repository{
             $lecture->where('date','=',$params['byDate']);
         }
 
-        return $lecture;
+        return $lecture->select('lectures.*');
     }
 }

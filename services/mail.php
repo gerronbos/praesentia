@@ -13,6 +13,7 @@ class Mail{
     //mail information
     private $subject = '';
     private $body = '';
+    private $send_to = [];
 
 
 
@@ -22,12 +23,40 @@ class Mail{
 
     public function setBody($body)
     {
-        $this->body = $body;
+        if(isset($this) && is_object($this)) {
+            $this->body = $body;
+        }
+        else{
+            return self::init()->setBody($body);
+        }
+        return $this;
     }
 
     public function setSubject($subject)
     {
-        $this->subject = $subject;
+        if(isset($this) && is_object($this)) {
+            $this->subject = $subject;
+        }
+        else{
+            return self::init()->setSubject($subject);
+        }
+        return $this;
+    }
+
+    public function setSendTo($mails)
+    {
+        if(isset($this) && is_object($this)) {
+            if(!is_array($mails)){
+                $this->send_to = [$mails];
+            }
+            else{
+                $this->send_to = $mails;
+            }
+        }
+        else {
+            return self::init()->setSendTo($mails);
+        }
+        return $this;
     }
 
     public function send(){
@@ -48,8 +77,20 @@ class Mail{
 
         $mail->Subject = $this->subject;
         $mail->Body    = $this->body;
+        $mail->addAddress(implode(',',$this->send_to));
 
         $mail->send();
     }
+
+    private function init(){
+        if(isset($this) && is_object($this)){
+            return $this;
+        }
+        $class = get_called_class();
+
+        return new $class;
+    }
+
+
 
 }

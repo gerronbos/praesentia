@@ -73,4 +73,13 @@ class PresenceRepository extends Repository{
         $presence->delete();
         NotificationRepository::create(Auth::user()->id,$user->id,"Aanwezigheid voor $course->name op ".date('y-m-d',strtotime($lecture->date))." is verwijderd.");
     }
+
+    public function setOwnPresence($input){
+        $presence = new Presence();
+        $presence->present = 0;
+        $presence->user_id = Auth::user()->id;
+        $presence->lecture_id = $input['lecture_id'];
+        $presence->reason = $input['reason'];
+        $presence->save();
+    }
 }
