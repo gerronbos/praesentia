@@ -19,8 +19,8 @@ include_once('../includes/head.php');
 					<?php 	
 					echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller(). 'user/userController.php?user_id='.Auth::user()->id.'&updatePassword=1', 'file' => 1, 'method' => 'POST']); 
 					echo FormRepositorie::password('Huidig Wachtwoord', '', ['name' => 'passwordOld','id'=>'password', 'placeholder' => 'Huidig Wachtwoord', 'required' => 1]);
-					
-					echo FormRepositorie::password('Nieuw Wachtwoord', '', ['name' => 'password', 'id' => 'password1', 'pattern' => '^(?=(.*\d){2})(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%]{6,}' , 'placeholder' => 'Nieuw Wachtwoord', 'required' => 1]);
+
+					echo FormRepositorie::password('Nieuw Wachtwoord', '', ['name' => 'password', 'id' => 'password1', 'pattern' => '^(?=(.*\d){1})(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%]{6,}' , 'placeholder' => 'Nieuw Wachtwoord', 'required' => 1]);
 					
 					?>
 					<div class="row">
