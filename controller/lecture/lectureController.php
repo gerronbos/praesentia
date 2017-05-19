@@ -40,3 +40,45 @@ if(isset($_GET['get_all'])){
 
     exit;
 }
+
+if(isset($_POST['csv'])){
+    if(isset($_FILES['file']['name']))
+        $target = MapStructureRepositorie::uploads();
+    $target = $target.basename($_FILES['file']['name']);
+
+
+    echo "<br />";
+
+    $file = fopen($_FILES['file']['tmp_name'],'r');
+    $data = array();
+    $header = null;
+    while(($entry = fgetcsv($file,'0',';')) !== FALSE){
+        if($header === null){
+            $header = $entry;
+            continue;
+        }
+        $data[] = array_combine($header,$entry);
+    }
+    fclose($file);
+
+    foreach($data as $row){
+        $date = $row['Datum'];
+        $start_time = $row['Begintijd'];
+        $end_time = $row['Eindtijd'];
+        $room_id = model\Room::where('number','=',$row['Kamernummer'])->first()->id;
+        $course_id = model\Course::where('name','=',$row['Vak'])->first()->id;
+        $user_id = model\Users::where('user_number','=',$row['Docentnummer'])->first()->id;
+
+        $lecture = LectureRepository::create($date, $start_time, $end_time, $room_id, $course_id, $user_id);
+
+        if($row['Groep']){
+        $groups = explode(',',str_replace(' ', '', $row['Groep']));
+        foreach ($groups as $g){
+            $group = model\Group::where('name','=',$g)->first();
+            LectureRepository::assign($group,$lecture);
+            }
+        }
+
+    }
+    exit;
+}

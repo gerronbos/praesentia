@@ -29,6 +29,7 @@ return array(
     'model\\Group' => $baseDir . '/model/Group.php',
     'model\\Group_has_users' => $baseDir . '/model/Group_has_users.php',
     'model\\Lecture' => $baseDir . '/model/Lecture.php',
+    'model\\Lecture_has_groups' => $baseDir . '/model/Lecture_has_groups.php',
     'model\\Notifications' => $baseDir . '/model/Notifications.php',
     'model\\Presence' => $baseDir . '/model/Presence.php',
     'model\\Role' => $baseDir . '/model/Role.php',
