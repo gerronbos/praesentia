@@ -1,5 +1,11 @@
 <?php include_once('../includes/head.php');
 $user = Services\SessionHandler::getSession('user_data');
+if(Auth::user()->id != $user->id) {
+    if (!Auth::user()->can('user')) {
+        header("location: " . MapStructureRepositorie::error('401'));
+        exit;
+    }
+}
 ?>
 <div class="">
   <div class="page-title">

@@ -1,6 +1,12 @@
 <?php
 	//Create User
 	include_once('../controller.php');
+if(!isset($_GET['show'])) {
+    if (!Auth::user()->can('user')) {
+        header("location: " . MapStructureRepositorie::error('401'));
+        exit;
+    }
+}
 
 	if(isset($_GET['create'])){
 		UserRepositorie::create($_POST['firstname'], $_POST['lastname'], $_POST['user_number'], $_POST['email'], $_POST['password']);
@@ -87,7 +93,6 @@
 	}
     if(isset($_GET['show'])){
 
-        UserRepositorie::generateRandomPassword();
         Services\SessionHandler::setSession('user_data',$user);
 
         header("location:".MapStructureRepositorie::view()."user/profile.php");

@@ -1,6 +1,9 @@
 <?php
 include('../controller.php');
 
+if(!Auth::user()->can('presence')){
+ header("location: ".MapStructureRepositorie::error('401'));
+}
 
 if(isset($_GET['delete'])){
 
