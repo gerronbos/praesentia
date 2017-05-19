@@ -12,11 +12,11 @@ if(!Auth::user()->can('user')){
 	}
 
 	echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller(). 'user/userController.php?create=1', 'file' => 1, 'method' => 'POST']);
-	echo FormRepositorie::text('Voornaam', '',['name'=>'firstname']);
-	echo FormRepositorie::text('Achternaam', '', ['name'=>'lastname']);
-	echo FormRepositorie::text('Studentnummer', '', ['name'=>'user_number']);
-	echo FormRepositorie::text('Email', '', ['name'=>'email']);
-	echo FormRepositorie::password('Wachtwoord', '', ['name'=>'password']);	
+	echo FormRepositorie::text('Voornaam', '',['name'=>'firstname', 'required' => 1]);
+	echo FormRepositorie::text('Achternaam', '', ['name'=>'lastname', 'required' => 1]);
+	echo FormRepositorie::text('Studentnummer', '', ['name'=>'user_number', 'required' => 1]);
+	echo FormRepositorie::text('Email', '', ['name'=>'email', 'required' => 1]);
+	echo FormRepositorie::password('Wachtwoord', '', ['name'=>'password', 'required' => 1]);	
 	echo FormRepositorie::formSaveButton("javascript:history.back()");
 	echo FormRepositorie::closeForm();
 ?>
