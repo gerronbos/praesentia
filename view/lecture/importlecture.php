@@ -15,6 +15,7 @@ if (!Auth::user()->can('lectures')) {
 	<div style="text-align: center;">
 			<?php
 
+			echo "<a href='".MapStructureRepositorie::view()."lecture/downloadtemplate.php' class='btn btn-primary'>Download Template-bestand</a>";
 			echo "<a href='".MapStructureRepositorie::view()."lecture/createlecture.php' class='btn btn-primary'>Enkele les toevoegen</a>";
 			echo "<h3 style='text-align: center'>Of</h3>";
 

@@ -182,6 +182,16 @@ class model {
     {
         $this->data[$key] = $value;
     }
+
+    public function select($select){
+        if(isset($this) && is_object($this)) {
+            $this->select = $select;
+            return $this;
+        }
+        return self::init()->select($select);
+
+
+    }
     //where
     public function where($column,$constructor,$value){
         if(isset($this) && is_object($this)) {
