@@ -10,10 +10,10 @@ if(!isset($_GET['show'])) {
 
 	if(isset($_GET['create'])){
         $errors=array();
-        if (model\Users::where('email','=', $_POST['email'])) {
+        if (model\Users::where('email','=', $_POST['email'])->first()) {
             $errors[]='Email is al in gebruik';
         }
-        if (model\Users::where('user_number','=', $_POST['user_number'])) {
+        if (model\Users::where('user_number','=', $_POST['user_number'])->first()) {
             $errors[]='Gebruikerscode is al in gebruik';
         }
         if (count($errors)) {
