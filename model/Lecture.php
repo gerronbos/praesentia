@@ -13,6 +13,12 @@ class Lecture extends model{
         $group = new Group();
         return $group->find($this->group_id);
     }
+
+    public function User()
+    {
+        $group = new Users();
+        return $group->find($this->user_id);
+    }
 }
 
 ?>

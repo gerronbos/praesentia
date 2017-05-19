@@ -26,3 +26,17 @@ if(isset($_GET['get_by_group'])){
     echo json_encode($return);
     exit;
 }
+
+if(isset($_GET['get_all'])){
+    if(isset($_GET['q'])){
+        $q = $_GET['q'];
+    }
+    else{
+        $q = '';
+    }
+    $lectures = LectureRepository::get(['q'=>$q])->get();
+    Services\SessionHandler::setSession('lecture',$lectures);
+    header('location: '.MapStructureRepositorie::view().'lecture/all_lectures.php?q='.$q);
+
+    exit;
+}
