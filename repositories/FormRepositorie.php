@@ -81,6 +81,9 @@ class FormRepositorie extends Repository{
         if(isset($params['data-toggle'])){
             $return .= "data-toggle='".$params['data-toggle']."' ";
         }
+         if(isset($params['data-remote'])){
+            $return .= "data-remote='".$params['data-remote']."' ";
+        }
         $return .= ">";
         if(isset($params['send_type'])){
             $return .= "<input type='hidden' name='".$params['send_type']."' value='1'>";
