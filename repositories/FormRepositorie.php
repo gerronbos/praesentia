@@ -182,7 +182,13 @@ class FormRepositorie extends Repository{
     }
     private function baseHtml()
     {
-        $html = "<div class='form-group'><label class='control-label' for='$this->name'>$this->title</label>$this->input </div>";
+        $html = "<div class='form-group'>";
+        if(!isset($this->params['noLabel'])) {
+            $html .= "<label class='control-label' for='$this->name'>";
+            $html .= "$this->title";
+            $html .= "</label>";
+        }
+        $html .= "$this->input </div>";
         return $html;
     }
 //Save buttons

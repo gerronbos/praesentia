@@ -215,6 +215,29 @@ class model {
         }
         return self::init()->where($column,$constructor,$value);
     }
+    public function orWhere($column,$constructor,$value){
+        if(isset($this) && is_object($this)) {
+            if(!strpos($column,'.')){
+                $column = $this->table.'.'.$column;
+            }
+            $return = '';
+            $return .= $column;
+            $return .= " ";
+            $return .= $constructor;
+            $return .= " ";
+            $return .= "'$value'";
+
+            if ($this->query_where) {
+                $this->query_where .= ' OR ';
+            } else {
+                $this->query_where .= 'where ';
+            }
+            $this->query_where .= $return;
+            return $this;
+        }
+        return self::init()->where($column,$constructor,$value);
+    }
+
 
     public function whereIn($column, $list = array())
     {
@@ -224,6 +247,23 @@ class model {
         	}
             if($this->query_where){
                 $this->query_where .= ' AND ';
+            }
+            else{
+                $this->query_where .= 'where ';
+            }
+            $this->query_where .= "$column IN('".implode("','",$list)."')";
+            return $this;
+        }
+        return self::init()->whereIn($column,$list);
+    }
+    public function orWhereIn($column, $list = array())
+    {
+        if(isset($this) && is_object($this)) {
+            if(!strpos($column,'.')){
+                $column = $this->table.'.'.$column;
+            }
+            if($this->query_where){
+                $this->query_where .= ' OR ';
             }
             else{
                 $this->query_where .= 'where ';

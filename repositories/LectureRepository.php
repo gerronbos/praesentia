@@ -1,5 +1,7 @@
 <?php
 use model\Lecture;
+use model\Users;
+use model\Course;
 
 class LectureRepository extends Repository{
 
@@ -22,6 +24,15 @@ class LectureRepository extends Repository{
         }
         if(isset($params['byDate']) && $params['byDate']){
             $lecture->where('date','=',$params['byDate']);
+        }
+        if(isset($params['q']) && $params['q']){
+            $users = new Users();
+            $course = new Course();
+            $q = $params['q'];
+            $user_ids = $users->where('firstname','LIKE','%'.$q.'%')->orWhere('lastname','LIKE','%'.$q.'%')->lists('id');
+            $course_ids = $course->where('name','LIKE','%'.$q.'%')->lists('id');
+            $lecture->whereIn('user_id',$user_ids);
+            $lecture->orWhereIn('course_id',$course_ids);
         }
 
         return $lecture->select('lectures.*');
