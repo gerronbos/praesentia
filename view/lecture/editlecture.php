@@ -6,7 +6,13 @@ if (!Auth::user()->can('lectures')) {
 }
 	$lecture = Services\SessionHandler::getSession('edit_lecture');
 	?>
-	
+	<div class="x_panel">
+		<div class="x_title">
+			<h2>Les wijzigen</h2>
+			<ul class="nav navbar-right panel_toolbox"></ul>
+		<div class="clearfix"></div>
+		</div>
+		<div class="x_content">
 	<?php
 
 
@@ -21,6 +27,8 @@ if (!Auth::user()->can('lectures')) {
 	echo FormRepositorie::formSaveButton("javascript:history.back()");
 	echo FormRepositorie::closeForm();
 ?>
+		</div>
+	</div>
 
 <?php
 	include_once('../includes/footer.php');
