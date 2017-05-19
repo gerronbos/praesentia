@@ -15,6 +15,7 @@ if(!isset($_GET['show'])) {
 		header('location:'.MapStructureRepositorie::view().'user/createuser.php');
 		exit;
 	}
+
     if (isset($_GET['passwordCheck'])) {
         echo (password_verify($_GET['password'],Auth::user()->password)) ? 1: 0;
         exit;
@@ -63,6 +64,13 @@ if(!isset($_GET['show'])) {
         exit;
     }
 	$user = model\Users::find($_GET["user_id"]);
+
+    if(isset($_GET['resetPassword'])){
+        UserRepositorie::resetPassword($user);
+        Services\SessionHandler::setSession('user_edit_succes', 'Wachtwoord succesvol gereset.');
+        header('location:'.MapStructureRepositorie::view().'user/profile.php');
+        exit;
+    }
 
 	if(isset($_GET['update'])){
 		UserRepositorie::update($user, $_POST);
