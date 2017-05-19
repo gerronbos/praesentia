@@ -22,12 +22,10 @@ class SessionHandler{
 
     public function setSession($key,$value,$time = 900){
         if(isset($this) && is_object($this)) {
-
             $this->{$key} = ['time'=>$time,'value'=>$value];
-            $this->save();
-            return $this;
+            return $this->save();
         }
-        self::init()->setSession($key,$value,$time);
+        return self::init()->setSession($key,$value,$time);
     }
 
     public function getSession($key)
@@ -42,6 +40,7 @@ class SessionHandler{
 
             if (isset($_COOKIE[$key])) {
                 setcookie($key,null,time() - 3600, '/');
+                unset($_COOKIE[$key]);
             }
             if (property_exists($this, $key)) {
                 unset($this->{$key});
@@ -54,16 +53,17 @@ class SessionHandler{
 
     public function buildSession()
     {
-        foreach($_COOKIE as $key=>$c){
-            if($this->is_serialized($c)) {
-                
-                $this->{$key} = unserialize($c);
+        if(isset($this) && is_object($this)) {
+            foreach ($_COOKIE as $key => $c) {
+                if ($this->is_serialized($c)) {
+                    $this->{$key} = unserialize($c);
+                } else {
+                    $this->{$key} = $c;
+                }
             }
-            else{
-                $this->{$key} = $c;
-            }
+            return $this;
         }
-        return $this;
+        return self::init()->buildSession();
     }
 
     public function save()
@@ -76,7 +76,6 @@ class SessionHandler{
                     setcookie($key, $i, time()+$i['time'], '/');
                 }
             }
-
             return $this;
         }
         else{
@@ -113,6 +112,18 @@ class SessionHandler{
         $class = get_called_class();
 
         return new $class($params);
+    }
+
+    public function resetSession(){
+        foreach($_COOKIE as $key=>$c){
+            if($key != 'user'){
+                self::deleteSession($key);
+            }
+        }
+    }
+
+    public function executeSessions(){
+
     }
 
 

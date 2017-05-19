@@ -97,9 +97,8 @@
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
                         <li><a href="<?php echo MapStructureRepositorie::controller()."user/userController.php?show=1&user_id=".Auth::user()->id; ?>"> Profile</a></li>
                         <li>
-                            <a href="javascript:;">
-                                <span class="badge bg-red pull-right">50%</span>
-                                <span>Settings</span>
+                            <a href="<?php echo MapStructureRepositorie::view(); ?>user/changePassword.php">
+                                Wachtwoord veranderen
                             </a>
                         </li>
                         <li><a href="javascript:;">Help</a></li>

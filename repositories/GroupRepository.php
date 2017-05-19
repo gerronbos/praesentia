@@ -10,6 +10,8 @@ class GroupRepository extends Repository{
         $group->period = $period;
         $group->education_id = $education_id;
         $group->save();
+
+        return $group;
     }
 
     public function getGroupsArray(){
@@ -25,13 +27,32 @@ class GroupRepository extends Repository{
         $group = model\Group::find($id);
     }
 
-    public function assignToGroup($group_id,$user_id){
-        $group_has_users= Group_has_users::where('user_id','=',$user_id)->first();
-        if(!$group_has_users){
-            $group_has_users = new Group_has_users();
+    public function update($active,$user_id){
+        $group_has_users= Group_has_users::where('user_id','=',$user_id)->where('active','=',1)->get();
+        foreach($group_has_users as $ghu){
+            $ghu->user_id = $user_id;
+            $ghu->active = $active;
+            $ghu->save();
         }
+
+    }
+
+    public function setInactive($user_id){
+        $group_has_users= Group_has_users::where('user_id','=',$user_id)->where('active','=',1)->get();
+        foreach($group_has_users as $ghu){
+            $ghu->user_id = $user_id;
+            $ghu->active = 0;
+            $ghu->save();
+        }
+    }
+
+    public function assignToGroup($group_id,$user_id){
+
+        self::setInactive($user_id);
+        $group_has_users = new Group_has_users();
         $group_has_users->group_id = $group_id;
         $group_has_users->user_id = $user_id;
+        $group_has_users->active = 1;
     	$group_has_users->save();
 
     	NotificationRepository::create(Auth::user()->id, $user_id, 'Account aan groep gekoppeld.', 1);

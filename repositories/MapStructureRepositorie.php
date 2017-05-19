@@ -30,4 +30,8 @@ class MapStructureRepositorie extends Repository{
     {
         return ConfigRepositorie::get('url').'/repositories/';
     }
+
+    public function error($error){
+        return self::view()."errors/$error.php";
+    }
 }

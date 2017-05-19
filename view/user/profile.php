@@ -1,5 +1,16 @@
 <?php include_once('../includes/head.php');
 $user = Services\SessionHandler::getSession('user_data');
+if(Auth::user()->id != $user->id) {
+    if (!Auth::user()->can('user')) {
+        header("location: " . MapStructureRepositorie::error('401'));
+        exit;
+    }
+}
+?>
+<?php
+if(Services\SessionHandler::has('user_edit_succes')){
+  echo '<div class="col-lg-12"><div class="alert alert-success" role="alert">'.Services\SessionHandler::getAndDelete('user_edit_succes').'</div></div>';
+}
 ?>
 <div class="">
   <div class="page-title">
@@ -68,7 +79,7 @@ $user = Services\SessionHandler::getSession('user_data');
                 <li><a href="<?php echo MapStructureRepositorie::controller()."user/userController.php?update_view=1&user_id=".$user->id ?>">Gebruiker wijzigen</a></li>
                 <li><a href="<?php echo MapStructureRepositorie::controller()."roles/roleController.php?user_roles=1&user_id=".$user->id ?>">Rechten wijzigen</a></li>
                 <li>
-                  <a href="<?php echo MapStructureRepositorie::view()."user/changePassword.php" ?>">Wachtwoord veranderen</a>
+                  <a href="<?php echo MapStructureRepositorie::view()."user/changePassword.php?resetPassword=1" ?> ">Wachtwoord veranderen</a>
                 </li>
                 <li>
                   <a href="#myModal" data-toggle="modal" data-target="#myModal">Wachtwoord resetten</a>
@@ -297,6 +308,6 @@ $user = Services\SessionHandler::getSession('user_data');
         </div>
         <div class="modal-footer">
           <a href="#" data-dismiss="modal" class="btn btn-danger">Nee</a>
-          <a href="<?php echo MapStructureRepositorie::controller()."user/userController.php" ?>" class="btn btn-success">Ja</a>
+          <a href="<?php echo MapStructureRepositorie::controller()."user/userController.php?resetPassword=1&user_id=".$user->id ?>" class="btn btn-success">Ja</a>
         </div>
       </div>

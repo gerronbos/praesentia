@@ -57,6 +57,20 @@ class UserRepositorie extends Repository{
 
     }
 
+    public function resetPassword($user){
+        $password=self::generateRandomPassword();
+        $user->password=self::makePassword($password);
+        $user->save();
+
+        $user->email=$email;
+
+        $msg="Uw wachtwoord is gereset. Log in met het volgende wachtwoord: $password";
+
+        $msg = wordwrap($msg, 70);
+
+        mail("erkam_s@online.nl", "Wachtwoord reset", $msg);
+    }
+
     public function update($user ,$data = array()){
         if (isset($data['firstname'])) {
             $user->firstname = $data['firstname'];

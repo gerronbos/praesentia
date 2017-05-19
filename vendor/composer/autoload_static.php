@@ -13,14 +13,21 @@ class ComposerStaticInitcd537467c5ba460042f21d53039c1010
     public static $classMap = array (
         'Auth' => __DIR__ . '/../..' . '/services/auth.php',
         'ConfigRepositorie' => __DIR__ . '/../..' . '/repositories/ConfigRepositorie.php',
+        'EasyPeasyICS' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
         'FormRepositorie' => __DIR__ . '/../..' . '/repositories/FormRepositorie.php',
         'GroupRepository' => __DIR__ . '/../..' . '/repositories/GroupRepository.php',
         'LectureRepository' => __DIR__ . '/../..' . '/repositories/LectureRepository.php',
         'MapStructureRepositorie' => __DIR__ . '/../..' . '/repositories/MapStructureRepositorie.php',
         'NotificationRepository' => __DIR__ . '/../..' . '/repositories/NotificationRepository.php',
+        'PHPMailer' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmailer.php',
+        'PHPMailerOAuth' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmaileroauth.php',
+        'PHPMailerOAuthGoogle' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmaileroauthgoogle.php',
+        'POP3' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.pop3.php',
         'PresenceRepository' => __DIR__ . '/../..' . '/repositories/PresenceRepository.php',
         'Repository' => __DIR__ . '/../..' . '/repositories/repository.php',
         'RoleRepository' => __DIR__ . '/../..' . '/repositories/RoleRepository.php',
+        'SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.smtp.php',
+        'Services\\Mail' => __DIR__ . '/../..' . '/services/mail.php',
         'Services\\SessionHandler' => __DIR__ . '/../..' . '/services/sessionhandler.php',
         'UserRepositorie' => __DIR__ . '/../..' . '/repositories/UserRepositorie.php',
         'model\\Course' => __DIR__ . '/../..' . '/model/Course.php',
@@ -34,6 +41,8 @@ class ComposerStaticInitcd537467c5ba460042f21d53039c1010
         'model\\UserRoles' => __DIR__ . '/../..' . '/model/UserRoles.php',
         'model\\Users' => __DIR__ . '/../..' . '/model/Users.php',
         'model\\model' => __DIR__ . '/../..' . '/model/model.php',
+        'ntlm_sasl_client_class' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/ntlm_sasl_client.php',
+        'phpmailerException' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.phpmailer.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

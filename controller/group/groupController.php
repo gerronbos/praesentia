@@ -1,5 +1,9 @@
 <?php
 include_once('../controller.php');
+if (!Auth::user()->can('groups')) {
+    header("location: " . MapStructureRepositorie::error('401'));
+    exit;
+}
 	if(isset($_POST['create'])){
 		GroupRepository::create($_POST['name'],$_POST['school_year'],$_POST['period'],$_POST['education_id']);
 	}

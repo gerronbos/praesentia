@@ -1,6 +1,12 @@
 <?php
 	//Create User
 	include_once('../controller.php');
+if(!isset($_GET['show'])) {
+    if (!Auth::user()->can('user')) {
+        header("location: " . MapStructureRepositorie::error('401'));
+        exit;
+    }
+}
 
 	if(isset($_GET['create'])){
 		UserRepositorie::create($_POST['firstname'], $_POST['lastname'], $_POST['user_number'], $_POST['email'], $_POST['password']);
@@ -9,11 +15,62 @@
 		header('location:'.MapStructureRepositorie::view().'user/createuser.php');
 		exit;
 	}
+
     if (isset($_GET['passwordCheck'])) {
         echo (password_verify($_GET['password'],Auth::user()->password)) ? 1: 0;
         exit;
     }
+    if(isset($_POST['csv'])){
+        if(isset($_FILES['file']['name']))
+            $target = MapStructureRepositorie::uploads();
+        $target = $target.basename($_FILES['file']['name']);
+
+
+        echo "<br />";
+
+        $file = fopen($_FILES['file']['tmp_name'],'r');
+        $data = array();
+        $header = null;
+        while(($entry = fgetcsv($file,'0',';')) !== FALSE){
+            if($header === null){
+                $header = $entry;
+                continue;
+            }
+            $data[] = array_combine($header,$entry);
+        }
+        fclose($file);
+
+        foreach($data as $row){
+            $active = 1;
+            $lastname = $row['Tussenvoegsel'].' '.$row['Achternaam'];
+            $firstname = $row['Roepnaam'];
+            $user_number = $row['Stud.nr.'];
+            $email = $row['E-mailadres'];
+            $password = '123';
+
+            $user = model\Users::where('user_number','=',$user_number)->first();
+            if(!$user){
+                $user = UserRepositorie::create($firstname, $lastname, $user_number, $email, $password);
+            }
+
+            $group = model\Group::where('name','=',$row['Groepsnaam'])->first();
+            if(!$group){
+                GroupRepository::create($row['Groepsnaam'],date('Y'),'1','1');
+                $group = model\Group::where('name','=',$row['Groepsnaam'])->first();
+            }
+
+            GroupRepository::assignToGroup(intval($group->id),$user->id);
+        }
+        exit;
+    }
 	$user = model\Users::find($_GET["user_id"]);
+
+    if(isset($_GET['resetPassword'])){
+        UserRepositorie::resetPassword($user);
+        Services\SessionHandler::setSession('user_edit_succes', 'Wachtwoord succesvol gereset.');
+        header('location:'.MapStructureRepositorie::view().'user/profile.php');
+        exit;
+    }
 
 	if(isset($_GET['update'])){
 		UserRepositorie::update($user, $_POST);
@@ -44,43 +101,10 @@
 	}
     if(isset($_GET['show'])){
 
-        UserRepositorie::generateRandomPassword();
         Services\SessionHandler::setSession('user_data',$user);
 
         header("location:".MapStructureRepositorie::view()."user/profile.php");
         exit;
     }
-    if(isset($_POST['csv'])){
-        if(isset($_FILES['file']['name']))
-            $target = MapStructureRepositorie::uploads();
-        $target = $target.basename($_FILES['file']['name']);
-
-
-        echo "<br />";
-
-        $file = fopen($_FILES['file']['tmp_name'],'r');
-        $data = array();
-        $header = null;
-        while(($entry = fgetcsv($file,'0',';')) !== FALSE){
-            if($header === null){
-                $header = $entry;
-                continue;
-            }
-            $data[] = array_combine($header,$entry);
-        }
-        fclose($file);
-
-        foreach($data as $row){
-            $lastname = $row['Tussenvoegsel'].' '.$row['Achternaam'];
-            $firstname = $row['Roepnaam'];
-            $user_number = $row['Stud.nr.'];
-            $email = $row['E-mailadres'];
-            $password = '123';
-
-            $user = UserRepositorie::create($firstname, $lastname, $user_number, $email, $password);
-            if(isset($_POST['group_id'])){
-            	GroupRepository::assignToGroup($_POST['group_id'],$user->id);
-            }
-        }
-    }
+    
 ?>

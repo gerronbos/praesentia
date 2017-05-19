@@ -1,5 +1,9 @@
 <?php
 include_once('../includes/head.php');
+if (!Auth::user()->can('user')) {
+    header("location: " . MapStructureRepositorie::error('401'));
+    exit;
+}
 ?>
 <div class="x_panel">
 	<div class="x_title">
@@ -24,7 +28,7 @@ include_once('../includes/head.php');
 	<div id="preview-template" style="text-align: center; " >
 	<div id='testdropzone'></div>
 
-        <?php echo FormRepositorie::select('Groep', GroupRepository::getGroupsArray(), '1', ['name'=>'group_id','id'=>'group_id']);
+        <?php //echo FormRepositorie::select('Groep', GroupRepository::getGroupsArray(), null, ['name'=>'group_id','id'=>'group_id']);
 
 
         echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller()."/user/userController.php",'class'=>'dropzone','id'=>'dropzone','send_type'=>'csv']); 
@@ -58,6 +62,5 @@ Dropzone.autoDiscover = false;
     	
     	formData.append('group_id',group_id);
     	formData.append('csv',1);
-    	console.log(formData.values());
     });
 </script>

@@ -1,5 +1,8 @@
 <?php
 include_once('../includes/head.php');
+if(!Auth::user()->can('presence')){
+    header("location: ".MapStructureRepositorie::error('401'));
+}
 $lectures = model\Lecture::where('user_id','=',Auth::user()->id)->where('date','=',date('y-m-d'))->orderBy('start_time','asc')->get();
 ?>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

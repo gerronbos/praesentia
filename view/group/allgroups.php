@@ -1,5 +1,9 @@
 <?php
 include_once('../includes/head.php');
+if (!Auth::user()->can('groups')) {
+    header("location: " . MapStructureRepositorie::error('401'));
+    exit;
+}
 ?>
 <div class="x_panel">
 	<div class="x_title">
@@ -16,9 +20,9 @@ include_once('../includes/head.php');
 		echo "<table class='table table-bordered'><tr><th>Naam</th><th>Schooljaar</th><th>Periode</th><th>Opties</th></tr>";
 		foreach (model\Group::orderBy('name','asc')->get() as $group) {
 			echo "<tr><td>".$group->name."</td><td>$group->school_year</td><td>$group->period</td><td>
-			<a href='".MapStructureRepositorie::controller()."groupController.php?update_view=1&group_id=$group->id' class='btn btn-primary'>Wijzigen</a>
-			<a href='".MapStructureRepositorie::controller()."groupController.php?delete_group=1&group_id=$group->id' class='btn btn-danger'>Verwijderen</a>
-			<a href='".MapStructureRepositorie::controller()."groupController.php?viewgroup=1&group_id=$group->id' class='btn btn-info'>Weergeven</a>
+			<a href='".MapStructureRepositorie::controller()."group/groupController.php?update_view=1&group_id=$group->id' class='btn btn-primary'>Wijzigen</a>
+			<a href='".MapStructureRepositorie::controller()."group/groupController.php?delete_group=1&group_id=$group->id' class='btn btn-danger'>Verwijderen</a>
+			<a href='".MapStructureRepositorie::controller()."group/groupController.php?viewgroup=1&group_id=$group->id' class='btn btn-info'>Weergeven</a>
 		</td></tr>";
 	}
 	echo "</table>";
