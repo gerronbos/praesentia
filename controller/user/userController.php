@@ -115,10 +115,18 @@ if(!isset($_GET['show'])) {
 		exit;
 	}
     if(isset($_GET['show'])){
-
         Services\SessionHandler::setSession('user_data',$user);
 
         header("location:".MapStructureRepositorie::view()."user/profile.php");
+        exit;
+    }
+
+    if(isset($_POST['set_presence'])){
+        PresenceRepository::setOwnPresence($_POST);
+
+        Services\SessionHandler::setSession('present_user', 'Succesvol afgemeld');
+
+        header("location:".MapStructureRepositorie::view()."user/presence/index.php");
         exit;
     }
     

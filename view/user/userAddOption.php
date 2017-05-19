@@ -47,14 +47,13 @@ Dropzone.autoDiscover = false;
     var Dropzone = new Dropzone('#dropzone',{
         url: "<?php echo MapStructureRepositorie::controller().'/user/userController.php';?>",
         addRemoveLinks: true,
-        success: function (file, response) {
-            var imgName = response;
-            file.previewElement.classList.add("dz-success");
-            console.log("Successfully uploaded :" + imgName);
-        },
         error: function (file, response) {
             file.previewElement.classList.add("dz-error");
         }
+    });
+
+    Dropzone.on('uploadprogress',function(file,perc,bytesent){
+    console.log(perc);
     });
 
     Dropzone.on('sending',function(file, xhr, formData){
@@ -62,5 +61,13 @@ Dropzone.autoDiscover = false;
     	
     	formData.append('group_id',group_id);
     	formData.append('csv',1);
+        NProgress.start();
+    });
+
+    Dropzone.on('success',function(file,response){
+        var imgName = response;
+        file.previewElement.classList.add("dz-success");
+        console.log("Successfully uploaded :" + imgName);
+        NProgress.done();
     });
 </script>
