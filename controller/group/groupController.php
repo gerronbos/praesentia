@@ -6,6 +6,7 @@ if (!Auth::user()->can('groups')) {
 }
 	if(isset($_POST['create'])){
 		GroupRepository::create($_POST['name'],$_POST['school_year'],$_POST['period'],$_POST['education_id']);
+		header("location:".MapStructureRepositorie::view()."group/creategroup.php");
 	}
 	
 	if(isset($_GET['viewgroup'])){

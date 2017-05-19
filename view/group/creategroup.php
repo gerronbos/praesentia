@@ -8,11 +8,11 @@ if (!Auth::user()->can('groups')) {
 	
 	<?php
 
-	echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller(). 'groupController.php?create=1', 'file' => 1, 'method' => 'POST']);
-	echo FormRepositorie::text('Naam', '',['name'=>'name']);
-	echo FormRepositorie::text('Schooljaar', '', ['name'=>'school_year']);
-	echo FormRepositorie::text('Periode', '', ['name'=>'period']);
-	echo FormRepositorie::text('Educatienummer', '', ['name'=>'education_id']);
+	echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller(). 'group/groupController.php?create=1', 'file' => 1, 'method' => 'POST']);
+	echo FormRepositorie::text('Naam', '',['name'=>'name', 'required' => 1]);
+	echo FormRepositorie::text('Schooljaar', '', ['name'=>'school_year', 'required' => 1]);
+	echo FormRepositorie::text('Periode', '', ['name'=>'period', 'required' => 1]);
+	echo FormRepositorie::text('Educatienummer', '', ['name'=>'education_id', 'required' => 1]);
 	echo FormRepositorie::formSaveButton("javascript:history.back()");
 	echo FormRepositorie::closeForm();
 ?>
