@@ -15,6 +15,16 @@
                 </li>
             <?php
             }
+            if(Auth::user()->can('lectures')) {
+                ?>
+                <li><a><i class="fa fa-edit"></i> Lessen <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="<?php echo MapStructureRepositorie::view(); ?>lecture/all_lectures.php">Alle lessen</a></li>
+                        <li><a href="<?php echo MapStructureRepositorie::view(); ?>lecture/importlecture.php">Lessen aanmaken/importeren</a></li>
+                    </ul>
+                </li>
+            <?php
+            }
             if(Auth::user()->can('user')) {
                 ?>
                 <li><a><i class="fa fa-user"></i> Gebruikers <span class="fa fa-chevron-down"></span></a>

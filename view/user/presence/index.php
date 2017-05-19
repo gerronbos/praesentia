@@ -1,5 +1,9 @@
 <?php
 include_once('../../includes/head.php');
+
+if(Services\SessionHandler::has('present_user')){
+    echo '<div class="col-lg-12"><div class="alert alert-success" role="alert">'.Services\SessionHandler::getAndDelete('present_user').'</div></div>';
+}
 ?>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <?php echo FormRepositorie::text('Selecteer datum',date('Y-m-d'),['id'=>'datetimepicker']); ?>
@@ -74,7 +78,13 @@ include_once('../../includes/footer.php');
                 data = JSON.parse(data);
                 $('.lectures').remove();
                 $.each(data,function(index){
-                    $('.lecture_table').append("<tr class='lectures'><td>"+date+"</td><td>"+data[index].start_time+"</td><td>"+data[index].end_time+"</td><td>"+data[index].course+"</td><td><button class='btn btn-primary open_modal' lecture_id='"+data[index].id+"'>Afmelden</button></td></tr>");
+                    if(data[index].present){
+                        var present = "open_modal";
+                    }
+                    else{
+                        var present = "disabled"
+                    }
+                    $('.lecture_table').append("<tr class='lectures'><td>"+date+"</td><td>"+data[index].start_time+"</td><td>"+data[index].end_time+"</td><td>"+data[index].course+"</td><td><button class='btn btn-primary "+present+"' lecture_id='"+data[index].id+"'>Afmelden</button></td></tr>");
                 });
                 $('.open_modal').click(function(){
                     $('#modal').modal();

@@ -280,7 +280,7 @@ if(Services\SessionHandler::has('user_edit_succes')){
           <h4 class="modal-title text-center">Wachtwoord resetten</h4>
         </div>
         <div class="modal-body">
-          <p class="text-center">Weet u zeker dat u de wachtwoord wilt resetten?</p>
+          <p class="text-center">Weet u zeker dat u het wachtwoord wilt resetten?</p>
         </div>
         <div class="modal-footer">
           <a href="#" data-dismiss="modal" class="btn btn-danger">Nee</a>

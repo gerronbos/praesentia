@@ -12,7 +12,16 @@ if(isset($_GET['get'])){
 if(isset($_GET['get_by_group'])){
     $return = [];
     foreach(LectureRepository::get(['byGroup'=>$_POST['group_id'],'byDate'=>$_POST['date']])->orderBy('lectures.start_time','asc')->get() as $lecture){
-        $return[] = ['id'=>$lecture->id,'start_time'=>$lecture->start_time,'end_time'=>$lecture->end_time,'course'=>$lecture->Course()->name];
+        $presence = model\Presence::where('lecture_id','=',$lecture->id)->where('user_id','=',Auth::user()->id)->first();
+
+        if($presence){
+            $present = 0;
+        }
+        else{
+            $present = 1;
+        }
+
+        $return[] = ['id'=>$lecture->id,'start_time'=>$lecture->start_time,'end_time'=>$lecture->end_time,'course'=>$lecture->Course()->name,'present'=>$present];
     }
     echo json_encode($return);
     exit;

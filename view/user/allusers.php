@@ -26,7 +26,7 @@ if(!Auth::user()->can('user')){
 		foreach (model\Users::orderBy('lastname','asc')->get() as $user) {
 			echo "<tr><td>".$user->fullnameReturned()."</td><td>$user->user_number</td><td>$user->email</td><td>
 			<a href='".MapStructureRepositorie::controller()."user/userController.php?update_view=1&user_id=$user->id' class='btn btn-primary'>Wijzigen</a>
-			<a href='".MapStructureRepositorie::controller()."user/userController.php?delete_user=1&user_id=$user->id' class='btn btn-danger'>Verwijderen</a>
+			<button user_id='$user->id' class='btn btn-danger delete_user'>Verwijderen</button>
 			<a href='".MapStructureRepositorie::controller()."user/userController.php?show=1&user_id=$user->id' class='btn btn-info'>Profiel</a>
 		</td></tr>";
 	}
@@ -39,3 +39,35 @@ if(!Auth::user()->can('user')){
 <?php
 include_once('../includes/footer.php');
 ?>
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title text-center">Gebruiker Verwijderen</h4>
+        </div>
+        <div class="modal-body">
+          <p class="text-center">Weet u zeker dat u de gebruiker wilt verwijderen?</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#" data-dismiss="modal" class="btn btn-danger">Nee</a>
+          <a href="" class="btn btn-success delete_url">Ja</a>
+        </div>
+      </div>
+
+
+<script>
+
+var url = '<?php echo MapStructureRepositorie::controller()."user/userController.php?delete_user=1&user_id=:id" ?>';
+var user_id = '';
+$('.delete_user').click(function(){
+	user_id = $(this).attr('user_id');
+	$('#myModal').modal();
+
+});
+$('#myModal').on('show.bs.modal',function(){
+		console.log('hi');
+		$('.delete_url').attr('href',url.replace(':id',user_id));
+	});
+</script>
