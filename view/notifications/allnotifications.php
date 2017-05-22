@@ -6,7 +6,6 @@
 
 <div class="list-group">
 <?php
-include(MapStructureRepositorie::helpers().'time_ago.php');
 foreach(NotificationRepository::get(Auth::user()->id)->orderBy('id','DESC')->get() as $entry){
     echo '<li class="list-group-item">';
     echo '<h4 class="list-group-item-heading">';
