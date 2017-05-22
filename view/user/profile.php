@@ -142,7 +142,7 @@ $(document).ready(function(){
         data: {
             labels: labels,
             datasets: [{
-                label: '# of Votes',
+                label: '% aanwezig',
                 data: data,
                 backgroundColor: backgroundColor,
                 borderColor: borderColor,

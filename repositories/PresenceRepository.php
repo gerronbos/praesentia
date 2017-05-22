@@ -143,7 +143,7 @@ class PresenceRepository extends Repository{
                     $return['amount_present_prec'] = 0;
                 }
                 else{
-                    $return['amount_present_prec'] += 100 / $return['amount_lectures'] * $return['amount_present'];
+                    $return['amount_present_prec'] += number_format(100 / $return['amount_lectures'] * $return['amount_present'],0);
                 }
             }
         }
