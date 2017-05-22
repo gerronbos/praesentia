@@ -37,9 +37,10 @@ $group = model\Group::find($_GET['group_id']);
 							</tr>
 							<?php
 							foreach (model\Users::orderBy('lastname','asc')->get() as $user) {
-								echo "<tr><td>".$user->fullnameReturned()."</td><td>$user->user_number</td><td>$user->email</td><td>
-								<canvas id='bar' width='300px' height='100px'></canvas>
-							</td></tr>";
+								$data = PresenceRepository::calcPresenceByUser($user,['grouped' => 1]);
+								echo "<tr><td>".$user->fullnameReturned()."</td><td>$user->user_number</td><td>$user->email</td><td>";
+								echo "<li><p>".$pd['title']."</p><div class='progress'><div class='progress-bar bg-green' role='progressbar' data-transitiongoal='".$data['amount_present_prec']."'>".$data['amount_present_prec']."%</div></div></li>
+							</td></tr>"; 
 						}
 						?>
 					</table>
@@ -66,37 +67,6 @@ $data = PresenceRepository::calcPresenceByGroup($group);
 	var ctx = document.getElementById("myChart");
 	var myChart = new Chart(ctx, {
 		type: 'doughnut',
-		data: {
-			labels: labels,
-			datasets: [{
-				backgroundColor: [
-				"#2ecc71",
-				"#3498db",
-				"#95a5a6",
-				"#9b59b6",
-				"#f1c40f",
-				"#e74c3c",
-				"#34495e"
-				],
-				data: data
-			}]
-		},
-		options: {
-			tooltips: {
-				enabled: true,
-				mode: 'single',
-				callbacks: {
-					label: function(tooltipItems, data) {
-						return tooltipItems.yLabel + ' : ' + tooltipItems.xLabel + "%"; 
-					}
-				}
-			}
-		}
-	});
-
-	var ctx = document.getElementById("bar");
-	var myChart = new Chart(ctx, {
-		type: 'bar',
 		data: {
 			labels: labels,
 			datasets: [{
