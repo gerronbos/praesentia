@@ -126,11 +126,10 @@ foreach(array_slice(NotificationRepository::get(Auth::user()->id,['onlyUnseen'=>
     echo "<li><a href='";echo MapStructureRepositorie::view(); echo"notifications/onenotification.php?id=$entry->id'>";
     echo "<span class='image'><img src='".$entry->from_user()->getUserProfilePicture()."' alt='Profile Image' /></span>";
     echo "<span>";
-    echo $entry->from_user()->fullname();
+        echo "<span>".$entry->from_user()->fullname()."</span>";
+        echo "<span class='time'>".time_ago($entry->created_at)."</span>";
     echo "</span>";
-    echo "<span class='message'>";
-    echo $entry->message;
-    echo "</span>";
+    echo "<span class='message'>".$entry->message."</span>";
     echo "</a></li>";
 }
 ?>
