@@ -1,8 +1,6 @@
 <?php
         include_once($_SERVER['DOCUMENT_ROOT'].'/build/app.php');
     Auth::isLoggedIn();
-
-    include_once($_SERVER['DOCUMENT_ROOT'].'/helpers/time_ago.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
