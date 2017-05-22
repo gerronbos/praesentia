@@ -50,7 +50,7 @@
             }
             if(Auth::user()->can('rooms')) {
                 ?>
-                <li><a><i class="fa fa-users"></i> Lokalen <span class="fa fa-chevron-down"></span></a>
+                <li><a><i class="fa fa-map-marker"></i> Lokalen <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="<?php echo MapStructureRepositorie::view(); ?>room/index.php">Overzicht</a></li>
                     </ul>

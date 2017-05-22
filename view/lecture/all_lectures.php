@@ -31,12 +31,13 @@ $lectures = Services\SessionHandler::getSession('lecture');
 		echo "<table class='table table-bordered'><tr><th>Vak</th><th>Datum</th><th>Begintijd</th><th>Eindtijd</th><th>Kamernummer</th><th>Docent</th><th>Opties</th></tr>";
 		foreach ($lectures as $lecture) {
             $id = $lecture['id'];
+            var_dump($lecture);
 			echo "<tr>
 					<td>".model\Course::find($lecture['course_id'])->name."</td>
 					<td>".$lecture['date']."</td>
 					<td>".$lecture['start_time']."</td>
 					<td>".$lecture['end_time']."</td>
-					<td>".$lecture['room_id']."</td>
+					<td>".model\Room::find($lecture['room_id'])->number."</td>
 					<td>".model\Users::find($lecture['user_id'])->fullname()."</td>
 
 		<td>

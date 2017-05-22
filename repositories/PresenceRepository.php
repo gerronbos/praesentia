@@ -2,6 +2,9 @@
 
 use model\Presence;
 use model\Lecture;
+use model\Users;
+use model\Course;
+use model\Group;
 
 class PresenceRepository extends Repository{
 
@@ -83,5 +86,48 @@ class PresenceRepository extends Repository{
         $presence->lecture_id = $input['lecture_id'];
         $presence->reason = $input['reason'];
         $presence->save();
+    }
+
+    public function calcPresenceByUser(Users $user){
+        $return = [];
+        $course_ids = $user->Group()->Lectures(['dont_use_get'=>1])->lists('course_id');
+
+        foreach(Course::whereIn('id',$course_ids)->get() as $course){
+            $lecture_ids = Lecture::where('course_id','=',$course->id)->lists('id');
+            $amount_lectures = count(Presence::whereIn('lecture_id',$lecture_ids)->where('user_id','=',$user->id)->get());
+            $amount_lectures_present = count(Presence::whereIn('lecture_id',$lecture_ids)->where('user_id','=',$user->id)->where('present','=',1)->get());
+            $amount_lectures_present_prec = number_format( 100/ $amount_lectures * $amount_lectures_present,0);
+            $return[$course->id] = [
+                'title'=>$course->name,
+                'amount_lectures' => $amount_lectures,
+                'amount_present' => $amount_lectures_present,
+                'amount_present_prec' => $amount_lectures_present_prec
+            ];
+        }
+
+        return $return;
+    }
+
+    public function calcPresenceByGroup(Group $group){
+        $return = [];
+        $course_ids = $group->Lectures(['dont_use_get'=>1])->lists('course_id');
+
+        foreach(Course::whereIn('id',$course_ids)->get() as $course){
+            $lecture_ids = Lecture::where('course_id','=',$course->id)->lists('id');
+            $amount_lectures = count(Presence::whereIn('lecture_id',$lecture_ids)->get());
+            $amount_lectures_present = count(Presence::whereIn('lecture_id',$lecture_ids)->where('present','=',1)->get());
+            $amount_lectures_present_prec = number_format( 100/ $amount_lectures * $amount_lectures_present,0);
+            $return[$course->id] = [
+                'title'=>$course->name,
+                'amount_lectures' => $amount_lectures,
+                'amount_present' => $amount_lectures_present,
+                'amount_present_prec' => $amount_lectures_present_prec
+            ];
+
+        }
+
+        var_dump($return);
+        exit;
+        return $return;
     }
 }

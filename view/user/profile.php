@@ -1,5 +1,6 @@
 <?php include_once('../includes/head.php');
 $user = Services\SessionHandler::getSession('user_data');
+$presence_data = Services\SessionHandler::getSession('presence_data');
 if(Auth::user()->id != $user->id) {
     if (!Auth::user()->can('user')) {
         header("location: " . MapStructureRepositorie::error('401'));
@@ -116,7 +117,7 @@ if(Services\SessionHandler::has('user_edit_succes')){
               <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Activity</a>
                 </li>
-                <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Projects Worked on</a>
+                <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Aanwezigheid per vak</a>
                 </li>
                 <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
                 </li>
@@ -201,58 +202,18 @@ if(Services\SessionHandler::has('user_edit_succes')){
                   <table class="data table table-striped no-margin">
                     <thead>
                       <tr>
-                        <th>#</th>
-                        <th>Project Name</th>
-                        <th>Client Company</th>
-                        <th class="hidden-phone">Hours Spent</th>
-                        <th>Contribution</th>
+                        <th>Vak</th>
+                        <th>Aantal lessen</th>
+                        <th>Aanwezig</th>
+                        <th>Aanwezig</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>New Company Takeover Review</td>
-                        <td>Deveint Inc</td>
-                        <td class="hidden-phone">18</td>
-                        <td class="vertical-align-mid">
-                          <div class="progress">
-                            <div class="progress-bar progress-bar-success" data-transitiongoal="35"></div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>New Partner Contracts Consultanci</td>
-                        <td>Deveint Inc</td>
-                        <td class="hidden-phone">13</td>
-                        <td class="vertical-align-mid">
-                          <div class="progress">
-                            <div class="progress-bar progress-bar-danger" data-transitiongoal="15"></div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>3</td>
-                        <td>Partners and Inverstors report</td>
-                        <td>Deveint Inc</td>
-                        <td class="hidden-phone">30</td>
-                        <td class="vertical-align-mid">
-                          <div class="progress">
-                            <div class="progress-bar progress-bar-success" data-transitiongoal="45"></div>
-                          </div>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>4</td>
-                        <td>New Company Takeover Review</td>
-                        <td>Deveint Inc</td>
-                        <td class="hidden-phone">28</td>
-                        <td class="vertical-align-mid">
-                          <div class="progress">
-                            <div class="progress-bar progress-bar-success" data-transitiongoal="75"></div>
-                          </div>
-                        </td>
-                      </tr>
+                    <?php
+                    foreach($presence_data as $pd){
+                        echo "<tr><td>".$pd['title']."</td><td>".$pd['amount_lectures']."</td><td>".$pd['amount_present']."</td><td class='vertical-align-mid'><div class='progress'><div class='progress-bar progress-bar-success' data-transitiongoal='".$pd['amount_present_prec']."'>".$pd['amount_present_prec']."%</div></div></td></tr>";
+                    }
+                    ?>
                     </tbody>
                   </table>
                   <!-- end user projects -->
