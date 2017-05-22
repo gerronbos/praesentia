@@ -16,12 +16,6 @@ $group = model\Group::find($_GET['group_id']);
 			<div class="clearfix"></div>
 		</div>
 		<div class="x_content">
-		<div class="progress">
-  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
-  aria-valuemin="0" aria-valuemax="100" style="width:40%">
-    40% Complete (success)
-  </div>
-</div>
 			<div class="" role="tabpanel" data-example-id="togglable-tabs">
 				<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Overzicht</a>
@@ -45,15 +39,17 @@ $group = model\Group::find($_GET['group_id']);
 							foreach ($group->Users() as $user) {
 								$data = PresenceRepository::calcPresenceByUser($user,['grouped' => 1]);
 								echo "<tr><td>".$user->fullnameReturned()."</td><td>$user->user_number</td><td>$user->email</td><td>";
-								echo progressBar($data['amount_present_prec'])."</tr>";
-						}
-						?>
-					</table>
+								echo progressBar($data['amount_present_prec'])."
+								<a href='".MapStructureRepositorie::controller()."user/userController.php?show=1&user_id=$user->id' class='btn btn-info'>Profiel</a></tr>";
+							}
+
+							?>
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
 </div>
 
