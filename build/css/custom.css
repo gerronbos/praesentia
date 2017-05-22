@@ -1471,7 +1471,7 @@ ul.msg_list li {
     display: -ms-flexbox;
     display: flex;
     margin: 6px 6px 0;
-    width: 96% !important
+    width: 98% !important
 }
 ul.msg_list li:last-child {
     margin-bottom: 6px;
@@ -1492,7 +1492,7 @@ ul.msg_list li a .time {
     font-style: italic;
     font-weight: bold;
     position: absolute;
-    right: 35px
+    right: 10px
 }
 ul.msg_list li a .message {
     display: block !important;
@@ -1532,7 +1532,7 @@ ul.msg_list li a .message {
     width: 220px
 }
 .navbar-nav .open .dropdown-menu.msg_list {
-    width: 300px
+    width: 400px
 }
 .info-number .badge {
     font-size: 10px;
