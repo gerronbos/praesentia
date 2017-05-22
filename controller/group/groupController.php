@@ -21,6 +21,12 @@ if (!Auth::user()->can('groups')) {
         exit;
 	}
 
+	if (isset($_GET['viewgroup'])) {
+		$group = model\Group::find($_GET['group_id']);
+
+		exit;
+	}
+
 	if(isset($_GET['delete_group'])){
 		$group = model\Group::find($_GET['group_id']);
 		GroupRepository::delete($group);
