@@ -14,7 +14,7 @@ if(Services\SessionHandler::has('alert_roles')){
     </div>
     <div class="x_content">
         <?php echo FormRepositorie::openForm(['method'=>'POST','send_type'=>'create','url'=>MapStructureRepositorie::controller().'room/roomController.php']); ?>
-        <?php echo FormRepositorie::text('Nummber','',['name'=>'number']); ?>
+        <?php echo FormRepositorie::text('Number','',['name'=>'number']); ?>
         <?php echo FormRepositorie::textarea('Locatie','',['name'=>'locatie']); ?>
         <?php echo FormRepositorie::formSaveButton("javascript:history.back()"); ?>
         <?php echo FormRepositorie::closeForm(); ?>

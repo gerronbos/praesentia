@@ -88,24 +88,80 @@ class PresenceRepository extends Repository{
         $presence->save();
     }
 
-    public function calcPresenceByUser(Users $user){
+    public function calcPresenceByUser(Users $user,$params = array()){
         $return = [];
         $course_ids = $user->Group()->Lectures(['dont_use_get'=>1])->lists('course_id');
 
+        if(isset($params['grouped'])){
+           $return = [
+               'amount_lectures' => 0,
+               'amount_present' => 0,
+               'amount_present_prec' => 0
+           ];
+        }
+
         foreach(Course::whereIn('id',$course_ids)->get() as $course){
-            $lecture_ids = Lecture::where('course_id','=',$course->id)->lists('id');
+            if(isset($params['date'])){
+                $lecture_ids = Lecture::where('course_id','=',$course->id)->where('date','=',date('Y-m-d',strtotime($params['date'])))->lists('id');
+            }
+            else{
+                $lecture_ids = Lecture::where('course_id','=',$course->id)->lists('id');
+            }
             $amount_lectures = count(Presence::whereIn('lecture_id',$lecture_ids)->where('user_id','=',$user->id)->get());
             $amount_lectures_present = count(Presence::whereIn('lecture_id',$lecture_ids)->where('user_id','=',$user->id)->where('present','=',1)->get());
-            $amount_lectures_present_prec = number_format( 100/ $amount_lectures * $amount_lectures_present,0);
-            $return[$course->id] = [
-                'title'=>$course->name,
-                'amount_lectures' => $amount_lectures,
-                'amount_present' => $amount_lectures_present,
-                'amount_present_prec' => $amount_lectures_present_prec
-            ];
+            if($amount_lectures == 0){
+                $amount_lectures_present_prec = 100;
+            }
+            else {
+                if($amount_lectures_present == 0){
+                    $amount_lectures_present_prec = 0;
+                }
+                else {
+                    $amount_lectures_present_prec = number_format(100 / $amount_lectures * $amount_lectures_present, 0);
+                }
+            }
+            if(isset($params['grouped'])) {
+                $return['amount_lectures'] += $amount_lectures;
+                $return['amount_present'] += $amount_lectures_present;
+            }
+            else{
+                $return[$course->id] = [
+                    'title'=>$course->name,
+                    'amount_lectures' => $amount_lectures,
+                    'amount_present' => $amount_lectures_present,
+                    'amount_present_prec' => $amount_lectures_present_prec
+                ];
+            }
+
+        }
+        if(isset($params['grouped'])) {
+            if($return['amount_lectures'] == 0){
+                $return['amount_present_prec'] = 100;
+            }
+            else{
+                if($return['amount_present'] == 0){
+                    $return['amount_present_prec'] = 0;
+                }
+                else{
+                    $return['amount_present_prec'] += 100 / $return['amount_lectures'] * $return['amount_present'];
+                }
+            }
         }
 
         return $return;
+    }
+
+    public function getByLastDays($user,$days = 7, $params = array()){
+        $return = [];
+        $date =date('d-m-Y',strtotime('-7days'));
+        while($date != date('d-m-Y')){
+            $return[$date] = self::calcPresenceByUser($user,['date'=>$date,'grouped'=>1]);
+            $date = date('d-m-Y',strtotime($date. '+1 days'));
+        }
+
+        return $return;
+
+
     }
 
     public function calcPresenceByGroup(Group $group){

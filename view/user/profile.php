@@ -1,6 +1,7 @@
 <?php include_once('../includes/head.php');
 $user = Services\SessionHandler::getSession('user_data');
 $presence_data = Services\SessionHandler::getSession('presence_data');
+$presence_data_days = Services\SessionHandler::getSession('presence_data_last_days');
 if(Auth::user()->id != $user->id) {
     if (!Auth::user()->can('user')) {
         header("location: " . MapStructureRepositorie::error('401'));
@@ -66,32 +67,12 @@ if(Services\SessionHandler::has('user_edit_succes')){
                 <br />
 
             <!-- start skills -->
-            <h4>Skills</h4>
+            <h4>Aanwezigheid per vak</h4>
             <ul class="list-unstyled user_data">
-              <li>
-                <p>Web Applications</p>
-                <div class="progress progress_sm">
-                  <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
-                </div>
-              </li>
-              <li>
-                <p>Website Design</p>
-                <div class="progress progress_sm">
-                  <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="70"></div>
-                </div>
-              </li>
-              <li>
-                <p>Automation & Testing</p>
-                <div class="progress progress_sm">
-                  <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="30"></div>
-                </div>
-              </li>
-              <li>
-                <p>UI / UX</p>
-                <div class="progress progress_sm">
-                  <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
-                </div>
-              </li>
+                <?php foreach($presence_data as $pd){
+                    echo "<li><p>".$pd['title']."</p><div class='progress'><div class='progress-bar bg-green' role='progressbar' data-transitiongoal='".$pd['amount_present_prec']."'>".$pd['amount_present_prec']."%</div></div></li>";
+                }
+                ?>
             </ul>
             <!-- end of skills -->
 
@@ -100,131 +81,12 @@ if(Services\SessionHandler::has('user_edit_succes')){
 
             <div class="profile_title">
               <div class="col-md-6">
-                <h2>User Activity Report</h2>
-              </div>
-              <div class="col-md-6">
-                <div id="reportrange" class="pull-right" style="margin-top: 5px; background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #E6E9ED">
-                  <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                  <span>December 30, 2014 - January 28, 2015</span> <b class="caret"></b>
-                </div>
+                <h2>Aanwezigheid afgelopen 7 dagen</h2>
               </div>
             </div>
             <!-- start of user-activity-graph -->
-            <div id="graph_bar" style="width:100%; height:280px;"></div>
+              <canvas id="myChart" width="400" height="200"></canvas>
             <!-- end of user-activity-graph -->
-
-            <div class="" role="tabpanel" data-example-id="togglable-tabs">
-              <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Activity</a>
-                </li>
-                <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Aanwezigheid per vak</a>
-                </li>
-                <li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
-                </li>
-              </ul>
-              <div id="myTabContent" class="tab-content">
-                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-
-                  <!-- start recent activity -->
-                  <ul class="messages">
-                    <li>
-                      <img src="images/img.jpg" class="avatar" alt="Avatar">
-                      <div class="message_date">
-                        <h3 class="date text-info">24</h3>
-                        <p class="month">May</p>
-                      </div>
-                      <div class="message_wrapper">
-                        <h4 class="heading">Desmond Davison</h4>
-                        <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                        <br />
-                        <p class="url">
-                          <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                          <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <img src="images/img.jpg" class="avatar" alt="Avatar">
-                      <div class="message_date">
-                        <h3 class="date text-error">21</h3>
-                        <p class="month">May</p>
-                      </div>
-                      <div class="message_wrapper">
-                        <h4 class="heading">Brian Michaels</h4>
-                        <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                        <br />
-                        <p class="url">
-                          <span class="fs1" aria-hidden="true" data-icon=""></span>
-                          <a href="#" data-original-title="">Download</a>
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <img src="images/img.jpg" class="avatar" alt="Avatar">
-                      <div class="message_date">
-                        <h3 class="date text-info">24</h3>
-                        <p class="month">May</p>
-                      </div>
-                      <div class="message_wrapper">
-                        <h4 class="heading">Desmond Davison</h4>
-                        <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                        <br />
-                        <p class="url">
-                          <span class="fs1 text-info" aria-hidden="true" data-icon=""></span>
-                          <a href="#"><i class="fa fa-paperclip"></i> User Acceptance Test.doc </a>
-                        </p>
-                      </div>
-                    </li>
-                    <li>
-                      <img src="images/img.jpg" class="avatar" alt="Avatar">
-                      <div class="message_date">
-                        <h3 class="date text-error">21</h3>
-                        <p class="month">May</p>
-                      </div>
-                      <div class="message_wrapper">
-                        <h4 class="heading">Brian Michaels</h4>
-                        <blockquote class="message">Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua butcher retro keffiyeh dreamcatcher synth.</blockquote>
-                        <br />
-                        <p class="url">
-                          <span class="fs1" aria-hidden="true" data-icon=""></span>
-                          <a href="#" data-original-title="">Download</a>
-                        </p>
-                      </div>
-                    </li>
-
-                  </ul>
-                  <!-- end recent activity -->
-
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-
-                  <!-- start user projects -->
-                  <table class="data table table-striped no-margin">
-                    <thead>
-                      <tr>
-                        <th>Vak</th>
-                        <th>Aantal lessen</th>
-                        <th>Aanwezig</th>
-                        <th>Aanwezig</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    foreach($presence_data as $pd){
-                        echo "<tr><td>".$pd['title']."</td><td>".$pd['amount_lectures']."</td><td>".$pd['amount_present']."</td><td class='vertical-align-mid'><div class='progress'><div class='progress-bar progress-bar-success' data-transitiongoal='".$pd['amount_present_prec']."'>".$pd['amount_present_prec']."%</div></div></td></tr>";
-                    }
-                    ?>
-                    </tbody>
-                  </table>
-                  <!-- end user projects -->
-
-                </div>
-                <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="profile-tab">
-                  <p>xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui
-                    photo booth letterpress, commodo enim craft beer mlkshk </p>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -248,3 +110,55 @@ if(Services\SessionHandler::has('user_edit_succes')){
           <a href="<?php echo MapStructureRepositorie::controller()."user/userController.php?resetPassword=1&user_id=".$user->id ?>" class="btn btn-success">Ja</a>
         </div>
       </div>
+
+<script>
+    var labels = [];
+    var data = [];
+    var backgroundColor = [];
+    var borderColor = [];
+    <?php
+        foreach($presence_data_days as $key=>$data){
+            echo "labels.push('$key');";
+            echo "data.push('".$data['amount_present_prec']."');";
+            if($data['amount_present_prec'] == 100){
+            echo "backgroundColor.push('rgba(26, 187, 156, 0.5)');";
+            echo "borderColor.push('rgba(26, 187, 156, 1)');";
+            }
+            elseif($data['amount_present_prec'] > 50){
+            echo "backgroundColor.push('rgba(240, 173, 78, 0.5)');";
+            echo "borderColor.push('rgba(240, 173, 78, 1)');";
+            }
+            else{
+            echo "backgroundColor.push('rgba(217, 83, 79, 0.5)');";
+            echo "borderColor.push('rgba(217, 83, 79, 1)');";
+            }
+
+        }
+    ?>
+$(document).ready(function(){
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: '# of Votes',
+                data: data,
+                backgroundColor: backgroundColor,
+                borderColor: borderColor,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+});
+
+</script>
