@@ -36,11 +36,10 @@ $group = model\Group::find($_GET['group_id']);
 								<th>Opties</th>
 							</tr>
 							<?php
-							foreach (model\Users::orderBy('lastname','asc')->get() as $user) {
+							foreach ($group->Users() as $user) {
 								$data = PresenceRepository::calcPresenceByUser($user,['grouped' => 1]);
 								echo "<tr><td>".$user->fullnameReturned()."</td><td>$user->user_number</td><td>$user->email</td><td>";
-								echo "<li><p>".$pd['title']."</p><div class='progress'><div class='progress-bar bg-green' role='progressbar' data-transitiongoal='".$data['amount_present_prec']."'>".$data['amount_present_prec']."%</div></div></li>
-							</td></tr>"; 
+								echo "<div class='progress'><div class='progress-bar bg-green' role='progressbar' data-transitiongoal='".$data['amount_present_prec']."'>".$data['amount_present_prec']."%</div></div></td></tr>";
 						}
 						?>
 					</table>
