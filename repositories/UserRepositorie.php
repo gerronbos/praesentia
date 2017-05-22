@@ -97,4 +97,22 @@ class UserRepositorie extends Repository{
 
         NotificationRepository::create(Auth::user()->id, $user->id, 'Account verwijderd.', 1);
     }
+
+    public function getWithGroupsByIds($user_ids)
+    {
+        $users = User::whereIn('id',$user_ids);
+        $users->join('group_has_users','user_id','id');
+        $users->join('groups','id','group_has_users.group_id');
+        $users->groupBy('users.id');
+        $users->select('users.*,groups.name,groups.school_year,groups.period,groups.education_id');
+        return $users->get();
+    }
+
+    public function getUsersByRole($role){
+        $users = User::join('user_roles','user_id','id');
+        $users->where('user_roles.'.$role,'=',1);
+        $users->select('users.*');
+        return $users;
+
+    }
 }

@@ -10,10 +10,15 @@ if(isset($_GET['delete'])){
 }
 
 if(isset($_GET['get'])){
+    $lecture = model\Lecture::find($_GET['id']);
+    $user_ids = [];
+    foreach($lecture->Groups() as $group){
+        $user_ids += $group->users(['onlyIds'=>1]);
+    }
     $return = [
-        'lecture' => model\Lecture::find($_GET['id']),
+        'lecture' => $lecture,
         'presence_data' => [],
-        'group' => model\Lecture::find($_GET['id'])->Group()
+        'user_ids' => $user_ids,
     ];
     $presence_data = [];
     foreach(model\Presence::where('lecture_id','=',$_GET['id'])->get() as $l){

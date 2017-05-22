@@ -7,8 +7,10 @@ class PresenceRepository extends Repository{
 
     public function set(Lecture $lecture, $present)
     {
-        foreach($lecture->Group()->Users() as $u){
-            self::create(['user_id'=>$u->id,'lecture_id'=>$lecture->id,'present'=> (in_array($u->id,$present) ? false : true)]);
+        foreach($lecture->Groups() as $group){
+            foreach($group->Users(['onlyIds'=>1]) as $u) {
+                self::create(['user_id' => $u, 'lecture_id' => $lecture->id, 'present' => (in_array($u, $present) ? false : true)]);
+            }
         }
 
     }
@@ -77,7 +79,7 @@ class PresenceRepository extends Repository{
     public function setOwnPresence($input){
         $presence = new Presence();
         $presence->present = 0;
-        $presence->user_id = Auth::user()->id;
+        $presence->user_id = '';
         $presence->lecture_id = $input['lecture_id'];
         $presence->reason = $input['reason'];
         $presence->save();

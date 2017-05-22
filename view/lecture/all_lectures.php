@@ -30,18 +30,19 @@ $lectures = Services\SessionHandler::getSession('lecture');
 
 		echo "<table class='table table-bordered'><tr><th>Vak</th><th>Datum</th><th>Begintijd</th><th>Eindtijd</th><th>Kamernummer</th><th>Docent</th><th>Opties</th></tr>";
 		foreach ($lectures as $lecture) {
+            $id = $lecture['id'];
 			echo "<tr>
-					<td>".$lecture->Course()->name."</td>
-					<td>".$lecture->date."</td>
-					<td>$lecture->start_time</td>
-					<td>$lecture->end_time</td>
-					<td>$lecture->room_id</td>
-					<td>".$lecture->User()->fullName()."</td>
+					<td>".model\Course::find($lecture['course_id'])->name."</td>
+					<td>".$lecture['date']."</td>
+					<td>".$lecture['start_time']."</td>
+					<td>".$lecture['end_time']."</td>
+					<td>".$lecture['room_id']."</td>
+					<td>".model\Users::find($lecture['user_id'])->fullname()."</td>
 
 		<td>
-			<a href='".MapStructureRepositorie::controller()."lecture/lectureController.php?edit_lecture=1&lecture_id=$lecture->id' class='btn btn-primary'>Wijzigen</a>
-			<a href='".MapStructureRepositorie::controller()."lecture/lectureController.php?delete_lecture=1&lecture_id=$lecture->id' class='btn btn-danger'>Verwijderen</a>
-			<a href='".MapStructureRepositorie::controller()."lecture/lectureController.php?viewlecture=1&lecture_id=$lecture->id' class='btn btn-info'>Weergeven</a>
+			<a href='".MapStructureRepositorie::controller()."lecture/lectureController.php?edit_lecture=1&lecture_id=$id' class='btn btn-primary'>Wijzigen</a>
+			<a href='".MapStructureRepositorie::controller()."lecture/lectureController.php?delete_lecture=1&lecture_id=$id' class='btn btn-danger'>Verwijderen</a>
+			<a href='".MapStructureRepositorie::controller()."lecture/lectureController.php?viewlecture=1&lecture_id=$id' class='btn btn-info'>Weergeven</a>
 		</td></tr>";
 	}
 	echo "</table>";

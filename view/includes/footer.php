@@ -57,6 +57,9 @@
 <!-- Dropzone Script -->
 <script src="<?php echo MapStructureRepositorie::build(); ?>js/dropzone.js"></script>
 
+<!-- Select2 CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
 <!-- Custom Theme Scripts -->
 <script src="<?php echo MapStructureRepositorie::build(); ?>js/custom.min.js"></script>
 
