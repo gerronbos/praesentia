@@ -31,7 +31,7 @@ if (!Auth::user()->can('groups')) {
 			echo "<tr><td>".$group->name."</td><td>$group->school_year</td><td>$group->period</td><td>
 			<a href='".MapStructureRepositorie::controller()."group/groupController.php?update_view=1&group_id=$group->id' class='btn btn-primary'>Wijzigen</a>
 			<button group_id='$group->id' class='btn btn-danger delete_group'>Verwijderen</button>
-			<a href='".MapStructureRepositorie::controller()."group/groupController.php?viewgroup=1&group_id=$group->id' class='btn btn-info'>Weergeven</a>
+			<a href='".MapStructureRepositorie::view()."group/groupProfile.php?group_id=$group->id' class='btn btn-info'>Weergeven</a>
 		</td></tr>";
 	}
 	echo "</table>";

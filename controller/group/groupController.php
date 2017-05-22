@@ -21,8 +21,10 @@ if (!Auth::user()->can('groups')) {
         exit;
 	}
 
-	if (isset($_GET['viewgroup'])) {
+	if (isset($_GET['group_profile'])) {
 		$group = model\Group::find($_GET['group_id']);
+
+		header("location:".MapStructureRepositorie::view()."group/groupProfile.php");
 
 		exit;
 	}

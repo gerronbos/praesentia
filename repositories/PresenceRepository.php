@@ -181,9 +181,6 @@ class PresenceRepository extends Repository{
             ];
 
         }
-
-        var_dump($return);
-        exit;
         return $return;
     }
 }
