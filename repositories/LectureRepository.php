@@ -27,21 +27,24 @@ class LectureRepository extends Repository{
             $lecture->where('date','=',$params['byDate']);
         }
         if(isset($params['q']) && $params['q']){
-            $users = new Users();
-            $course = new Course();
-            $q = $params['q'];
-            $user_ids = $users->where('firstname','LIKE','%'.$q.'%')->orWhere('lastname','LIKE','%'.$q.'%')->lists('id');
-            $course_ids = $course->where('name','LIKE','%'.$q.'%')->lists('id');
-            $lecture->whereIn('user_id',$user_ids);
-            $lecture->orWhereIn('course_id',$course_ids);
+            foreach(explode(' ',$params['q']) as $q) {
+                $users = new Users();
+                $course = new Course();
+                $user_ids = $users->where('firstname', 'LIKE', '%' . $q . '%')->orWhere('lastname', 'LIKE', '%' . $q . '%')->lists('id');
+                $course_ids = $course->where('name', 'LIKE', '%' . $q . '%')->lists('id');
+                $lecture->whereIn('user_id', $user_ids);
+                $lecture->orWhereIn('course_id', $course_ids);
+                $lecture->orWhere('date', '=', $q);
+            }
         }
+
 
         return $lecture->select('lectures.*');
     }
 
     public function create($date, $start_time, $end_time, $room_id, $course_id, $user_id){
         $lecture = new model\Lecture();
-        $lecture->date = $date;
+        $lecture->date = date('Y-m-d',strtotime($date));
         $lecture->start_time = $start_time;
         $lecture->end_time = $end_time;
         $lecture->room_id = $room_id;
@@ -58,5 +61,18 @@ class LectureRepository extends Repository{
         $lhg->group_id = $group->id;
         $lhg->lecture_id = $lecture->id;
         $lhg->save();
+    }
+
+    public function edit(Lecture $lecture,$date, $start_time, $end_time, $room_id, $course_id, $user_id){
+        $lecture->date = date('Y-m-d',strtotime($date));
+        $lecture->start_time = $start_time;
+        $lecture->end_time = $end_time;
+        $lecture->room_id = $room_id;
+        $lecture->course_id = $course_id;
+        $lecture->user_id = $user_id;
+
+        $lecture->save();
+
+        return $lecture;
     }
 }

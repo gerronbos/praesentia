@@ -8,6 +8,8 @@ class ComposerStaticInitcd537467c5ba460042f21d53039c1010
 {
     public static $files = array (
         'f0d13a1096dbff25621cdcc0b6a264c7' => __DIR__ . '/../..' . '/helpers/truefalse.php',
+        'ff7206b2ed78fb61c86a09a256ed2607' => __DIR__ . '/../..' . '/helpers/time_ago.php',
+        'a63b38e360051a6d33db9069ff8160a5' => __DIR__ . '/../..' . '/helpers/progressbar.php',
     );
 
     public static $classMap = array (
@@ -26,6 +28,7 @@ class ComposerStaticInitcd537467c5ba460042f21d53039c1010
         'PresenceRepository' => __DIR__ . '/../..' . '/repositories/PresenceRepository.php',
         'Repository' => __DIR__ . '/../..' . '/repositories/repository.php',
         'RoleRepository' => __DIR__ . '/../..' . '/repositories/RoleRepository.php',
+        'RoomRepository' => __DIR__ . '/../..' . '/repositories/RoomRepository.php',
         'SMTP' => __DIR__ . '/..' . '/phpmailer/phpmailer/class.smtp.php',
         'Services\\Mail' => __DIR__ . '/../..' . '/services/mail.php',
         'Services\\SessionHandler' => __DIR__ . '/../..' . '/services/sessionhandler.php',

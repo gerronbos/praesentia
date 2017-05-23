@@ -6,7 +6,9 @@
             "services"
         ],
         "files": [
-            "helpers/truefalse.php"
+            "helpers/truefalse.php",
+            "helpers/time_ago.php",
+            "helpers/progressbar.php"
         ]
     },
     "require": {

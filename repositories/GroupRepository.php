@@ -14,6 +14,29 @@ class GroupRepository extends Repository{
         return $group;
     }
 
+    public function delete($group){
+        foreach(model\Group_has_users::where('group_id','=',$group->id)->get() as $g){
+            $g->delete();
+        }
+        $group->delete();
+    }
+
+    public function update($group ,$data = array()){
+        if (isset($data['name'])) {
+            $group->name = $data['name'];
+        }
+        if (isset($data['school_year'])) {
+            $group->school_year = $data['school_year'];
+        }
+        if (isset($data['period'])) {
+            $group->period = $data['period'];
+        }
+        if (isset($data['education_id'])) {
+            $group->education_id = $data['education_id'];
+        }
+        $group->save();
+    }
+
     public function getGroupsArray(){
         $groups = model\Group::get();
         $return= array();
@@ -27,7 +50,7 @@ class GroupRepository extends Repository{
         $group = model\Group::find($id);
     }
 
-    public function update($active,$user_id){
+    /*public function update($active,$user_id){
         $group_has_users= Group_has_users::where('user_id','=',$user_id)->where('active','=',1)->get();
         foreach($group_has_users as $ghu){
             $ghu->user_id = $user_id;
@@ -35,7 +58,7 @@ class GroupRepository extends Repository{
             $ghu->save();
         }
 
-    }
+    }*/
 
     public function setInactive($user_id){
         $group_has_users= Group_has_users::where('user_id','=',$user_id)->where('active','=',1)->get();

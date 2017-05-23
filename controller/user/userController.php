@@ -115,6 +115,11 @@ if(!isset($_GET['show'])) {
 		exit;
 	}
     if(isset($_GET['show'])){
+        $presence_data = PresenceRepository::calcPresenceByUser($user);
+        $presence_data_last_days = PresenceRepository::getByLastDays($user);
+
+        Services\SessionHandler::setSession('presence_data',$presence_data);
+        Services\SessionHandler::setSession('presence_data_last_days',$presence_data_last_days);
         Services\SessionHandler::setSession('user_data',$user);
 
         header("location:".MapStructureRepositorie::view()."user/profile.php");

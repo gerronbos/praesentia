@@ -46,6 +46,7 @@ class model {
 
     public function lists($value,$key = null)
     {
+        if(isset($this) && is_object($this)){
         $return = [];
         foreach($this->get() as $i){
             if($key){
@@ -56,6 +57,8 @@ class model {
             }
         }
         return $return;
+        }
+        return self::init()->lists($value,$key);
     }
 
     public function find($id)
@@ -283,6 +286,15 @@ class model {
         return self::init()->orderBy($colum,$order);
     }
 
+    public function groupBy($colum)
+    {
+        if(isset($this) && is_object($this)) {
+            $this->orderby .= "GROUP BY $colum";
+            return $this;
+        }
+        return self::init()->groupBy($colum);
+    }
+
     //private functions
     private function makeConnection()
     {
@@ -316,9 +328,24 @@ class model {
         }
     }
     public function join($table, $this_foreign, $model_foreign){
-        $this->realtion_query = "INNER JOIN $table ON ".$this->table.".".$model_foreign." = ".$table.'.'.$this_foreign;
+        if(isset($this) && is_object($this)) {
 
-        return $this;
+            if (!strpos($this_foreign, '.')) {
+                $this_foreign = $table . '.' . $this_foreign;
+            }
+            if (!strpos($model_foreign, '.')) {
+                $model_foreign = $this->table . '.' . $model_foreign;
+            }
+            if ($this->realtion_query) {
+                $this->realtion_query .= " INNER JOIN $table ON " . $model_foreign . " = " . $this_foreign;
+
+            } else {
+                $this->realtion_query = "INNER JOIN $table ON " . $model_foreign . " = " . $this_foreign;
+            }
+
+            return $this;
+        }
+        return self::init()->join($table, $this_foreign, $model_foreign);
     }
 
     private function excecute_query()

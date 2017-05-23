@@ -46,6 +46,7 @@ class FormRepositorie extends Repository{
                 $this->id = $params['params']['id'];
                 unset($params['params']['id']);
             }
+
         }
 
 
@@ -123,6 +124,11 @@ class FormRepositorie extends Repository{
         $params['list'] = $list;
         return self::init(['type'=>'select','title'=>$title,'value'=>$value,'params'=>$params])->baseHtml();
     }
+    public function select2($title,$list = array(), $value, $params = array())
+    {
+        $params['list'] = $list;
+        return self::init(['type'=>'select2','title'=>$title,'value'=>$value,'params'=>$params])->baseHtml();
+    }
     public function file($title, $params = array())
     {
         return self::init(['type'=>'file','title'=>$title,'params'=>$params])->baseHtml();
@@ -169,7 +175,21 @@ class FormRepositorie extends Repository{
                 }
                 $itemlist .= ">$l</option>";
             }
+
             $this->input = "<select name='$this->name' id='$this->id' class='form-control' $params >$itemlist</select>";
+        }
+        if($this->type == 'select2'){
+
+            $itemlist = "";
+            foreach($this->list as $key=>$l){
+                $itemlist .= "<option value='$key'";
+                if(strval($this->value) == strval($key)){
+                    $itemlist .= "selected";
+                }
+                $itemlist .= ">$l</option>";
+            }
+
+            $this->input = "<select name='$this->name' id='$this->id' class='form-control select2' $params >$itemlist</select>";
         }
 
         if($this->type == 'file'){

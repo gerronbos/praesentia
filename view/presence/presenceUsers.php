@@ -3,7 +3,7 @@ include_once('../includes/head.php');
 $lecture_data = Services\SessionHandler::getSession('lecture_data');
 
 $lecture = $lecture_data['lecture'];
-$group = $lecture_data['group'];
+$user_ids = $lecture_data['user_ids'];
 $user_data = $lecture_data['presence_data'];
 
 ?>
@@ -18,8 +18,8 @@ $user_data = $lecture_data['presence_data'];
         <th>Naam</th><th>Student nummer</th><th>klas</th><th>Aanwezig</th>
     </tr>
     <?php
-    foreach($group->Users() as $users){
-        echo "<tr><th>".$users->fullname()."</th><th>$users->user_number</th><th>$group->name</th><th><input type='checkbox'";
+    foreach(UserRepositorie::getWithGroupsByIds($user_ids) as $users){
+        echo "<tr><th>".$users->fullname()."</th><th>$users->user_number</th><th>$users->name</th><th><input type='checkbox'";
         if(isset($user_data[$users->id]) && !$user_data[$users->id]['present']){
             echo " checked ";
         }

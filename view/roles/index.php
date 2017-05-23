@@ -16,7 +16,7 @@ if(Services\SessionHandler::has('alert_roles')){
         
         <table class="table table-responsive">
             <tr>
-                <th>Titel</th><th>Gebruikers</th><th>Aanwezigheid</th><th>Colleges</th><th>Klassen</th><th>Kamers</th><th>Opties</th>
+                <th>Titel</th><th>Gebruikers</th><th>Aanwezigheid</th><th>Colleges</th><th>Klassen</th><th>Lokalen</th><th>Opties</th>
             </tr>
             <?php
             if(count(model\Role::get())) {

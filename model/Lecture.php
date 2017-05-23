@@ -8,16 +8,22 @@ class Lecture extends model{
         $course = new Course();
         return $course->find($this->course_id);
     }
-    public function Group()
+    public function Groups()
     {
-        $group = new Group();
-        return $group->find($this->group_id);
+        $groups = new Group();
+        $groups->join('lecture_has_groups','group_id','id');
+        return $groups->where('lecture_has_groups.lecture_id','=',$this->id)->select('groups.*')->get();
     }
 
     public function User()
     {
         $group = new Users();
         return $group->find($this->user_id);
+    }
+    public function Room()
+    {
+        $room = new Room();
+        return $room->find($this->room_id);
     }
 }
 

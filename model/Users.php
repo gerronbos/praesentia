@@ -1,13 +1,31 @@
 <?php namespace model;
 
+use \Auth;
+
 class Users extends model{
     protected $table = 'users';
 
-    public function fullname(){
-    	return $this->firstname.' '.$this->lastname;
+    public function fullname($params = []){
+        if(Auth::user()->can('user') && isset($params['url'])){
+            $mapstructure = new \MapStructureRepositorie();
+            $url = $mapstructure::controller()."user/userController.php?show=1&user_id=$this->id";
+            $text = "<a target='_blank' href='$url'>$this->firstname $this->lastname</a>";
+        }
+        else{
+            $text = $this->firstname.' '.$this->lastname;
+        }
+    	return $text;
     }
-    public function fullnameReturned(){
-        return "<b>".$this->lastname."</b>, ".$this->firstname;
+    public function fullnameReturned($params = []){
+        if(Auth::user()->can('user') && isset($params['url'])){
+            $mapstructure = new \MapStructureRepositorie();
+            $url = $mapstructure::controller()."user/userController.php?show=1&user_id=$this->id";
+            $text = "<a target='_blank' href='$url'><b>$this->lastname</b> $this->firstname</a>";
+        }
+        else{
+            $text = "<b>".$this->lastname."</b>, ".$this->firstname;
+        }
+        return $text;
     }
 
     public function Roles()

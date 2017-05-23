@@ -18,6 +18,10 @@ class MapStructureRepositorie extends Repository{
     {
         return ConfigRepositorie::get('url').'/controller/';
     }
+    public function helpers()
+    {
+        return ConfigRepositorie::get('url').'/helpers/';
+    }
     public function model()
     {
         return ConfigRepositorie::get('url').'/model/';

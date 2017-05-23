@@ -21,6 +21,7 @@ return array(
     'PresenceRepository' => $baseDir . '/repositories/PresenceRepository.php',
     'Repository' => $baseDir . '/repositories/repository.php',
     'RoleRepository' => $baseDir . '/repositories/RoleRepository.php',
+    'RoomRepository' => $baseDir . '/repositories/RoomRepository.php',
     'SMTP' => $vendorDir . '/phpmailer/phpmailer/class.smtp.php',
     'Services\\Mail' => $baseDir . '/services/mail.php',
     'Services\\SessionHandler' => $baseDir . '/services/sessionhandler.php',

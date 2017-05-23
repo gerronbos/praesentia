@@ -28,14 +28,14 @@ if(isset($_GET['get_by_group'])){
 }
 
 if(isset($_GET['get_all'])){
+    $return = [];
     if(isset($_GET['q'])){
         $q = $_GET['q'];
     }
     else{
         $q = '';
     }
-    $lectures = LectureRepository::get(['q'=>$q])->get();
-    Services\SessionHandler::setSession('lecture',$lectures);
+
     header('location: '.MapStructureRepositorie::view().'lecture/all_lectures.php?q='.$q);
 
     exit;
@@ -81,4 +81,26 @@ if(isset($_POST['csv'])){
 
     }
     exit;
+}
+
+if(isset($_POST['create'])){
+    $lecture = LectureRepository::create($_POST['date'], $_POST['start_time'], $_POST['end_time'], $_POST['room_id'], $_POST['course_id'], $_POST['user_id']);
+    foreach ($_POST['groups'] as $g){
+        $group = model\Group::find($g);
+        LectureRepository::assign($group,$lecture);
+    }
+}
+if(isset($_GET['edit_lecture'])){
+    $lecture = model\Lecture::find($_GET['lecture_id']);
+    Services\SessionHandler::setSession('edit_lecture',$lecture);
+
+    header("location:".MapStructureRepositorie::view().'lecture/editlecture.php');
+
+}
+if(isset($_POST['edit_lecture'])){
+    $lecture = LectureRepository::create($_POST['date'], $_POST['start_time'], $_POST['end_time'], $_POST['room_id'], $_POST['course_id'], $_POST['user_id']);
+    foreach ($_POST['groups'] as $g){
+        $group = model\Group::find($g);
+        LectureRepository::assign($group,$lecture);
+    }
 }
