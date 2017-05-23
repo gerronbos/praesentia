@@ -70,7 +70,7 @@ if(Services\SessionHandler::has('user_edit_succes')){
             <h4>Aanwezigheid per vak</h4>
             <ul class="list-unstyled user_data">
                 <?php foreach($presence_data as $pd){
-                    echo "<li><p>".$pd['title']."</p><div class='progress'><div class='progress-bar bg-green' role='progressbar' data-transitiongoal='".$pd['amount_present_prec']."'>".$pd['amount_present_prec']."%</div></div></li>";
+                    echo "<li><p>".$pd['title']."</p>".progressBar($pd['amount_present_prec'])."</li>";
                 }
                 ?>
             </ul>

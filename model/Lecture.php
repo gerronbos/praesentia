@@ -20,6 +20,11 @@ class Lecture extends model{
         $group = new Users();
         return $group->find($this->user_id);
     }
+    public function Room()
+    {
+        $room = new Room();
+        return $room->find($this->room_id);
+    }
 }
 
 ?>

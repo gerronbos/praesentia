@@ -27,14 +27,17 @@ class LectureRepository extends Repository{
             $lecture->where('date','=',$params['byDate']);
         }
         if(isset($params['q']) && $params['q']){
-            $users = new Users();
-            $course = new Course();
-            $q = $params['q'];
-            $user_ids = $users->where('firstname','LIKE','%'.$q.'%')->orWhere('lastname','LIKE','%'.$q.'%')->lists('id');
-            $course_ids = $course->where('name','LIKE','%'.$q.'%')->lists('id');
-            $lecture->whereIn('user_id',$user_ids);
-            $lecture->orWhereIn('course_id',$course_ids);
+            foreach(explode(' ',$params['q']) as $q) {
+                $users = new Users();
+                $course = new Course();
+                $user_ids = $users->where('firstname', 'LIKE', '%' . $q . '%')->orWhere('lastname', 'LIKE', '%' . $q . '%')->lists('id');
+                $course_ids = $course->where('name', 'LIKE', '%' . $q . '%')->lists('id');
+                $lecture->whereIn('user_id', $user_ids);
+                $lecture->orWhereIn('course_id', $course_ids);
+                $lecture->orWhere('date', '=', $q);
+            }
         }
+
 
         return $lecture->select('lectures.*');
     }

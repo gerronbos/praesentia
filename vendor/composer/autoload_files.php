@@ -8,4 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     'f0d13a1096dbff25621cdcc0b6a264c7' => $baseDir . '/helpers/truefalse.php',
     'ff7206b2ed78fb61c86a09a256ed2607' => $baseDir . '/helpers/time_ago.php',
+    'a63b38e360051a6d33db9069ff8160a5' => $baseDir . '/helpers/progressbar.php',
 );

@@ -183,4 +183,46 @@ class PresenceRepository extends Repository{
         }
         return $return;
     }
+
+    public function getByCourse($course, $params = array())
+    {
+        $lecture = Lecture::join('courses','id','course_id');
+        $lecture->where('courses.id','=',$course->id);
+        if(isset($params['group_id']) && $params['group_id']){
+            $lecture->join('lecture_has_groups','lecture_has_groups.lecture_id','id');
+            $lecture->join('groups','lecture_has_groups.group_id','groups.id');
+            $lecture->where('groups.id','=',$params['group_id']);
+        }
+
+        return $lecture;
+    }
+
+    public function getByLecture($lecture, $params = array())
+    {
+        $present = Presence::where('lecture_id','=',$lecture->id);
+        $return = [
+            'amount_users' => 0,
+            'amount_presence' => 0,
+            'amount_presence_prec' => 0
+        ];
+
+        foreach($present->get() as $p){
+            $return['amount_users']++;
+            if($p->present){
+                $return['amount_presence']++;
+            }
+        }
+        if($return['amount_users'] == 0){
+            $return['amount_presence_prec'] = 100;
+        }
+        elseif($return['amount_presence'] == 0){
+            $return['amount_presence_prec'] = 0;
+        }
+        else {
+            $return['amount_presence_prec'] = number_format(100 / $return['amount_users'] * $return['amount_presence'],0);
+        }
+        return $return;
+
+
+    }
 }

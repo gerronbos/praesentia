@@ -7,6 +7,8 @@ $user = Services\SessionHandler::getSession('user_data');
 	}
 }*/
 $group = model\Group::find($_GET['group_id']);
+$data2 = PresenceRepository::getByCourse(model\Course::find(1),['group_id'=>48]);
+
 ?>
 
 <div class="">
@@ -16,6 +18,12 @@ $group = model\Group::find($_GET['group_id']);
 			<div class="clearfix"></div>
 		</div>
 		<div class="x_content">
+		<div class="progress">
+  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+  aria-valuemin="0" aria-valuemax="100" style="width:40%">
+    40% Complete (success)
+  </div>
+</div>
 			<div class="" role="tabpanel" data-example-id="togglable-tabs">
 				<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Overzicht</a>
@@ -38,8 +46,8 @@ $group = model\Group::find($_GET['group_id']);
 							<?php
 							foreach ($group->Users() as $user) {
 								$data = PresenceRepository::calcPresenceByUser($user,['grouped' => 1]);
-								echo "<tr><td>".$user->fullnameReturned()."</td><td>$user->user_number</td><td>$user->email</td><td>";
-								echo "<div class='progress'><div class='progress-bar bg-green' role='progressbar' data-transitiongoal='".$data['amount_present_prec']."'>".$data['amount_present_prec']."%</div></div></td></tr>";
+								echo "<tr><td>".$user->fullnameReturned(['url'=>1])."</td><td>$user->user_number</td><td>$user->email</td><td>";
+								echo progressBar($data['amount_present_prec'])."</tr>";
 						}
 						?>
 					</table>
@@ -52,10 +60,11 @@ $group = model\Group::find($_GET['group_id']);
 </div>
 
 
-<?php include_once('../includes/footer.php'); 
+<?php include_once('../includes/footer.php');
 $data = PresenceRepository::calcPresenceByGroup($group);
 ?>
 <script>
+    var onClickUrl = '<?php echo MapStructureRepositorie::view()."lecture/presence/presence.php?group_id=$group->id&course_name=:name";?>';
 	var labels = [];
 	var data = [];
 	<?php foreach($data as $d){
@@ -63,9 +72,10 @@ $data = PresenceRepository::calcPresenceByGroup($group);
 		echo "data.push('".$d['amount_present_prec']."');";
 	}
 	?>
-	var ctx = document.getElementById("myChart");
+    var canvas = document.getElementById("myChart");
+	var ctx = canvas.getContext("2d");
 	var myChart = new Chart(ctx, {
-		type: 'doughnut',
+		type: 'bar',
 		data: {
 			labels: labels,
 			datasets: [{
@@ -87,10 +97,24 @@ $data = PresenceRepository::calcPresenceByGroup($group);
 				mode: 'single',
 				callbacks: {
 					label: function(tooltipItems, data) {
-						return tooltipItems.yLabel + ' : ' + tooltipItems.xLabel + "%"; 
+						return tooltipItems.xLabel + ' : ' + tooltipItems.yLabel + "%";
 					}
 				}
 			}
 		}
+
+
 	});
+
+    canvas.onclick = function (evt) {
+        var activePoints = myChart.getElementsAtEvent(evt);
+        var chartData = activePoints[0]['_chart'].config.data;
+        var idx = activePoints[0]['_index'];
+
+        var label = chartData.labels[idx];
+        var url = onClickUrl.replace(':name',label);
+        window.location.href = url;
+
+    };
+
 </script>

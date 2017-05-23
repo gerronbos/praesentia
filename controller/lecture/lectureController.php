@@ -35,11 +35,6 @@ if(isset($_GET['get_all'])){
     else{
         $q = '';
     }
-    $lectures = LectureRepository::get(['q'=>$q])->get();
-    foreach($lectures as $lecture){
-        $return[] = ['id'=>$lecture->id,'course_id'=>$lecture->course_id,'date'=>$lecture->date,'start_time'=>$lecture->start_time,'end_time'=>$lecture->end_time,'1','user_id'=>$lecture->user_id,'room_id'=>$lecture->room_id];
-    }
-    Services\SessionHandler::setSession('lecture',$return);
 
     header('location: '.MapStructureRepositorie::view().'lecture/all_lectures.php?q='.$q);
 
