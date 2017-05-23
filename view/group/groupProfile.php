@@ -1,11 +1,9 @@
 <?php include_once('../includes/head.php');
 $user = Services\SessionHandler::getSession('user_data');
-/*if(Auth::user()->id != $user->id) {
-	if (!Auth::user()->can('user')) {
-		header("location: " . MapStructureRepositorie::error('401'));
-		exit;
-	}
-}*/
+if (!Auth::user()->can('groups') || !Auth::user()->can('presence')) {
+    header("location: " . MapStructureRepositorie::error('401'));
+    exit;
+}
 $group = model\Group::find($_GET['group_id']);
 $data2 = PresenceRepository::getByCourse(model\Course::find(1),['group_id'=>48]);
 
@@ -14,16 +12,11 @@ $data2 = PresenceRepository::getByCourse(model\Course::find(1),['group_id'=>48])
 <div class="">
 	<div class="x_panel">
 		<div class="x_title">
-			<h3><?php echo $group->name ?></h3>
+			<h2><?php echo $group->name ?></h2>
+			<?php echo "<a href'".MapStructureRepositorie::view()."group/allgroups.php' class='btn btn-primary' style='float: right;'>Terug naar alle groepen</a>" ?>
 			<div class="clearfix"></div>
 		</div>
 		<div class="x_content">
-		<div class="progress">
-  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
-  aria-valuemin="0" aria-valuemax="100" style="width:40%">
-    40% Complete (success)
-  </div>
-</div>
 			<div class="" role="tabpanel" data-example-id="togglable-tabs">
 				<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
 					<li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Overzicht</a>
@@ -51,11 +44,11 @@ $data2 = PresenceRepository::getByCourse(model\Course::find(1),['group_id'=>48])
 						}
 						?>
 					</table>
+
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
 </div>
 
