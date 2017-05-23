@@ -12,7 +12,8 @@ $group = model\Group::find($_GET['group_id']);
 <div class="">
 	<div class="x_panel">
 		<div class="x_title">
-			<h3><?php echo $group->name ?></h3>
+			<h2><?php echo $group->name ?></h2>
+			<?php echo "<a href'".MapStructureRepositorie::view()."group/allgroups.php' class='btn btn-primary' style='float: right;'>Terug naar alle groepen</a>" ?>
 			<div class="clearfix"></div>
 		</div>
 		<div class="x_content">
