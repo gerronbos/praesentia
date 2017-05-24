@@ -85,6 +85,17 @@ $data = PresenceRepository::calcPresenceByGroup($group);
 			}]
 		},
 		options: {
+            scales: {
+                yAxes: [{
+                    display: true,
+                    ticks: {
+                        beginAtZero: true,
+                        steps: 10,
+                        stepValue: 10,
+                        max: 100
+                    }
+                }]
+            },
 			tooltips: {
 				enabled: true,
 				mode: 'single',
