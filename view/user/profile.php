@@ -1,7 +1,7 @@
 <?php include_once('../includes/head.php');
 $user = Services\SessionHandler::getSession('user_data');
-$presence_data = Services\SessionHandler::getSession('presence_data');
-$presence_data_days = Services\SessionHandler::getSession('presence_data_last_days');
+$presence_data = PresenceRepository::calcPresenceByUser($user);
+$presence_data_days = PresenceRepository::getByLastDays($user);
 if(Auth::user()->id != $user->id) {
     if (!Auth::user()->can('user')) {
         header("location: " . MapStructureRepositorie::error('401'));
