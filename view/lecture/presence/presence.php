@@ -15,7 +15,6 @@ else{
 <table class="table table-bordered">
     <tr>
         <th>Vak</th>
-        <th>Klas(sen)</th>
         <th>Datum</th>
         <th>Starttijd</th>
         <th>Eindtijd</th>
