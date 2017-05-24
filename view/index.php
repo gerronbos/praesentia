@@ -9,7 +9,7 @@
 
     echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller().'controller.php','file'=>1,'name'=>'henk']);
     echo FormRepositorie::textarea('Omschrijving','', ['placeholder' => 'Jesse is gay']);
-    echo FormRepositorie::radio('hi',['Jesse is gay'=>'test1','Jesse is super gay'=>'test2', 'Jesse is ultra gay'=>'test3'],'Jesse is ultra gay');
+    echo FormRepositorie::radio('Jesse is gay',['Jesse is gay'=>'test1','Jesse is super gay'=>'test2', 'Jesse is ultra gay'=>'test3'],'Jesse is ultra gay');
     echo FormRepositorie::formSaveButton('index.php');
     echo FormRepositorie::closeForm();
 ?>
