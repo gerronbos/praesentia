@@ -13,6 +13,7 @@
 	</form>
 	</span>
 	";
+    echo "<span class='pull-right' style='margin-right:10px;'>".time_ago($entry->created_at)." (".$entry->created_at.")</span>";
     echo '</h4>';
     echo '<p class="list-group-item-text">';
     echo $entry->message;

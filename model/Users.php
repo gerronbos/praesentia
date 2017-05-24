@@ -17,7 +17,7 @@ class Users extends model{
     	return $text;
     }
     public function fullnameReturned($params = []){
-        if(Auth::user()->can('user') && isset($params['url'])){
+        if(isset($params['url']) &&Auth::user()->can('user')){
             $mapstructure = new \MapStructureRepositorie();
             $url = $mapstructure::controller()."user/userController.php?show=1&user_id=$this->id";
             $text = "<a target='_blank' href='$url'><b>$this->lastname</b> $this->firstname</a>";

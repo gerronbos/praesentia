@@ -34,7 +34,7 @@ $data2 = PresenceRepository::getByCourse(model\Course::find(1),['group_id'=>48])
 								<th>Naam</th>
 								<th>Gebruikersnaam</th>
 								<th>Email</th>
-								<th>Opties</th>
+								<th>Aanwezigheid</th>
 							</tr>
 							<?php
 							foreach ($group->Users() as $user) {
@@ -44,8 +44,9 @@ $data2 = PresenceRepository::getByCourse(model\Course::find(1),['group_id'=>48])
 						}
 						?>
 					</table>
-
+					<a target="_blank" href="<?php echo MapStructureRepositorie::Controller() ?>pdfController.php?create=1&gid=<?php echo $group->id ?>" class="btn btn-primary pull-right"><i class="fa fa-download"></i> Opslaan als PDF</a>
 				</div>
+
 			</div>
 		</div>
 	</div>
