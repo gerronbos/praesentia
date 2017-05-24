@@ -197,6 +197,21 @@ class PresenceRepository extends Repository{
         return $lecture;
     }
 
+    public function getPresenceByCourse($course, $params = array())
+    {
+        $presence = Presence::join('lectures', 'id', 'lecture_id');
+        $presence->where('lectures.course_id', '=', $course->id);
+
+        if(isset($params['user_id'])){
+            $presence->join('lecture_has_groups', 'lecture_has_groups.lecture_id', 'lectures.id');
+            //$presence->join('groups', 'groups.id', 'lecture_has_groups.group_id');
+            $presence->join('group_has_users', 'group_has_users.group_id', 'lecture_has_groups.group_id');
+            $presence->where('group_has_users.user_id', '=', $params['user_id']);
+        }
+        $presence->select('presence.*, lectures.date, lectures.start_time, lectures.end_time');
+        return $presence; 
+    }
+
     public function getByLecture($lecture, $params = array())
     {
         $present = Presence::where('lecture_id','=',$lecture->id);

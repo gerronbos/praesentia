@@ -8,3 +8,12 @@ function trueorfalse($bool){
 
 
 }
+
+function presenttrueorfalse($bool){
+    if($bool){
+        return '<span class="label label-success">Aanwezig</span>';
+    }
+    return '<span class="label label-danger">Afwezig</span>';
+
+
+}

@@ -69,10 +69,11 @@ if(Services\SessionHandler::has('user_edit_succes')){
             <!-- start skills -->
             <h4>Aanwezigheid per vak</h4>
             <ul class="list-unstyled user_data">
-                <?php foreach($presence_data as $pd){
-                    echo "<li><p>".$pd['title']."</p>".progressBar($pd['amount_present_prec'])."</li>";
-                }
-                ?>
+                <?php foreach($presence_data as $key=>$pd) { ?>
+                <li>
+                   <p><?php echo $pd['title']; ?></p><?php echo progressBar($pd['amount_present_prec'],['item_id'=>$key]); ?>
+               <?php } ?>
+               </li>
             </ul>
             <!-- end of skills -->
 
@@ -158,6 +159,15 @@ $(document).ready(function(){
                 }]
             }
         }
+    });
+});
+
+$(document).ready(function(){
+  var url = '<?php echo MapStructureRepositorie::view()."user/presence/colPresence.php?user_id=".$user->id."&course_id=:id" ?>';
+    $('.progress-bar').click(function(){
+     //do something
+     var courseId = $(this).attr('item_id');
+      window.location.href = url.replace(':id', courseId);
     });
 });
 
