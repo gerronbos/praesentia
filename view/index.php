@@ -5,7 +5,7 @@
         exit;
     }
 
-    echo "<h1>Jesse is gay</h1>";
+    echo "<h1>Nawab is gay</h1>";
 
     echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller().'controller.php','file'=>1,'name'=>'henk']);
     echo FormRepositorie::textarea('Omschrijving','', ['placeholder' => 'Jesse is gay']);
