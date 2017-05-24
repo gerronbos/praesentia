@@ -11,7 +11,7 @@ function progressBar($perc){
 	}
 
 	return '<div class="progress">
-  <div class="progress-bar '.$type.'" role="progressbar" aria-valuenow="'.$perc.'"
+  <div class="progress-bar progress-bar-striped '.$type.' active" role="progressbar" aria-valuenow="'.$perc.'"
   aria-valuemin="0" aria-valuemax="100" style="width:'.$perc.'%">
     '.$perc.'%
   </div>
