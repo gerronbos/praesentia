@@ -5,11 +5,11 @@
         exit;
     }
 
-    echo "<h1>Jesse is gay</h1>";
+    echo "<h1>Nawab is gay</h1>";
 
     echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller().'controller.php','file'=>1,'name'=>'henk']);
-    echo FormRepositorie::textarea('Omschrijving','', ['placeholder' => 'Jesse is gay']);
-    echo FormRepositorie::radio('hi',['Jesse is gay'=>'test1','Jesse is super gay'=>'test2', 'Jesse is ultra gay'=>'test3'],'Jesse is ultra gay');
+    echo FormRepositorie::textarea('Omschrijving','', ['placeholder' => 'Nawab is gay']);
+    echo FormRepositorie::radio('hi',['Nawab is gay'=>'test1','Nawab is super gay'=>'test2', 'Nawab is ultra gay'=>'test3'],'Jesse is ultra gay');
     echo FormRepositorie::formSaveButton('index.php');
     echo FormRepositorie::closeForm();
 ?>
