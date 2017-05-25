@@ -17,6 +17,7 @@ if(Auth::user()->id != $user->id) {
 			<div class="clearfix"></div>
 		</div>
 		<div class="x_content">
+            <a href="javascript:history.back()" class="btn btn-default">Terug</a>
 			<table class="table table-bordered">
 				<tr>
 					<th>Datum</th>

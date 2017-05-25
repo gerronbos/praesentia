@@ -40,7 +40,7 @@ $data2 = PresenceRepository::getByCourse(model\Course::find(1),['group_id'=>48])
 							foreach ($group->Users() as $user) {
 								$data = PresenceRepository::calcPresenceByUser($user,['grouped' => 1]);
 								echo "<tr><td>".$user->fullnameReturned(['url'=>1])."</td><td>$user->user_number</td><td>$user->email</td><td>";
-								echo progressBar($data['amount_present_prec'])."</tr>";
+								echo progressBar($data['amount_present_prec'],['item_id'=>$user->id])."</tr>";
 						}
 						?>
 					</table>
@@ -62,6 +62,7 @@ $data = PresenceRepository::calcPresenceByGroup($group);
 	var labels = [];
 	var data = [];
 	<?php foreach($data as $d){
+
 		echo "labels.push('".$d['title']."');";
 		echo "data.push('".$d['amount_present_prec']."');";
 	}
@@ -121,5 +122,12 @@ $data = PresenceRepository::calcPresenceByGroup($group);
         window.location.href = url;
 
     };
-
+    $(document).ready(function(){
+        var url = '<?php echo MapStructureRepositorie::controller()."user/userController.php?show=1&user_id=".$user->id ?>';
+        $('.progress-bar').click(function(){
+            //do something
+            var courseId = $(this).attr('item_id');
+            window.location.href = url.replace(':id', courseId);
+        });
+    });
 </script>

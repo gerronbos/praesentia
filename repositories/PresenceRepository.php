@@ -169,16 +169,28 @@ class PresenceRepository extends Repository{
         $course_ids = $group->Lectures(['dont_use_get'=>1])->lists('course_id');
 
         foreach(Course::whereIn('id',$course_ids)->get() as $course){
-            $lecture_ids = Lecture::where('course_id','=',$course->id)->lists('id');
+            $lecture_ids = Lecture::where('course_id','=',$course->id)->
+                join('lecture_has_groups','lecture_id','id')->
+                where('lecture_has_groups.group_id','=',$group->id)->
+                select('lectures.*')->
+                lists('id');
             $amount_lectures = count(Presence::whereIn('lecture_id',$lecture_ids)->get());
             $amount_lectures_present = count(Presence::whereIn('lecture_id',$lecture_ids)->where('present','=',1)->get());
             $amount_lectures_present_prec = number_format( 100/ $amount_lectures * $amount_lectures_present,0);
-            $return[$course->id] = [
-                'title'=>$course->name,
-                'amount_lectures' => $amount_lectures,
-                'amount_present' => $amount_lectures_present,
-                'amount_present_prec' => $amount_lectures_present_prec
-            ];
+            if($amount_lectures > 0) {
+                $return[$course->id] = [
+                    'title' => $course->name,
+                    'amount_lectures' => $amount_lectures,
+                    'amount_present' => $amount_lectures_present,
+                    'amount_present_prec' => $amount_lectures_present_prec
+                ];
+            }
+
+
+            $lecture_ids = 0;
+            $amount_lectures = 0;
+            $amount_lectures_present = 0;
+            $amount_lectures_present_prec = 0;
 
         }
         return $return;
@@ -210,6 +222,16 @@ class PresenceRepository extends Repository{
         }
         $presence->select('presence.*, lectures.date, lectures.start_time, lectures.end_time');
         return $presence; 
+    }
+
+    public function getPresenceByLecture($lecture, $params = array())
+    {
+        $presence = Presence::join('lectures', 'id', 'lecture_id');
+        $presence->where('lecture_id','=',$lecture->id);
+        $presence->join('users','id','user_id');
+
+        $presence->select('presence.*, users.firstname, users.lastname, users.user_number, users.email');
+        return $presence;
     }
 
     public function getByLecture($lecture, $params = array())

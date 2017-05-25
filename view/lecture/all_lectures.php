@@ -4,7 +4,7 @@ if (!Auth::user()->can('lectures')) {
     header("location: " . MapStructureRepositorie::error('401'));
     exit;
 }
-$lectures = LectureRepository::get(['q'=>$_GET['q']])->get();
+$lectures = LectureRepository::get()->get();
 ?>
 <div class="x_panel">
 	<div class="x_title">
@@ -14,9 +14,7 @@ $lectures = LectureRepository::get(['q'=>$_GET['q']])->get();
         <h2>Lessen </h2>
             </div>
 		<?php
-            echo "<div class='col-lg-3'>";
-            echo FormRepositorie::openForm().FormRepositorie::text('q','',['noLabel'=>1,'placeholder'=>'zoeken...']).FormRepositorie::closeForm();
-        echo "</div><div class='col-lg-2'>";
+        echo "<div class='col-lg-5'>";
         echo "<a href='".MapStructureRepositorie::view()."lecture/importlecture.php' class='btn btn-primary' style='float: right'>Nieuwe Les</a>";
         echo "</div>";
         ?>
@@ -41,7 +39,7 @@ $lectures = LectureRepository::get(['q'=>$_GET['q']])->get();
 		<td>
 			<a href='".MapStructureRepositorie::controller()."lecture/lectureController.php?edit_lecture=1&lecture_id=$lecture->id' class='btn btn-primary'>Wijzigen</a>
 			<a href='".MapStructureRepositorie::controller()."lecture/lectureController.php?delete_lecture=1&lecture_id=$lecture->id' class='btn btn-danger'>Verwijderen</a>
-			<a href='".MapStructureRepositorie::controller()."lecture/lectureController.php?viewlecture=1&lecture_id=$lecture->id' class='btn btn-info'>Weergeven</a>
+			<a href='".MapStructureRepositorie::controller()."presence/presenceController.php?show=1&id=$lecture->id' class='btn btn-info'>Weergeven</a>
 		</td></tr>";
 	}
 	echo "</table>";

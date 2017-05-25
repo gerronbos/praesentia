@@ -11,7 +11,7 @@ else{
     $presence_data = PresenceRepository::getByCourse(model\Course::where('name', '=', $_GET['course_name'])->first())->select('lectures.*, courses.name')->get();
 }
 ?>
-
+    <a href="javascript:history.back()" class="btn btn-default">Terug</a>
 <table class="table table-bordered">
     <tr>
         <th>Vak</th>
@@ -21,12 +21,16 @@ else{
         <th>Aantal studenten</th>
         <th>Aantal aanwezig</th>
         <th>Procenten</th>
+        <th>Opties</th>
     </tr>
     <?php
     foreach($presence_data as $pd){
         $lecture_data = PresenceRepository::getByLecture($pd);
-        $groups = $pd->Groups();
-        echo "<tr><td>$pd->name</td><td>$pd->date</td><td>$pd->start_time</td><td>$pd->end_time</td><td>".$lecture_data['amount_users']."</td><td>".$lecture_data['amount_presence']."</td><td>".progressBar($lecture_data['amount_presence_prec'])."</td></tr>";
+        if($lecture_data['amount_users'] > 0) {
+            $groups = $pd->Groups();
+            $url = MapStructureRepositorie::view() . 'lecture/presence/presencebylecture.php?lecture_id=' . $pd->id;
+            echo "<tr><td>$pd->name</td><td>$pd->date</td><td>$pd->start_time</td><td>$pd->end_time</td><td>" . $lecture_data['amount_users'] . "</td><td>" . $lecture_data['amount_presence'] . "</td><td>" . progressBar($lecture_data['amount_presence_prec']) . "</td><td><a href='$url' class='btn btn-primary'>Inzien</a></td></tr>";
+        }
     }
     ?>
 </table>
