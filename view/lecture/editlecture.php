@@ -5,7 +5,6 @@ if (!Auth::user()->can('lectures')) {
     exit;
 }
 	$lecture = Services\SessionHandler::getSession('edit_lecture');
-var_dump($lecture);
 	?>
 	<div class="x_panel">
 		<div class="x_title">

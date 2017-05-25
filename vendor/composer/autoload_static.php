@@ -12,6 +12,30 @@ class ComposerStaticInitcd537467c5ba460042f21d53039c1010
         'a63b38e360051a6d33db9069ff8160a5' => __DIR__ . '/../..' . '/helpers/progressbar.php',
     );
 
+    public static $prefixLengthsPsr4 = array (
+        'm' => 
+        array (
+            'mikehaertl\\wkhtmlto\\' => 20,
+            'mikehaertl\\tmp\\' => 15,
+            'mikehaertl\\shellcommand\\' => 24,
+        ),
+    );
+
+    public static $prefixDirsPsr4 = array (
+        'mikehaertl\\wkhtmlto\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mikehaertl/phpwkhtmltopdf/src',
+        ),
+        'mikehaertl\\tmp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mikehaertl/php-tmpfile/src',
+        ),
+        'mikehaertl\\shellcommand\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mikehaertl/php-shellcommand/src',
+        ),
+    );
+
     public static $classMap = array (
         'Auth' => __DIR__ . '/../..' . '/services/auth.php',
         'ConfigRepositorie' => __DIR__ . '/../..' . '/repositories/ConfigRepositorie.php',
@@ -52,6 +76,8 @@ class ComposerStaticInitcd537467c5ba460042f21d53039c1010
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
+            $loader->prefixLengthsPsr4 = ComposerStaticInitcd537467c5ba460042f21d53039c1010::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitcd537467c5ba460042f21d53039c1010::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInitcd537467c5ba460042f21d53039c1010::$classMap;
 
         }, null, ClassLoader::class);

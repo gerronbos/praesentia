@@ -9,8 +9,7 @@
 foreach(NotificationRepository::get(Auth::user()->id)->orderBy('id','DESC')->get() as $entry){
     echo '<li class="list-group-item">';
     echo '<h4 class="list-group-item-heading">';
-    echo $entry->from_user()->fullname();
-    
+    echo $entry->from_user()->fullname();  
     echo "<span class='pull-right'><span style='color:black' class='btn-link glyphicon glyphicon-remove remove_item' item_id='$entry->id'></span></span>";
     echo "<span class='pull-right' style='margin-right:10px;'>".time_ago($entry->created_at)." (".$entry->created_at.")</span>";
     echo '</h4>';
@@ -18,6 +17,7 @@ foreach(NotificationRepository::get(Auth::user()->id)->orderBy('id','DESC')->get
     echo $entry->message;
     echo '</p>';
 	echo "</li>";
+    NotificationRepository::setSeen($entry); 
 }
 ?>
 </div>
