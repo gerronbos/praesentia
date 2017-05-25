@@ -2,6 +2,7 @@
 namespace Services;
 
 use PHPMailer;
+use ConfigRepositorie;
 class Mail{
     //smtp information
     private $host = '';
@@ -17,7 +18,13 @@ class Mail{
 
 
 
-    public function __constructor(){
+    public function __construct(){
+        $configRepositorie = new ConfigRepositorie();
+        $this->host = $configRepositorie->get('mail_host');
+        $this->username = $configRepositorie->get('mail_username');
+        $this->password = $configRepositorie->get('mail_password');
+        $this->port = $configRepositorie->get('mail_port');
+        $this->encryption = $configRepositorie->get('mail_encryption');
 
     }
 
@@ -65,7 +72,7 @@ class Mail{
         $mail->CharSet = 'UTF-8';
 
         $mail->Host       = $this->host;
-        $mail->SMTPDebug  = 0;
+        $mail->SMTPDebug  = 2;
         $mail->SMTPAuth   = true;
         $mail->Port       = $this->port;
         $mail->Username   = $this->username;

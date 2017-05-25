@@ -4,7 +4,7 @@ if (!Auth::user()->can('lectures')) {
     header("location: " . MapStructureRepositorie::error('401'));
     exit;
 }
-	$lecture = Services\SessionHandler::getSession('edit_lecture');
+	$lecture = model\Lecture::find(Services\SessionHandler::getSession('edit_lecture'));
 	?>
 	<div class="x_panel">
 		<div class="x_title">

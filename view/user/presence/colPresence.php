@@ -1,6 +1,6 @@
 <?php
 include_once('../../includes/head.php');
-$user = Services\SessionHandler::getSession('user_data');
+$user = model\Users::find(Services\SessionHandler::getSession('user_data'));
 $presence = PresenceRepository::getPresenceByCourse(model\Course::find($_GET['course_id']), ['user_id'=>$user->id])->groupBy('lecture_id')->get();
 if(Auth::user()->id != $user->id) {
 	if (!Auth::user()->can('user')) {
@@ -17,6 +17,7 @@ if(Auth::user()->id != $user->id) {
 			<div class="clearfix"></div>
 		</div>
 		<div class="x_content">
+            <a href="javascript:history.back()" class="btn btn-default">Terug</a>
 			<table class="table table-bordered">
 				<tr>
 					<th>Datum</th>
@@ -30,6 +31,7 @@ if(Auth::user()->id != $user->id) {
 					}
 				?>
 			</table>
+			<a target="_blank" href="<?php echo MapStructureRepositorie::Controller() ?>pdfController.php?UserLectureHist=1&user_id=<?php echo $user->id ?>&course_id=<?php echo $_GET['course_id']?>" class="btn btn-primary pull-right"><i class="fa fa-download"></i> Opslaan als PDF</a>
 		</div>
 	</div>
 </div>

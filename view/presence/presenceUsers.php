@@ -1,10 +1,24 @@
 <?php
 include_once('../includes/head.php');
-$lecture_data = Services\SessionHandler::getSession('lecture_data');
+$lecture = model\Lecture::find($_GET['id']);
+$user_ids = [];
+foreach($lecture->Groups() as $group){
+    $user_ids += $group->users(['onlyIds'=>1]);
+}
+$return = [
+    'lecture' => $lecture,
+    'presence_data' => [],
+    'user_ids' => $user_ids,
+];
+$presence_data = [];
+foreach(model\Presence::where('lecture_id','=',$_GET['id'])->get() as $l){
+    $presence_data[$l->user_id] = ['present'=>$l->present,'reason'=>$l->reason];
+}
+$return['presence_data'] = $presence_data;
 
-$lecture = $lecture_data['lecture'];
-$user_ids = $lecture_data['user_ids'];
-$user_data = $lecture_data['presence_data'];
+$lecture = $return['lecture'];
+$user_ids = $return['user_ids'];
+$user_data = $return['presence_data'];
 
 ?>
 <div class="x_panel">

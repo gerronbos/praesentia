@@ -1,5 +1,5 @@
 <?php include_once('../includes/head.php');
-$user = Services\SessionHandler::getSession('user_data');
+$user = model\Users::find(Services\SessionHandler::getSession('user_data'));
 $presence_data = PresenceRepository::calcPresenceByUser($user);
 $presence_data_days = PresenceRepository::getByLastDays($user);
 if(Auth::user()->id != $user->id) {

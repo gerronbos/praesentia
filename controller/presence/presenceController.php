@@ -5,30 +5,16 @@ if(!Auth::user()->can('presence')){
  header("location: ".MapStructureRepositorie::error('401'));
 }
 
-if(isset($_GET['delete'])){
+if($_GET['show']){
+    $id = $_GET['id'];
+    $url_present = MapStructureRepositorie::view()."presence/presenceUsers.php?id=$id";
+    $url_show = MapStructureRepositorie::view()."lecture/presence/presencebylecture.php?lecture_id=$id";
 
-}
-
-if(isset($_GET['get'])){
-    $lecture = model\Lecture::find($_GET['id']);
-    $user_ids = [];
-    foreach($lecture->Groups() as $group){
-        $user_ids += $group->users(['onlyIds'=>1]);
+    if(count(PresenceRepository::getPresenceByLecture(model\Lecture::find($id))->get())){
+        header("location: $url_show");
+        exit;
     }
-    $return = [
-        'lecture' => $lecture,
-        'presence_data' => [],
-        'user_ids' => $user_ids,
-    ];
-    $presence_data = [];
-    foreach(model\Presence::where('lecture_id','=',$_GET['id'])->get() as $l){
-        $presence_data[$l->user_id] = ['present'=>$l->present,'reason'=>$l->reason];
-    }
-    $return['presence_data'] = $presence_data;
-
-    $cookies = Services\SessionHandler::setSession('lecture_data',$return);
-
-    header("location:".MapStructureRepositorie::view().'presence/presenceUsers.php');
+    header("location: $url_present");
     exit;
 }
 

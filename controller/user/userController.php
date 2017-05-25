@@ -79,14 +79,18 @@ if(isset($_POST['csv'])){
     exit;
 }
 
+if(isset($_GET['update_view'])){
+  Services\SessionHandler::setSession("edit_user", $user->id);
+}
+
 if(isset($_POST['jpg'])){
     if(!empty($_FILES)){
         $tempFile = $_FILES['file']['tmp_name'];
         $target = "../../build/profilePic/";
         $targetFile = $target.basename($_FILES['file']['name']);
         move_uploaded_file($tempFile,$targetFile);
-    
-    echo "<br />";
+        
+        echo "<br />";
 
         // $file = fopen($_FILES['file']['tmp_name'],'r');
         // $data = array();
@@ -120,11 +124,10 @@ if(isset($_POST['jpg'])){
         //     }
 
     // GroupRepository::assignToGroup(intval($group->id),$user->id);
-}
-exit;
+    }
+    exit;
 }
 
-$user = model\Users::find($_GET["user_id"]);
 
 if(isset($_GET['resetPassword'])){
     UserRepositorie::resetPassword($user);
@@ -133,14 +136,28 @@ if(isset($_GET['resetPassword'])){
     exit;
 }
 
-if(isset($_GET['update'])){
-  UserRepositorie::update($user, $_POST);
-  Services\SessionHandler::setSession('user_edit_succes', 'Gebruiker succesvol gewijzigd.');
-  header('location:'.MapStructureRepositorie::view().'user/updateuser.php');
-  exit;
+header("location:".MapStructureRepositorie::view()."user/allusers.php");
+exit;
 }
+if(isset($_GET['show'])){
+    $text = "Hallo";
 
-if(isset($_GET['updatePassword'])){
+    $mail = new \Services\Mail();
+    $mail->setSendTo($user->email);
+    $mail->setSubject('test');
+    $mail->setBody($text);
+    $mail->send();
+
+    Services\SessionHandler::setSession('user_data',$user->id);
+
+    if(isset($_GET['update'])){
+      UserRepositorie::update($user, $_POST);
+      Services\SessionHandler::setSession('user_edit_succes', 'Gebruiker succesvol gewijzigd.');
+      header('location:'.MapStructureRepositorie::view().'user/updateuser.php');
+      exit;
+  }
+
+  if(isset($_GET['updatePassword'])){
     UserRepositorie::update($user, $_POST);
     Services\SessionHandler::setSession('user_edit_succes', 'Wachtwoord succesvol gewijzigd.');
     header('location:'.MapStructureRepositorie::view().'user/changePassword.php');

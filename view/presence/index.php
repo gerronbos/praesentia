@@ -33,7 +33,7 @@ include_once('../includes/footer.php');
 ?>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
-    var url = '<?php echo MapStructureRepositorie::controller()."presence/presenceController.php?get=1&id=:id" ?>';
+    var url = '<?php echo MapStructureRepositorie::view()."presence/presenceUsers.php?id=:id" ?>';
     $( function() {
         $( "#datetimepicker" ).datepicker({
             dateFormat: "yy-mm-dd"

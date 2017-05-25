@@ -6,7 +6,7 @@ class Users extends model{
     protected $table = 'users';
 
     public function fullname($params = []){
-        if(Auth::user()->can('user') && isset($params['url'])){
+        if(isset($params['url']) && Auth::user()->can('user')){
             $mapstructure = new \MapStructureRepositorie();
             $url = $mapstructure::controller()."user/userController.php?show=1&user_id=$this->id";
             $text = "<a target='_blank' href='$url'>$this->firstname $this->lastname</a>";

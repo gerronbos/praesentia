@@ -91,8 +91,7 @@ if(isset($_POST['create'])){
     }
 }
 if(isset($_GET['edit_lecture'])){
-    $lecture = model\Lecture::find($_GET['lecture_id']);
-    Services\SessionHandler::setSession('edit_lecture',$lecture);
+    Services\SessionHandler::setSession('edit_lecture',$_GET['lecture_id']);
 
     header("location:".MapStructureRepositorie::view().'lecture/editlecture.php');
 
