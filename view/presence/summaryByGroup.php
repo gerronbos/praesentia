@@ -52,7 +52,7 @@ $data2 = PresenceRepository::getByCourse(model\Course::find(1),['group_id'=>48])
 			</div>
 			<div class="row no-print">
 				<div class="col-xs-12">
-					<a target="_blank" href="<?php echo MapStructureRepositorie::Controller() ?>pdfController.php?create=1&gid=<?php echo $group->id ?>" class="btn btn-primary pull-right"><i class="fa fa-download"></i> Opslaan als PDF</a>
+					<a target="_blank" href="<?php echo MapStructureRepositorie::Controller() ?>pdfController.php?GroupSummary=1&gid=<?php echo $group->id ?>" class="btn btn-primary pull-right"><i class="fa fa-download"></i> Opslaan als PDF</a>
 				</div>
 			</div>
 

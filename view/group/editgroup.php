@@ -4,7 +4,7 @@ if (!Auth::user()->can('groups')) {
 	header("location: " . MapStructureRepositorie::error('401'));
 	exit;
 }
-$group = Services\SessionHandler::getSession('group_data');
+$group = model\Group::find(Services\SessionHandler::getSession('group_data'));
 ?>
 
 <div class="x_panel">

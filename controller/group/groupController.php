@@ -13,9 +13,7 @@ if (!Auth::user()->can('groups')) {
 	}
 	
 	if(isset($_GET['update_view'])){
-		$group = model\Group::find($_GET['group_id']);
-		Services\SessionHandler::deleteSession("group_data");
-		Services\SessionHandler::setSession('group_data',$group);
+		Services\SessionHandler::setSession('group_data',$_GET['group_id']);
 
         header("location:".MapStructureRepositorie::view()."group/editgroup.php");
         exit;

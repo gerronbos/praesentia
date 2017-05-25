@@ -101,8 +101,7 @@ if(!isset($_GET['show'])) {
         exit;
     }
 	if(isset($_GET['update_view'])){
-		Services\SessionHandler::deleteSession("edit_user");
-		Services\SessionHandler::setSession("edit_user", $user);
+		Services\SessionHandler::setSession("edit_user", $user->id);
 
 		header("location:".MapStructureRepositorie::view()."user/updateuser.php");
 		exit;
@@ -123,7 +122,7 @@ if(!isset($_GET['show'])) {
         $mail->setBody($text);
         $mail->send();
 
-        Services\SessionHandler::setSession('user_data',$user);
+        Services\SessionHandler::setSession('user_data',$user->id);
 
         header("location:".MapStructureRepositorie::view()."user/profile.php");
         exit;
