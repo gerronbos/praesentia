@@ -115,6 +115,13 @@ if(!isset($_GET['show'])) {
 		exit;
 	}
     if(isset($_GET['show'])){
+        $text = "Hallo";
+
+        $mail = new \Services\Mail();
+        $mail->setSendTo($user->email);
+        $mail->setSubject('test');
+        $mail->setBody($text);
+        $mail->send();
 
         Services\SessionHandler::setSession('user_data',$user);
 
