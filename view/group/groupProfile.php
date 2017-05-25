@@ -31,6 +31,7 @@ $data2 = PresenceRepository::getByCourse(model\Course::find(1),['group_id'=>48])
 					<div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
 						<table class="table table-bordered">
 							<tr>
+                                <th></th>
 								<th>Naam</th>
 								<th>Gebruikersnaam</th>
 								<th>Email</th>
@@ -39,7 +40,7 @@ $data2 = PresenceRepository::getByCourse(model\Course::find(1),['group_id'=>48])
 							<?php
 							foreach ($group->Users() as $user) {
 								$data = PresenceRepository::calcPresenceByUser($user,['grouped' => 1]);
-								echo "<tr><td>".$user->fullnameReturned(['url'=>1])."</td><td>$user->user_number</td><td>$user->email</td><td>";
+								echo "<tr><td style='text-align: center'><img width='60px' src='".$user->getUserProfilePicture()."'></td><td>".$user->fullnameReturned(['url'=>1])."</td><td>$user->user_number</td><td>$user->email</td><td>";
 								echo progressBar($data['amount_present_prec'],['item_id'=>$user->id])."</tr>";
 						}
 						?>

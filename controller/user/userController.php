@@ -7,6 +7,9 @@ if(!isset($_GET['show'])) {
         exit;
     }
 }
+if(isset($_GET['user_id'])){
+    $user = model\Users::find($_GET['user_id']);
+}
 
 if(isset($_GET['create'])){
     $errors=array();
@@ -84,46 +87,14 @@ if(isset($_GET['update_view'])){
 }
 
 if(isset($_POST['jpg'])){
-    if(!empty($_FILES)){
+    if(!empty($_FILES)) {
         $tempFile = $_FILES['file']['tmp_name'];
         $target = "../../build/profilePic/";
-        $targetFile = $target.basename($_FILES['file']['name']);
-        move_uploaded_file($tempFile,$targetFile);
-        
-        echo "<br />";
-
-        // $file = fopen($_FILES['file']['tmp_name'],'r');
-        // $data = array();
-        // $header = null;
-        // while(($entry = fgetcsv($file,'0',';')) !== FALSE){
-        //     if($header === null){
-        //         $header = $entry;
-        //         continue;
-        //     }
-        //     $data[] = array_combine($header,$entry);
-        // }
-        // fclose($file);
-
-        // foreach($data as $row){
-        //     $active = 1;
-        //     $lastname = $row['Tussenvoegsel'].' '.$row['Achternaam'];
-        //     $firstname = $row['Roepnaam'];
-        //     $user_number = $row['Stud.nr.'];
-        //     $email = $row['E-mailadres'];
-        //     $password = '123';
-
-        //     $user = model\Users::where('user_number','=',$user_number)->first();
-        //     if(!$user){
-        //         $user = UserRepositorie::create($firstname, $lastname, $user_number, $email, $password);
-        //     }
-
-        //     $group = model\Group::where('name','=',$row['Groepsnaam'])->first();
-        //     if(!$group){
-        //         GroupRepository::create($row['Groepsnaam'],date('Y'),'1','1');
-        //         $group = model\Group::where('name','=',$row['Groepsnaam'])->first();
-        //     }
-
-    // GroupRepository::assignToGroup(intval($group->id),$user->id);
+        $targetFile = $target . basename($_FILES['file']['name']);
+        if(file_exists($targetFile)){
+            unlink($targetFile);
+        }
+        move_uploaded_file($tempFile, $targetFile);
     }
     exit;
 }
@@ -136,39 +107,32 @@ if(isset($_GET['resetPassword'])){
     exit;
 }
 
-header("location:".MapStructureRepositorie::view()."user/allusers.php");
-exit;
-}
-if(isset($_GET['show'])){
+if(isset($_GET['show'])) {
     $text = "Hallo";
 
     $mail = new \Services\Mail();
     $mail->setSendTo($user->email);
     $mail->setSubject('test');
     $mail->setBody($text);
-    $mail->send();
+//    $mail->send();
 
-    Services\SessionHandler::setSession('user_data',$user->id);
+    Services\SessionHandler::setSession('user_data', $user->id);
+    header('location:'.MapStructureRepositorie::view().'user/profile.php');
+    exit;
+}
 
-    if(isset($_GET['update'])){
+if(isset($_GET['update'])){
       UserRepositorie::update($user, $_POST);
       Services\SessionHandler::setSession('user_edit_succes', 'Gebruiker succesvol gewijzigd.');
       header('location:'.MapStructureRepositorie::view().'user/updateuser.php');
       exit;
   }
 
-  if(isset($_GET['updatePassword'])){
+if(isset($_GET['updatePassword'])){
     UserRepositorie::update($user, $_POST);
     Services\SessionHandler::setSession('user_edit_succes', 'Wachtwoord succesvol gewijzigd.');
     header('location:'.MapStructureRepositorie::view().'user/changePassword.php');
     exit;
-}
-if(isset($_GET['update_view'])){
-  Services\SessionHandler::deleteSession("edit_user");
-  Services\SessionHandler::setSession("edit_user", $user);
-
-  header("location:".MapStructureRepositorie::view()."user/updateuser.php");
-  exit;
 }
 if(isset($_GET['delete_user'])){
   UserRepositorie::delete($user);
@@ -176,13 +140,6 @@ if(isset($_GET['delete_user'])){
 
   header("location:".MapStructureRepositorie::view()."user/allusers.php");
   exit;
-}
-if(isset($_GET['show'])){
-
-    Services\SessionHandler::setSession('user_data',$user);
-
-    header("location:".MapStructureRepositorie::view()."user/profile.php");
-    exit;
 }
 
 if(isset($_POST['set_presence'])){

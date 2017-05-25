@@ -36,6 +36,10 @@ class Users extends model{
 
     public function getUserProfilePicture()
     {
+        $path = $_SERVER['DOCUMENT_ROOT']."/build/profilePic/";
+        if(file_exists($path.$this->user_number.'.jpg')){
+            return \MapStructureRepositorie::build().'profilePic/'.$this->user_number.'.jpg';
+        }
         return \MapStructureRepositorie::build().'images/profile.png';
     }
 

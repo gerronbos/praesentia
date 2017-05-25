@@ -5,15 +5,22 @@ if (!Auth::user()->can('user')) {
     exit;
 }
 ?>
+<div class="x_panel">
+    <div class="x_titel">
+        <h2>Profiel fotos uploaden</h2>
+        <ul class="nav navbar-right panel_toolbox"></ul>
+        <div class="clearfix"></div>
+    </div>
 
-<div id='testdropzone'></div>
+    <div class="x_content">
+        <p>Sleep de profiel fotos hieronder!</p>
+        <?php
 
-        <?php 
+        echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller()."/user/userController.php",'class'=>'dropzone','id'=>'dropzone','send_type'=>'jpg']).FormRepositorie::closeForm(); ?>
+    </div>
+</div>
 
-        echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller()."/user/userController.php",'class'=>'dropzone','id'=>'dropzone','send_type'=>'jpg']); 
 
-		echo FormRepositorie::closeForm(); ?>
-	</div>
 
 <?php
 include_once('../includes/footer.php');

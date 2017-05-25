@@ -29,11 +29,11 @@ $user_data = $return['presence_data'];
         ?>
         <table class="table table-bordered">
     <tr>
-        <th>Naam</th><th>Student nummer</th><th>klas</th><th>Aanwezig</th>
+        <th></th><th>Naam</th><th>Student nummer</th><th>klas</th><th>Aanwezig</th>
     </tr>
     <?php
     foreach(UserRepositorie::getWithGroupsByIds($user_ids) as $users){
-        echo "<tr><th>".$users->fullname()."</th><th>$users->user_number</th><th>$users->name</th><th><input type='checkbox'";
+        echo "<tr><th style='text-align: center'><img width='60px' src='".$users->getUserProfilePicture()."'></th><th>".$users->fullname()."</th><th>$users->user_number</th><th>$users->name</th><th><input type='checkbox'";
         if(isset($user_data[$users->id]) && !$user_data[$users->id]['present']){
             echo " checked ";
         }

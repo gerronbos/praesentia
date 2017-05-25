@@ -12,26 +12,32 @@ class MapStructureRepositorie extends Repository{
     }
     public function build()
     {
-        return ConfigRepositorie::get('url').'/build/';
+        $configrepositorie = new ConfigRepositorie();
+        return $configrepositorie->get('url').'/build/';
     }
     public function controller()
     {
-        return ConfigRepositorie::get('url').'/controller/';
+        $configrepositorie = new ConfigRepositorie();
+        return $configrepositorie->get('url').'/controller/';
     }
     public function helpers()
     {
-        return ConfigRepositorie::get('url').'/helpers/';
+        $configrepositorie = new ConfigRepositorie();
+        return $configrepositorie->get('url').'/helpers/';
     }
     public function model()
     {
-        return ConfigRepositorie::get('url').'/model/';
+        $configrepositorie = new ConfigRepositorie();
+        return $configrepositorie->get('url').'/model/';
     }
     public function uploads()
     {
-        return ConfigRepositorie::get('url').'/uploads/';
+        $configrepositorie = new ConfigRepositorie();
+        return $configrepositorie->get('url').'/uploads/';
     }
     public function repositories()
     {
+        $configrepositorie = new ConfigRepositorie();
         return ConfigRepositorie::get('url').'/repositories/';
     }
 
