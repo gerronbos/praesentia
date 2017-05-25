@@ -30,6 +30,7 @@ if(Auth::user()->id != $user->id) {
 					}
 				?>
 			</table>
+			<a target="_blank" href="<?php echo MapStructureRepositorie::Controller() ?>pdfController.php?UserLectureHist=1&user_id=<?php echo $user->id ?>&course_id=<?php echo $_GET['course_id']?>" class="btn btn-primary pull-right"><i class="fa fa-download"></i> Opslaan als PDF</a>
 		</div>
 	</div>
 </div>

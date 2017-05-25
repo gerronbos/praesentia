@@ -1,7 +1,8 @@
 <?php
 include_once('../build/app.php');
-$group = model\Group::find($_GET['group_id']);
-$data2 = PresenceRepository::getByCourse(model\Course::find(1),['group_id'=>48]);
+$user = model\Users::find($_GET['user_id']);
+$course = model\Course::find($_GET['course_id']);
+$presence = PresenceRepository::getPresenceByCourse(model\Course::find($_GET['course_id']), ['user_id'=>$user->id])->groupBy('lecture_id')->get();
 ?>
 <html>
 <head>
@@ -37,7 +38,7 @@ $data2 = PresenceRepository::getByCourse(model\Course::find(1),['group_id'=>48])
 <body style="background-color:#FFF;">
 <div class="x_panel">
 	<div class="x_title">
-		<h2 style="height:20px;">Overzicht Aanwezigheid</h2>
+		<h2 style="height:20px;">Overzicht Aanwezigheid van: <?php echo $user->fullnameReturned();?></h2>
 		<div class="clearfix"></div>
 	</div>
 
@@ -46,12 +47,11 @@ $data2 = PresenceRepository::getByCourse(model\Course::find(1),['group_id'=>48])
 			<div class="row">
 				<div class="col-xs-12 invoice-header">
 					<h1>
-					<i class="fa fa-paw"></i>
-					Praesentia
+					<img src="<?php echo MapStructureRepositorie::view();?>images/wf-logo-sm.png" alt="Windesheim Flevoland">
 					<small class="pull-right"><?php echo date('d M Y'); ?></small>
-					
 					</h1>
-					<h2>Groep: <?php echo $group->name ?></h2>
+					<hr />
+					<h2>Vak: <?php echo $course->name;?></h2>
 					<br />
 				</div>
 			</div>
@@ -59,19 +59,22 @@ $data2 = PresenceRepository::getByCourse(model\Course::find(1),['group_id'=>48])
 				<div class="col-xs-12 table">
 					<table class="table taple-striped">
 						<tr>
-							<th>Naam</th>
-							<th>Gebruikersnaam</th>
-							<th>Email</th>
-							<th>Aanwezigheid</th>
-						</tr>
-						<?php
-							foreach ($group->Users() as $user) {
-								$data = PresenceRepository::calcPresenceByUser($user,['grouped' => 1]);
-								echo "<tr><td>".$user->fullnameReturned()."</td><td>$user->user_number</td><td>$user->email</td><td>";
-								echo progressBar($data['amount_present_prec'])."</tr>";
-							}
-						?>
+					<th>Datum</th>
+					<th>Starttijd</th>
+					<th>Eindtijd</th>
+					<th>Aanwezig</th>
+				</tr>
+				<?php
+					foreach ($presence as $p) {
+						echo "<tr><td>$p->date</td><td>$p->start_time</td><td>$p->end_time</td><td style='text-align: center;'>".presenttrueorfalse($p->present)."</td></tr>";
+					}
+				?>
 					</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 footer">
+					<p class="pull-right">Praesentia Aanwezigheids administratie</p>
 				</div>
 			</div>
 		</section>
