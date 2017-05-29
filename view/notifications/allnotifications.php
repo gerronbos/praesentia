@@ -2,7 +2,7 @@
     include_once('../includes/head.php');
 ?>
 
-<a href="createnotification.php" class="btn btn-primary">Nieuw bericht</a>
+<!-- <a href="createnotification.php" class="btn btn-primary">Nieuw bericht</a> -->
 
 <div class="list-group">
 <?php

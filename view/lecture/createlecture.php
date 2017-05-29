@@ -27,8 +27,8 @@ $rooms = model\Room::lists('number','id');
 
 		echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller(). 'lecture/lectureController.php', 'method' => 'POST','send_type'=>'create']);
 		echo FormRepositorie::text('Selecteer datum',date('Y-m-d'),['id'=>'datetimepicker']);
-		echo FormRepositorie::text('Begintijd', '', ['name'=>'start_time']);
-		echo FormRepositorie::text('Eindtijd', '', ['name'=>'end_time']);
+		echo FormRepositorie::text('Begintijd', '', ['name'=>'start_time', 'placeholder' => '00:00']);
+		echo FormRepositorie::text('Eindtijd', '', ['name'=>'end_time', 'placeholder' => '00:00']);
 		echo FormRepositorie::select2('Kamernummer',$rooms, '', ['name'=>'room_id']);
 		echo FormRepositorie::select2('Vak',$courses, '', ['name'=>'course_id','class'=>'select2']);
 		echo FormRepositorie::select2('Docent',$users, '', ['name'=>'user_id','class'=>'select2']);

@@ -20,7 +20,6 @@ if (!Auth::user()->can('groups')) {
 		echo FormRepositorie::text('Naam', '',['name'=>'name', 'required' => 1]);
 		echo FormRepositorie::text('Schooljaar', '', ['name'=>'school_year', 'required' => 1]);
 		echo FormRepositorie::text('Periode', '', ['name'=>'period', 'required' => 1]);
-		echo FormRepositorie::text('Educatienummer', '', ['name'=>'education_id', 'required' => 1]);
 		echo FormRepositorie::formSaveButton("javascript:history.back()");
 		echo FormRepositorie::closeForm();
 		?>

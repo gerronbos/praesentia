@@ -65,15 +65,9 @@
         <!-- /sidebar menu -->
 
         <!-- /menu footer buttons -->
-        <div class="sidebar-footer hidden-small">
+        <div class="sidebar-footer hidden-small" style="padding-left: 5%;">
             <a data-toggle="tooltip" data-placement="top" title="Profiel" href="<?php echo MapStructureRepositorie::controller()."user/userController.php?show=1&user_id=".Auth::user()->id; ?>">
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-            </a>
-            <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
             </a>
             <a data-toggle="tooltip" data-placement="top" title="Logout" href="<?php echo MapStructureRepositorie::controller(); ?>logoutController.php">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
@@ -104,7 +98,6 @@
                                 Wachtwoord veranderen
                             </a>
                         </li>
-                        <li><a href="javascript:;">Help</a></li>
                         <li><a href="<?php echo MapStructureRepositorie::controller(); ?>logoutController.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
                     </ul>
                 </li>
