@@ -3,8 +3,13 @@
         <h3>General</h3>
         <ul class="nav side-menu">
             <li><a href="<?php echo ConfigRepositorie::get('url'); ?>"><i class="fa fa-home"></i> Home</a></li>
-            <li><a href="<?php echo MapStructureRepositorie::view(); ?>import/index.php"><i class="fa fa-home"></i> Import</a></li>
             <?php
+            if(Auth::user()->can('import')) {
+                ?>
+                <li><a href="<?php echo MapStructureRepositorie::view(); ?>import/index.php"><i class="fa fa-upload"></i>
+                        Import</a></li>
+            <?php
+            }
             if(Auth::user()->can('presence')) {
                 ?>
                 <li><a><i class="fa fa-edit"></i> Absentie <span class="fa fa-chevron-down"></span></a>

@@ -1,6 +1,6 @@
 <?php
 include_once('../includes/head.php');
-if (!Auth::user()->can('lectures')) {
+if (!Auth::user()->can('import')) {
     header("location: " . MapStructureRepositorie::error('401'));
     exit;
 }

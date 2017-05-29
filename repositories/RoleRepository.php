@@ -11,6 +11,7 @@ class RoleRepository extends Repository{
         $role->lectures = $input['lectures'];
         $role->groups = $input['groups'];
         $role->rooms = $input['rooms'];
+        $role->import = $input['import'];
 
         $role->save();
     }
@@ -22,6 +23,7 @@ class RoleRepository extends Repository{
         $role->lectures = $input['lectures'];
         $role->groups = $input['groups'];
         $role->rooms = $input['rooms'];
+        $role->import = $input['import'];
 
         $role->save();
 
@@ -35,6 +37,7 @@ class RoleRepository extends Repository{
         $userRole->lectures = $data['lectures'];
         $userRole->groups = $data['groups'];
         $userRole->rooms = $data['rooms'];
+        $userRole->import = $data['import'];
         $userRole->save();
 
 
