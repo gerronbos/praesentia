@@ -20,7 +20,7 @@ if(isset($_GET['show'])){
 
 if(isset($_POST['set'])){
     $lecture = Services\SessionHandler::getSession('lecture_data');
-    PresenceRepository::set($lecture['lecture'],$_POST['present']);
+    PresenceRepository::set(model\Lecture::find($lecture['lecture']),$_POST['present']);
     Services\SessionHandler::setSession('presence_alert','Aanwezigheid is succesfol opgelsagen.');
     Services\SessionHandler::save();
 
