@@ -113,8 +113,8 @@
       <file leaf-file-name="presenceController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controller/presence/presenceController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.79710144" vertical-offset="0" max-vertical-offset="735">
-              <caret line="22" column="68" selection-start-line="22" selection-start-column="68" selection-end-line="22" selection-end-column="68" />
+            <state vertical-scroll-proportion="0.6376812" vertical-offset="186" max-vertical-offset="735">
+              <caret line="30" column="86" selection-start-line="30" selection-start-column="86" selection-end-line="30" selection-end-column="86" />
               <folding />
             </state>
           </provider>
@@ -123,10 +123,10 @@
       <file leaf-file-name="presenceUsers.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/view/presence/presenceUsers.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.25" vertical-offset="255" max-vertical-offset="1020">
-              <caret line="27" column="153" selection-start-line="27" selection-start-column="153" selection-end-line="27" selection-end-column="153" />
+            <state vertical-scroll-proportion="-13.75" vertical-offset="75" max-vertical-offset="1020">
+              <caret line="27" column="178" selection-start-line="27" selection-start-column="178" selection-end-line="27" selection-end-column="178" />
               <folding>
-                <marker date="1495708205000" expanded="true" signature="1140:1158" placeholder="..." />
+                <marker date="1496050505000" expanded="true" signature="1164:1182" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -923,18 +923,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/view/presence/presenceUsers.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.25" vertical-offset="255" max-vertical-offset="1020">
-          <caret line="27" column="153" selection-start-line="27" selection-start-column="153" selection-end-line="27" selection-end-column="153" />
+        <state vertical-scroll-proportion="-13.75" vertical-offset="75" max-vertical-offset="1020">
+          <caret line="27" column="178" selection-start-line="27" selection-start-column="178" selection-end-line="27" selection-end-column="178" />
           <folding>
-            <marker date="1495708205000" expanded="true" signature="1140:1158" placeholder="..." />
+            <marker date="1496050505000" expanded="true" signature="1164:1182" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/controller/presence/presenceController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.79710144" vertical-offset="0" max-vertical-offset="735">
-          <caret line="22" column="68" selection-start-line="22" selection-start-column="68" selection-end-line="22" selection-end-column="68" />
+        <state vertical-scroll-proportion="0.6376812" vertical-offset="186" max-vertical-offset="735">
+          <caret line="30" column="86" selection-start-line="30" selection-start-column="86" selection-end-line="30" selection-end-column="86" />
           <folding />
         </state>
       </provider>
