@@ -90,7 +90,13 @@ class PresenceRepository extends Repository{
 
     public function calcPresenceByUser(Users $user,$params = array()){
         $return = [];
-        $course_ids = $user->Group()->Lectures(['dont_use_get'=>1])->lists('course_id');
+        $group = $user->Group();
+        if($group){
+            $course_ids = $group->Lectures(['dont_use_get'=>1])->lists('course_id');
+        }
+        else{
+            $course_ids = array();
+        }
 
         if(isset($params['grouped'])){
            $return = [
@@ -153,15 +159,29 @@ class PresenceRepository extends Repository{
 
     public function getByLastDays($user,$days = 7, $params = array()){
         $return = [];
-        $date =date('d-m-Y',strtotime('-7days'));
-        while($date != date('d-m-Y')){
-            $return[$date] = self::calcPresenceByUser($user,['date'=>$date,'grouped'=>1]);
-            $date = date('d-m-Y',strtotime($date. '+1 days'));
+        $date =date('d-m-Y',strtotime('-'.$days.'days'));
+        $date_start = $date;
+        foreach(self::getDaySet() as $key=>$data){
+                $return[$key] = self::calcPresenceByUser($user, ['date' => $key, 'grouped' => 1]);
         }
+        ksort($return);
 
         return $return;
+    }
 
-
+    private function getDaySet($days = 7)
+    {
+        $date =date('d-m-Y');
+        $days_queued = $days;
+        $return = [];
+        while($days_queued != 0) {
+            if (date('N', strtotime($date)) != 6 && date('N', strtotime($date)) != 7) {
+                $return[$date] = [];
+                $days_queued--;
+            }
+            $date = date('d-m-Y', strtotime($date.'-1days'));
+        }
+        return $return;
     }
 
     public function calcPresenceByGroup(Group $group){

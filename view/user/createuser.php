@@ -32,6 +32,7 @@ if(!Auth::user()->can('user')){
 		echo FormRepositorie::text('Studentnummer', '', ['name'=>'user_number', 'required' => 1]);
 		echo FormRepositorie::text('Email', '', ['name'=>'email', 'required' => 1]);
 		echo FormRepositorie::password('Wachtwoord', '', ['name'=>'password', 'required' => 1]);	
+		echo FormRepositorie::select('Groep', GroupRepository::getGroupsArray(), '1', ['name'=>'group_id']);
 		echo FormRepositorie::formSaveButton("javascript:history.back()");
 		echo FormRepositorie::closeForm();
 		?>
