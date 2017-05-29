@@ -8,7 +8,7 @@ if(isset($_GET['show_all'])){
     $lectures = LectureRepository::get()->get();
 }
 else {
-    $lectures = LectureRepository::get()->where('date', '=>', date('Y-m-d'))->get();
+    $lectures = LectureRepository::get()->where('date', '>=', date('Y-m-d'))->get();
 }
 ?>
 <div class="x_panel">
