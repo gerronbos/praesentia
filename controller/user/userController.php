@@ -26,7 +26,7 @@ if(isset($_GET['create'])){
         exit;
     }
 
-    UserRepositorie::create($_POST['firstname'], $_POST['lastname'], $_POST['user_number'], $_POST['email'], $_POST['password']);
+    UserRepositorie::create($_POST['firstname'], $_POST['lastname'], $_POST['user_number'], $_POST['email'], $_POST['password'], $_POST['group_id']);
 
 
     Services\SessionHandler::setSession('user_add_succes', 'Gebruiker succesvol toegevoegd.');
