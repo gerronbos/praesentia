@@ -122,15 +122,20 @@ if(isset($_GET['show'])) {
 }
 
 if(isset($_GET['update'])){
-      UserRepositorie::update($user, $_POST);
-      Services\SessionHandler::setSession('user_edit_succes', 'Gebruiker succesvol gewijzigd.');
-      header('location:'.MapStructureRepositorie::view().'user/updateuser.php');
-      exit;
-  }
+  UserRepositorie::update($user, $_POST);
+  Services\SessionHandler::setSession('user_edit_succes', 'Gebruiker succesvol gewijzigd.');
+  header('location:'.MapStructureRepositorie::view().'user/updateuser.php');
+  exit;
+}
 
 if(isset($_GET['updatePassword'])){
-    UserRepositorie::update($user, $_POST);
-    Services\SessionHandler::setSession('user_edit_succes', 'Wachtwoord succesvol gewijzigd.');
+    if ('password' == 'password2') {
+        UserRepositorie::update($user, $_POST);
+        Services\SessionHandler::setSession('user_edit_succes', 'Wachtwoord succesvol gewijzigd.');
+    }else{
+        Services\SessionHandler::setSession('user_edit_fail', 'Wachtwoorden komen niet overeen.');
+    }
+    
     header('location:'.MapStructureRepositorie::view().'user/changePassword.php');
     exit;
 }
