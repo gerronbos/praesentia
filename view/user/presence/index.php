@@ -75,6 +75,8 @@ include_once('../../includes/footer.php');
             method: "POST",
             data: {date: date,'group_id':'<?php echo Auth::user()->Group()->id; ?>'},
             success: function(data){
+                console.log(data);
+
                 data = JSON.parse(data);
                 $('.lectures').remove();
                 $.each(data,function(index){

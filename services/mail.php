@@ -70,7 +70,6 @@ class Mail{
         $mail = new PHPMailer();
         $mail->IsSMTP();
         $mail->CharSet = 'UTF-8';
-
         $mail->Host       = $this->host;
         $mail->SMTPDebug  = 2;
         $mail->SMTPAuth   = true;
@@ -87,6 +86,7 @@ class Mail{
         $mail->addAddress(implode(',',$this->send_to));
 
         $mail->send();
+
     }
 
     private function init(){
