@@ -62,13 +62,17 @@ class UserRepositorie extends Repository{
         $user->password=self::makePassword($password);
         $user->save();
 
-        $user->email=$email;
+        $mail = new Services\Mail();
+        $mail->setSendTo($user->email);
+        $mail->setSubject('Wachtwoord gereset');
 
-        $msg="Uw wachtwoord is gereset. Log in met het volgende wachtwoord: $password";
+        $text = include_once($_SERVER['DOCUMENT_ROOT'].'/view/mail/resetpassword.php');
+        $text = str_replace('::fullname::',$user->fullname(),$text);
+        $text = str_replace('::email::',$user->email,$text);
+        $text = str_replace('::password::',$password,$text);
+        $mail->setBody($text);
 
-        $msg = wordwrap($msg, 70);
-
-        mail("erkam_s@online.nl", "Wachtwoord reset", $msg);
+        $mail->send();
     }
 
     public function update($user ,$data = array()){
