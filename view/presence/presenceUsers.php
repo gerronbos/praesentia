@@ -25,7 +25,7 @@ $user_data = $return['presence_data'];
     <div class="x_title">
         <h2>Gebruikers </h2>
         <?php
-        echo FormRepositorie::openForm(['method'=>'POST','send_type'=>'set','url'=>MapStructureRepositorie::controller().'presence/presenceController.php']);
+        echo FormRepositorie::openForm(['method'=>'POST','send_type'=>'set','url'=>MapStructureRepositorie::controller().'presence/presenceController.php?lecture_id='.$_GET['id']]);
         ?>
         <table class="table table-bordered">
     <tr>

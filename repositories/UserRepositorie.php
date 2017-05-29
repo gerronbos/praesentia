@@ -14,18 +14,19 @@ class UserRepositorie extends Repository{
     	$user->user_number = $user_number;
     	$user->email = $email;
     	$user->password = self::makePassword($password);
-    	$user->save();
+        GroupRepository::assignToGroup($data['group_id'],$user->id);
+        $user->save();
 
         return $user;
 
-    	NotificationRepository::create(Auth::user()->id, $user->id, 'Account aangemaakt.', 1);
+        NotificationRepository::create(Auth::user()->id, $user->id, 'Account aangemaakt.', 1);
     }
 
     private function makePassword($password){
 
         $password = password_hash($password, PASSWORD_BCRYPT);
 
-    	return $password;
+        return $password;
     }
     public static function generateRandomPassword($length = 8)
     {

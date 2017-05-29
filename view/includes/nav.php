@@ -3,6 +3,7 @@
         <h3>General</h3>
         <ul class="nav side-menu">
             <li><a href="<?php echo ConfigRepositorie::get('url'); ?>"><i class="fa fa-home"></i> Home</a></li>
+            <li><a href="<?php echo MapStructureRepositorie::view(); ?>import/index.php"><i class="fa fa-home"></i> Import</a></li>
             <?php
             if(Auth::user()->can('presence')) {
                 ?>
@@ -20,7 +21,7 @@
                 <li><a><i class="fa fa-university"></i> Lessen <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="<?php echo MapStructureRepositorie::controller(); ?>lecture/lectureController.php?get_all=1">Alle lessen</a></li>
-                        <li><a href="<?php echo MapStructureRepositorie::view(); ?>lecture/importlecture.php">Lessen aanmaken/importeren</a></li>
+                        <li><a href="<?php echo MapStructureRepositorie::view(); ?>lecture/createlecture.php">Les aanmaken</a></li>
                     </ul>
                 </li>
             <?php
@@ -30,9 +31,8 @@
                 <li><a><i class="fa fa-user"></i> Gebruikers <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="<?php echo MapStructureRepositorie::view(); ?>user/allusers.php">Overzicht</a></li>
-                        <li><a href="<?php echo MapStructureRepositorie::view(); ?>user/userAddOption.php">Nieuw gebruiker
+                        <li><a href="<?php echo MapStructureRepositorie::view(); ?>user/createuser.php">Nieuw gebruiker
                                 aanmaken</a></li>
-                        <li><a href="<?php echo MapStructureRepositorie::view(); ?>user/profilePic.php">Profielfoto</a></li>
                         <li><a href="<?php echo MapStructureRepositorie::view(); ?>roles/index.php">Rechten</a></li>
                     </ul>
                 </li>

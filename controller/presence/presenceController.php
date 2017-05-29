@@ -5,7 +5,7 @@ if(!Auth::user()->can('presence')){
  header("location: ".MapStructureRepositorie::error('401'));
 }
 
-if($_GET['show']){
+if(isset($_GET['show'])){
     $id = $_GET['id'];
     $url_present = MapStructureRepositorie::view()."presence/presenceUsers.php?id=$id";
     $url_show = MapStructureRepositorie::view()."lecture/presence/presencebylecture.php?lecture_id=$id";
@@ -19,8 +19,8 @@ if($_GET['show']){
 }
 
 if(isset($_POST['set'])){
-    $lecture = Services\SessionHandler::getSession('lecture_data');
-    PresenceRepository::set($lecture['lecture'],$_POST['present']);
+    $lecture = $_GET['lecture_id'];
+    PresenceRepository::set(model\Lecture::find($lecture),$_POST['present']);
     Services\SessionHandler::setSession('presence_alert','Aanwezigheid is succesfol opgelsagen.');
     Services\SessionHandler::save();
 
@@ -28,7 +28,7 @@ if(isset($_POST['set'])){
 
 
 
-    $url = MapStructureRepositorie::controller().'presence/presenceController.php?get=1&id='.$lecture['lecture']->id;
+    $url = MapStructureRepositorie::controller().'presence/presenceController.php?show=1&id='.$lecture;
 
 
     header("location:".$url);

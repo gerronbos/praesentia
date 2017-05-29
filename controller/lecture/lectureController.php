@@ -89,6 +89,8 @@ if(isset($_POST['create'])){
         $group = model\Group::find($g);
         LectureRepository::assign($group,$lecture);
     }
+    header('location: '.MapStructureRepositorie::view().'lecture/all_lectures.php?q='.$q);
+    exit;
 }
 if(isset($_GET['edit_lecture'])){
     Services\SessionHandler::setSession('edit_lecture',$_GET['lecture_id']);
@@ -102,4 +104,16 @@ if(isset($_POST['edit_lecture'])){
         $group = model\Group::find($g);
         LectureRepository::assign($group,$lecture);
     }
+    header('location: '.MapStructureRepositorie::view().'lecture/all_lectures.php?q='.$q);
+    exit;
+}
+
+if (isset($_GET['delete_lecture'])) {
+    $lecture = model\Lecture::find($_GET['lecture_id']);
+
+    LectureRepository::delete($lecture);
+
+    Services\SessionHandler::setSession('delete_lecture', 'De les is succesvol verwijderd. ');
+    header('location: '.MapStructureRepositorie::view().'lecture/all_lectures.php');
+    exit;
 }
