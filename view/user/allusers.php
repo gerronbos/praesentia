@@ -9,7 +9,7 @@ if(!Auth::user()->can('user')){
 	<div class="x_title">
 		<h2>Gebruikers </h2>
 		<?php
-		echo "<a href='".MapStructureRepositorie::view()."user/userAddOption.php' class='btn btn-primary' style='float: right'>Nieuwe Gebruiker</a>";
+		echo "<a href='".MapStructureRepositorie::view()."user/createuser.php' class='btn btn-primary' style='float: right'>Nieuwe Gebruiker</a>";
 		?>
 		<ul class="nav navbar-right panel_toolbox"></ul>
 		<div class="clearfix"></div>
