@@ -8,7 +8,6 @@ class GroupRepository extends Repository{
         $group->name = $name;
         $group->school_year = $school_year;
         $group->period = $period;
-        $group->education_id = $education_id;
         $group->save();
 
         return $group;
@@ -30,9 +29,6 @@ class GroupRepository extends Repository{
         }
         if (isset($data['period'])) {
             $group->period = $data['period'];
-        }
-        if (isset($data['education_id'])) {
-            $group->education_id = $data['education_id'];
         }
         $group->save();
     }
