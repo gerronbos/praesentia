@@ -1,7 +1,7 @@
 <?php
 	//Create User
 include_once('../controller.php');
-if(!isset($_GET['show'])) {
+if(!isset($_GET['show']) && !isset($_GET['passwordReset'])) {
     if (!Auth::user()->can('user')) {
         header("location: " . MapStructureRepositorie::error('401'));
         exit;
@@ -70,6 +70,10 @@ if(isset($_POST['csv'])){
         if(!$user){
             $user = UserRepositorie::create($firstname, $lastname, $user_number, $email, $password);
         }
+        else{
+            $user = UserRepositorie::update($user,['ignore_notification'=>1,'firstname'=>$firstname,'lastname'=>$lastname,'email'=>$email]);
+        }
+
 
         $group = model\Group::where('name','=',$row['Groepsnaam'])->first();
         if(!$group){
@@ -101,6 +105,14 @@ if(isset($_POST['jpg'])){
     exit;
 }
 
+if(isset($_GET['passwordReset'])){
+    UserRepositorie::update($user, $_POST);
+    $upr = model\User_password_reset::where('id','=',$_GET['upr'])->first();
+    $upr->delete();
+    Services\SessionHandler::setSession('user_reset_succes', 'Nieuw wachtwoord toegepast.');
+    header('location:'.MapStructureRepositorie::view().'login.php');
+    exit;
+}
 
 if(isset($_GET['resetPassword'])){
     UserRepositorie::resetPassword($user);

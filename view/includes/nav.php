@@ -25,7 +25,7 @@
                 ?>
                 <li><a><i class="fa fa-university"></i> Lessen <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="<?php echo MapStructureRepositorie::controller(); ?>lecture/lectureController.php?get_all=1">Alle lessen</a></li>
+                        <li><a href="<?php echo MapStructureRepositorie::view(); ?>lecture/all_lectures.php">Alle lessen</a></li>
                         <li><a href="<?php echo MapStructureRepositorie::view(); ?>lecture/createlecture.php">Les aanmaken</a></li>
                     </ul>
                 </li>
@@ -66,5 +66,4 @@
             ?>
         </ul>
     </div>
-
-</div>
+        </div>

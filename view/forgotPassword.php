@@ -38,38 +38,17 @@ include_once('../build/app.php');
                     Services\SessionHandler::getAndDelete('error')."
             </div>";
             }
-            if(Services\SessionHandler::has('user_forgot_success')){
-                echo "<div class='alert alert-info' role='alert'>".
-                    Services\SessionHandler::getAndDelete('user_forgot_success')."
-            </div>";
-            }
-            if(Services\SessionHandler::has('user_reset_succes')){
-                echo "<div class='alert alert-success' role='alert'>".
-                    Services\SessionHandler::getAndDelete('user_reset_succes')."
-            </div>";
-            }
-            if(Services\SessionHandler::has('token_expired')){
-                echo "<div class='alert alert-danger' role='alert'>".
-                    Services\SessionHandler::getAndDelete('token_expired')."
-            </div>";
-            }
 
             ?>
             <section class="login_content">
-                <?php echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller().'loginController.php','method'=>'POST']); ?>
-                    <h1>Login</h1>
+                <?php echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller().'loginController.php?forgotPassword=1','method'=>'POST']); ?>
+                    <h1>Wachtwoord vergeten</h1>
+                    <p>Voer uw e-mail adres in om verder te gaan met dit proces.</p>
                     <div>
-                        <input type="text" name="email" class="form-control" placeholder="Username" required="" />
+                        <input type="text" name="email" class="form-control" placeholder="E-mail" required="" />
                     </div>
                     <div>
-                        <input type="password" name="password" class="form-control" placeholder="Password" required="" />
-                    </div>
-                    <div>
-                        <button class="btn btn-default submit">Log in</button>
-                        <a class="reset_pass" href="forgotPassword.php">Wachtwoord vergeten?</a>
-                    </div>
-                    <div class="pull-left">
-                        <input type="checkbox" name="stayLoggedIn" id="stayLoggedIn" value="1"> <label for="stayLoggedIn"> Blijf ingelogd</label>
+                        <button class="btn btn-default submit">Verstuur</button>
                     </div>
 
                     <div class="clearfix"></div>
