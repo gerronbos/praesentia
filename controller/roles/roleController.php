@@ -39,17 +39,12 @@ if(isset($_POST['delete'])){
 }
 
 if(isset($_GET['user_roles'])){
-    $user = new \model\Users();
-    $user->find($_GET['user_id']);
 
     $user_role = new \model\UserRoles();
     $user_role->where('user_id','=',$_GET['user_id'])->first();
 
-    if(is_null($user_role)){
-        $user_role = new \model\UserRoles();
-    }
-    Services\SessionHandler::setSession('user_data',$user);
-    Services\SessionHandler::setSession('userRole_data',$user_role);
+    Services\SessionHandler::setSession('user_data', $_GET['user_id']);
+    Services\SessionHandler::setSession('userRole_data',($user_role) ? $user_role->id : null);
 
     header("location:".MapStructureRepositorie::view()."roles/user_role.php");
     exit;
