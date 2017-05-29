@@ -83,7 +83,9 @@ if(isset($_POST['csv'])){
 }
 
 if(isset($_GET['update_view'])){
-  Services\SessionHandler::setSession("edit_user", $user->id);
+    Services\SessionHandler::setSession("edit_user", $user->id);
+    header('location:'.MapStructureRepositorie::view().'user/updateuser.php');
+    exit;
 }
 
 if(isset($_POST['jpg'])){
@@ -129,7 +131,11 @@ if(isset($_GET['update'])){
 }
 
 if(isset($_GET['updatePassword'])){
-    if ('password' == 'password2') {
+    if (strlen('password') < 6) {
+        Services\SessionHandler::setSession('user_edit_passfail', 'Wachtwoord voldoet niet aan eisen.');
+    }
+
+    if ('password' == 'password2'){
         UserRepositorie::update($user, $_POST);
         Services\SessionHandler::setSession('user_edit_succes', 'Wachtwoord succesvol gewijzigd.');
     }else{

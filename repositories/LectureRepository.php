@@ -21,7 +21,7 @@ class LectureRepository extends Repository{
             $lecture->where('course_id','=',$params['byCourse']);
         }
         if(isset($params['byGroup']) && $params['byGroup']){
-            $lecture->where('group_id','=',$params['byGroup']);
+            $lecture->where('lecture_has_groups.group_id','=',$params['byGroup']);
         }
         if(isset($params['byDate']) && $params['byDate']){
             $lecture->where('date','=',$params['byDate']);

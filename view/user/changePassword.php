@@ -19,6 +19,10 @@ if(!Auth::user()->can('user')){
 	if(Services\SessionHandler::has('user_edit_fail')){
 		echo '<div class="col-lg-12"><div class="alert alert-danger" role="alert">'.Services\SessionHandler::getAndDelete('user_edit_fail').'</div></div>';
 	}
+
+	if(Services\SessionHandler::has('user_edit_passfail')){
+		echo '<div class="col-lg-12"><div class="alert alert-danger" role="alert">'.Services\SessionHandler::getAndDelete('user_edit_passfail').'</div></div>';
+	}
 	?>
 	<div class="x_content">
 		<div class="container">

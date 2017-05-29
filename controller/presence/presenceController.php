@@ -5,7 +5,7 @@ if(!Auth::user()->can('presence')){
  header("location: ".MapStructureRepositorie::error('401'));
 }
 
-if($_GET['show']){
+if(isset($_GET['show'])){
     $id = $_GET['id'];
     $url_present = MapStructureRepositorie::view()."presence/presenceUsers.php?id=$id";
     $url_show = MapStructureRepositorie::view()."lecture/presence/presencebylecture.php?lecture_id=$id";

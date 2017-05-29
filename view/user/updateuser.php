@@ -4,7 +4,7 @@ if (!Auth::user()->can('user')) {
 	header("location: " . MapStructureRepositorie::error('401'));
 	exit;
 }
-$user = model\User::find(Services\SessionHandler::getSession('edit_user'));
+$user = model\Users::find(Services\SessionHandler::getSession('edit_user'));
 ?>
 <div class="x_panel">
 	<div class="x_titel">
