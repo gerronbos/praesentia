@@ -11,7 +11,6 @@
                     <ul class="nav child_menu">
                         <li><a href="<?php echo MapStructureRepositorie::view(); ?>presence/index.php">Absentie
                                 invullen</a></li>
-                        <li><a href="form_advanced.html">Aanwezigheid</a></li>
                     </ul>
                 </li>
             <?php
