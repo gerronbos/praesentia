@@ -36,6 +36,7 @@ return array(
     'model\\Role' => $baseDir . '/model/Role.php',
     'model\\Room' => $baseDir . '/model/Room.php',
     'model\\UserRoles' => $baseDir . '/model/UserRoles.php',
+    'model\\User_password_reset' => $baseDir . '/model/User_password_reset.php',
     'model\\Users' => $baseDir . '/model/Users.php',
     'model\\model' => $baseDir . '/model/model.php',
     'ntlm_sasl_client_class' => $vendorDir . '/phpmailer/phpmailer/extras/ntlm_sasl_client.php',

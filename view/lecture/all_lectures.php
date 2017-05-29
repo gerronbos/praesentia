@@ -4,7 +4,7 @@ if (!Auth::user()->can('lectures')) {
 	header("location: " . MapStructureRepositorie::error('401'));
 	exit;
 }
-$lectures = LectureRepository::get()->get();
+$lectures = LectureRepository::get()->where('date','>',date('Y-m-d'))->get();
 ?>
 <div class="x_panel">
 	<div class="x_title">
