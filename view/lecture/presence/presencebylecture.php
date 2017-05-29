@@ -7,8 +7,7 @@ if (!Auth::user()->can('presence')) {
     $lecture_data = PresenceRepository::getPresenceByLecture(model\Lecture::find($_GET['lecture_id']))->get();
 ?>
 <a href="javascript:history.back()" class="btn btn-default">Terug</a>
-    <h3>Aanwezigheid van <?php echo $lecture_data[0]->Lecutre()->Course()->name.' '.$lecture_data[0]->Lecutre()->date; ?></h3>
-
+    <h3>Aanwezigheid van <?php echo $lecture_data[0]->Lecutre()->Course()->name.' '.$lecture_data[0]->Lecutre()->date; ?><a href="<?php echo MapStructureRepositorie::view()."presence/presenceUsers.php?id=".$_GET['lecture_id'];?>" class="btn btn-primary pull-right">Wijzigen</a></h3>
     <table class="table table-bordered">
         <tr>
             <th>Gebruiker</th>
