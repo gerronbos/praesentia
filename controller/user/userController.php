@@ -70,6 +70,10 @@ if(isset($_POST['csv'])){
         if(!$user){
             $user = UserRepositorie::create($firstname, $lastname, $user_number, $email, $password);
         }
+        else{
+            $user = UserRepositorie::update($user,['ignore_notification'=>1,'firstname'=>$firstname,'lastname'=>$lastname,'email'=>$email]);
+        }
+
 
         $group = model\Group::where('name','=',$row['Groepsnaam'])->first();
         if(!$group){

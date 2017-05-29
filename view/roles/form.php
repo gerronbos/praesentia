@@ -10,5 +10,6 @@ echo FormRepositorie::truefalse('Klassen',$role->groups,['name'=>'groups']);
 echo "<p class='help-class'>Hierbij worden de volgende rechten verstaan:<br>Klassen toevoegen<br>Klassen wijzigen<br> Klassen verwijderen<br>Gebruikers koppelen aan klassen<br> Klassen inzien</p>";
 echo FormRepositorie::truefalse('Lokalen',$role->rooms,['name'=>'rooms']);
 echo "<p class='help-class'>Hierbij worden de volgende rechten verstaan:<br>Lokalen toevoegen<br>Lokalen wijzigen<br> Lokalen verwijderen<br>Gebruikers koppelen aan lokalen<br> Colleges koppelen aan lokalen<br> Lokalen inzien</p>";
-
+echo FormRepositorie::truefalse('Importeren',$role->import,['name'=>'import']);
+echo "<p class='help-class'>Hierbij worden de volgende rechten verstaan:<br>Gebruikers updaten doormiddel van csv bestand<br>Lessen importeren<br>Profiel fotos updaten doormiddel van een import";
 ?>

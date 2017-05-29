@@ -123,7 +123,10 @@ class UserRepositorie extends Repository{
         }
         $user->save();
         GroupRepository::assignToGroup($data['group_id'],$user->id);
-        NotificationRepository::create(Auth::user()->id, $user->id, 'Account gewijzigd.', 1);
+        if(!isset($data['ignore_notification'])) {
+            NotificationRepository::create(Auth::user()->id, $user->id, 'Account gewijzigd.', 1);
+        }
+        return $user;
     }
 
     public function delete($user){

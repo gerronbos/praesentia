@@ -4,7 +4,12 @@ if (!Auth::user()->can('lectures')) {
 	header("location: " . MapStructureRepositorie::error('401'));
 	exit;
 }
-$lectures = LectureRepository::get()->where('date','>',date('Y-m-d'))->get();
+if(isset($_GET['show_all'])){
+    $lectures = LectureRepository::get()->get();
+}
+else {
+    $lectures = LectureRepository::get()->where('date', '>', date('Y-m-d'))->get();
+}
 ?>
 <div class="x_panel">
 	<div class="x_title">
@@ -15,7 +20,13 @@ $lectures = LectureRepository::get()->where('date','>',date('Y-m-d'))->get();
 				</div>
 				<?php
 				echo "<div class='col-lg-5'>";
-				echo "<a href='".MapStructureRepositorie::view()."lecture/importlecture.php' class='btn btn-primary' style='float: right'>Nieuwe Les</a>";
+                if(!isset($_GET['show_all'])) {
+                    echo "<a href='" . MapStructureRepositorie::view() . "lecture/all_lectures.php?show_all=1' class='btn btn-primary' style='float: right'>Laat Alle lessen zien</a>";
+                }
+                else{
+                    echo "<a href='" . MapStructureRepositorie::view() . "lecture/all_lectures.php' class='btn btn-primary' style='float: right'>Verberg oude lessen</a>";
+                }
+                echo "<a href='".MapStructureRepositorie::view()."lecture/importlecture.php' class='btn btn-primary' style='float: right'>Nieuwe Les</a>";
 				echo "</div>";
 				?>
 			</div>
