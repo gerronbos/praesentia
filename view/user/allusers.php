@@ -20,21 +20,20 @@ if(!Auth::user()->can('user')){
 		if(Services\SessionHandler::has('user_delete_succes')){
 			echo '<div class="col-lg-12"><div class="alert alert-success" role="alert">'.Services\SessionHandler::getAndDelete('user_delete_succes').'</div></div>';
 		}
-		?>
-			<?php
-			echo "<div class='table-responsive'>";
-			echo "<table class='table table-bordered table-responsive'><tr><th>Naam</th><th>Gebruikersnummer</th><th>Email</th><th>Opties</th></tr>";
-			foreach (model\Users::orderBy('lastname','asc')->get() as $user) {
-				echo "<tr><td>".$user->fullnameReturned(['url'=>1])."</td><td>$user->user_number</td><td>$user->email</td><td>
-				<a href='".MapStructureRepositorie::controller()."user/userController.php?update_view=1&user_id=$user->id' class='btn btn-primary'>Wijzigen</a>
-				<button user_id='$user->id' class='btn btn-danger delete_user'>Verwijderen</button>
-				<a href='".MapStructureRepositorie::controller()."user/userController.php?show=1&user_id=$user->id' class='btn btn-info'>Profiel</a>
-			</td></tr>";
-		}
-		echo "</table>";
+		
+		echo "<div class='table-responsive'>";
+		echo "<table class='table table-bordered table-responsive'><tr><th>Naam</th><th>Gebruikersnummer</th><th>Email</th><th>Opties</th></tr>";
+		foreach (model\Users::orderBy('lastname','asc')->get() as $user) {
+			echo "<tr><td>".$user->fullnameReturned(['url'=>1])."</td><td>$user->user_number</td><td>$user->email</td><td>
+			<a href='".MapStructureRepositorie::controller()."user/userController.php?update_view=1&user_id=$user->id' class='btn btn-primary'>Wijzigen</a>
+			<button user_id='$user->id' class='btn btn-danger delete_user'>Verwijderen</button>
+			<a href='".MapStructureRepositorie::controller()."user/userController.php?show=1&user_id=$user->id' class='btn btn-info'>Profiel</a>
+		</td></tr>";
+	}
+	echo "</table>";
 
-		echo "</div>";
-		?>
+	echo "</div>";
+	?>
 </div>
 </div>
 <?php

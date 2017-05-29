@@ -1,7 +1,12 @@
 <?php
 include_once('../includes/head.php');
-$user = Services\SessionHandler::getSession('user_data');
+$user = model\Users::find(Services\SessionHandler::getSession('user_data'));
 $role = Services\SessionHandler::getSession('userRole_data');
+if (!is_null($role)) {
+    $role = model\UserRoles::find($role);
+}else{
+    $role = new model\UserRoles();
+}
 
 if(Services\SessionHandler::has('alert_roles')){
     echo '<div class="col-lg-12"><div class="alert alert-success" role="alert">'.Services\SessionHandler::getAndDelete('alert_roles').'</div></div>';

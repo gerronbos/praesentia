@@ -131,14 +131,13 @@ if(isset($_GET['update'])){
 }
 
 if(isset($_GET['updatePassword'])){
-    if (strlen('password') < 6) {
-        Services\SessionHandler::setSession('user_edit_passfail', 'Wachtwoord voldoet niet aan eisen.');
-    }
 
-    if ('password' == 'password2'){
+    if ($_POST['password2'] == $_POST['password']){
         UserRepositorie::update($user, $_POST);
         Services\SessionHandler::setSession('user_edit_succes', 'Wachtwoord succesvol gewijzigd.');
-    }else{
+    }
+
+    if ($_POST['password2'] != $_POST['password']){
         Services\SessionHandler::setSession('user_edit_fail', 'Wachtwoorden komen niet overeen.');
     }
     
