@@ -75,4 +75,8 @@ class LectureRepository extends Repository{
 
         return $lecture;
     }
+
+    public function delete($lecture){
+        $lecture->delete();
+    }
 }
