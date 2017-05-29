@@ -1,5 +1,6 @@
 <?php
 use model\Users as User;
+use model\User_password_reset as User_password_reset;
 class UserRepositorie extends Repository{
     public function getUserById($id)
     {
@@ -71,6 +72,34 @@ class UserRepositorie extends Repository{
         $text = str_replace('::fullname::',$user->fullname(),$text);
         $text = str_replace('::email::',$user->email,$text);
         $text = str_replace('::password::',$password,$text);
+        $mail->setBody($text);
+
+        $mail->send();
+    }
+
+    public function forgotPassword($email){
+        $user = model\Users::where('email','=',$email)->first();
+        if(is_null($user)){
+            $error ='Deze gebruiker bestaat niet.';
+            Services\SessionHandler::setSession('error', $error);
+            header('location:' .MapStructureRepositorie::view(). 'forgotPassword.php');
+            exit;
+        }
+        $token = bin2hex(openssl_random_pseudo_bytes(24));
+        $upr = new User_password_reset();
+        $upr->token = $token;
+        $upr->timestamp = date('Y-m-d H:i:s');
+        $upr->user_id = $user->id;
+        $upr->save();
+
+        $mail = new Services\Mail();
+        $mail->setSendTo($user->email);
+        $mail->setSubject('Wachtwoord vergeten');
+
+        $text = include_once($_SERVER['DOCUMENT_ROOT'].'/view/mail/forgotpassword.php');
+        $text = str_replace('::fullname::',$user->fullname(),$text);
+        $text = str_replace('::email::',$user->email,$text);
+        $text = str_replace('::token::',$token,$text);
         $mail->setBody($text);
 
         $mail->send();
