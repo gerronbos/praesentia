@@ -13,7 +13,6 @@ if (!Auth::user()->can('import')) {
     </div>
 
     <div class="x_content">
-        <p>Sleep de profiel fotos hieronder!</p>
         <?php
 
         echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller()."/user/userController.php",'class'=>'dropzone','id'=>'dropzone','send_type'=>'jpg']).FormRepositorie::closeForm(); ?>

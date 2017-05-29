@@ -21,7 +21,6 @@ $group = model\Group::find(Services\SessionHandler::getSession('group_data'));
 		echo FormRepositorie::text('Naam', $group->name,['name'=>'name', 'required' => 1]);
 		echo FormRepositorie::text('Schooljaar', $group->school_year, ['name'=>'school_year', 'required' => 1]);
 		echo FormRepositorie::text('Periode', $group->period, ['name'=>'period', 'required' => 1]);
-		echo FormRepositorie::text('Educatienummer', $group->education_id, ['name'=>'education_id', 'required' => 1]);
 		echo FormRepositorie::formSaveButton("javascript:history.back()");
 		echo FormRepositorie::closeForm();
 		?>
