@@ -9,57 +9,56 @@
                 <li><a><i class="fa fa-edit"></i> Absentie <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                         <li><a href="<?php echo MapStructureRepositorie::view(); ?>presence/index.php">Absentie
-                                invullen</a></li>
-                        <li><a href="form_advanced.html">Aanwezigheid</a></li>
-                    </ul>
-                </li>
-            <?php
-            }
-            if(Auth::user()->can('lectures')) {
-                ?>
-                <li><a><i class="fa fa-university"></i> Lessen <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="<?php echo MapStructureRepositorie::controller(); ?>lecture/lectureController.php?get_all=1">Alle lessen</a></li>
-                        <li><a href="<?php echo MapStructureRepositorie::view(); ?>lecture/importlecture.php">Lessen aanmaken/importeren</a></li>
-                    </ul>
-                </li>
-            <?php
-            }
-            if(Auth::user()->can('user')) {
-                ?>
-                <li><a><i class="fa fa-user"></i> Gebruikers <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="<?php echo MapStructureRepositorie::view(); ?>user/allusers.php">Overzicht</a></li>
-                        <li><a href="<?php echo MapStructureRepositorie::view(); ?>user/userAddOption.php">Nieuw gebruiker
+                            invullen</a></li>
+                        </ul>
+                    </li>
+                    <?php
+                }
+                if(Auth::user()->can('lectures')) {
+                    ?>
+                    <li><a><i class="fa fa-university"></i> Lessen <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="<?php echo MapStructureRepositorie::controller(); ?>lecture/lectureController.php?get_all=1">Alle lessen</a></li>
+                            <li><a href="<?php echo MapStructureRepositorie::view(); ?>lecture/importlecture.php">Lessen aanmaken/importeren</a></li>
+                        </ul>
+                    </li>
+                    <?php
+                }
+                if(Auth::user()->can('user')) {
+                    ?>
+                    <li><a><i class="fa fa-user"></i> Gebruikers <span class="fa fa-chevron-down"></span></a>
+                        <ul class="nav child_menu">
+                            <li><a href="<?php echo MapStructureRepositorie::view(); ?>user/allusers.php">Overzicht</a></li>
+                            <li><a href="<?php echo MapStructureRepositorie::view(); ?>user/userAddOption.php">Nieuw gebruiker
                                 aanmaken</a></li>
-                        <li><a href="<?php echo MapStructureRepositorie::view(); ?>user/profilePic.php">Profielfoto</a></li>
-                        <li><a href="<?php echo MapStructureRepositorie::view(); ?>roles/index.php">Rechten</a></li>
-                    </ul>
-                </li>
-            <?php
-            }
-            ?>
-            <?php
-            if(Auth::user()->can('groups')) {
-            ?>
-                <li><a><i class="fa fa-users"></i> Klassen <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="<?php echo MapStructureRepositorie::view(); ?>group/allgroups.php">Overzicht</a></li>
-                    </ul>
-                </li>
-            <?php
-            }
-            if(Auth::user()->can('rooms')) {
-                ?>
-                <li><a><i class="fa fa-map-marker"></i> Lokalen <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu">
-                        <li><a href="<?php echo MapStructureRepositorie::view(); ?>room/index.php">Overzicht</a></li>
-                    </ul>
-                </li>
-            <?php
-            }
-            ?>
-        </ul>
-    </div>
+                                <li><a href="<?php echo MapStructureRepositorie::view(); ?>user/profilePic.php">Profielfoto</a></li>
+                                <li><a href="<?php echo MapStructureRepositorie::view(); ?>roles/index.php">Rechten</a></li>
+                            </ul>
+                        </li>
+                        <?php
+                    }
+                    ?>
+                    <?php
+                    if(Auth::user()->can('groups')) {
+                        ?>
+                        <li><a><i class="fa fa-users"></i> Klassen <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="<?php echo MapStructureRepositorie::view(); ?>group/allgroups.php">Overzicht</a></li>
+                            </ul>
+                        </li>
+                        <?php
+                    }
+                    if(Auth::user()->can('rooms')) {
+                        ?>
+                        <li><a><i class="fa fa-map-marker"></i> Lokalen <span class="fa fa-chevron-down"></span></a>
+                            <ul class="nav child_menu">
+                                <li><a href="<?php echo MapStructureRepositorie::view(); ?>room/index.php">Overzicht</a></li>
+                            </ul>
+                        </li>
+                        <?php
+                    }
+                    ?>
+                </ul>
+            </div>
 
-</div>
+        </div>
