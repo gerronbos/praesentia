@@ -39,6 +39,7 @@ if (isset($_GET['passwordCheck'])) {
     exit;
 }
 if(isset($_POST['csv'])){
+    header('Content-type: text/plain; charset=utf-8');
     if(isset($_FILES['file']['name']))
         $target = MapStructureRepositorie::uploads();
     $target = $target.basename($_FILES['file']['name']);
@@ -61,7 +62,13 @@ if(isset($_POST['csv'])){
     foreach($data as $row){
         $active = 1;
         $lastname = $row['Tussenvoegsel'].' '.$row['Achternaam'];
+        if (!mb_check_encoding($lastname, 'UTF-8')){
+            $lastname = utf8_encode($lastname);
+        }
         $firstname = $row['Roepnaam'];
+        if (!mb_check_encoding($firstname, 'UTF-8')){
+            $firstname = utf8_encode($firstname);
+        }
         $user_number = $row['Stud.nr.'];
         $email = $row['E-mailadres'];
         $password = '123';

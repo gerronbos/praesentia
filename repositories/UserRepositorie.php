@@ -14,7 +14,6 @@ class UserRepositorie extends Repository{
     	$user->user_number = $user_number;
     	$user->email = $email;
     	$user->password = self::makePassword($password);
-        GroupRepository::assignToGroup($data['group_id'],$user->id);
         $user->save();
 
         return $user;
@@ -122,7 +121,9 @@ class UserRepositorie extends Repository{
             $user->password = self::makePassword($data['password']);
         }
         $user->save();
-        GroupRepository::assignToGroup($data['group_id'],$user->id);
+        if(isset($data['group_id'])) {
+            GroupRepository::assignToGroup($data['group_id'], $user->id);
+        }
         if(!isset($data['ignore_notification'])) {
             NotificationRepository::create(Auth::user()->id, $user->id, 'Account gewijzigd.', 1);
         }
