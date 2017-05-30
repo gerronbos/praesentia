@@ -13,7 +13,9 @@ if(!Auth::user()->can('courses')){
 	</div>
 	<div class="x_content">
 		<?php
-		echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller(). 'courses/courseController.php?update=1', 'method' => 'POST']);
+		$course = model\Course::get('course_id');
+
+		echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller(). 'courses/courseController.php?id='.$course->id.'&update=1', 'method' => 'POST']);
 		echo FormRepositorie::text("Vak naam", $course->name, ["name" => "name"]);
 		echo FormRepositorie::text("Jaar", $course->year, ["name" => "year"]);
 		echo FormRepositorie::text("Periode", $course->period, ["name" => "period"]);

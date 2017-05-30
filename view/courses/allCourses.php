@@ -17,6 +17,11 @@ if(!Auth::user()->can('courses')){
 	</div>
 	<div class="x_content">
 		<?php
+
+		if(Services\SessionHandler::has('course_edit')){
+			echo '<div class="col-lg-12"><div class="alert alert-success" role="alert">'.Services\SessionHandler::getAndDelete('course_edit').'</div></div>';
+		}
+
 		$course = model\Course::get('course_id');
 
 		echo 	"<table class='table table-bordered'>";

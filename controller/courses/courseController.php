@@ -9,4 +9,12 @@ if (isset($_GET['create'])) {
 	exit;
 }
 
+if(isset($_GET['update'])){
+  CourseRepository::update($course, $_POST);
+
+  Services\SessionHandler::setSession('course_edit', 'Vak succesvol gewijzigd.');
+  header('location:'.MapStructureRepositorie::view().'courses/allCourses.php');
+  exit;
+}
+
 ?>
