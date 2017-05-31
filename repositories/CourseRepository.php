@@ -23,4 +23,8 @@ class CourseRepositorie extends Repository
 		return $course;
 	}
 
+	public function delete($course){
+        $course->delete();
+    }
+
 }
