@@ -32,7 +32,6 @@ else {
 			</div>
 		</div>
 		<ul class="nav navbar-right panel_toolbox"></ul>
-		<div class="clearfix"></div>
 	</div>
 	<div class="x_content">
 		<?php

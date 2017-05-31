@@ -50,6 +50,9 @@ Dropzone.autoDiscover = false;
             console.log("Successfully uploaded :" + imgName);
             NProgress.done();
         },
+        queuecomplete: function() {
+            alert("Importeren is succesvol gelukt.");
+        },
         error: function (file, response) {
             file.previewElement.classList.add("dz-error");
         }
