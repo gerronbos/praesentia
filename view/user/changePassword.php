@@ -50,7 +50,7 @@ if(!Auth::user()->can('user')){
 					?>
 					<div class="row">
 						<div class="col-sm-12">
-							<span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Wachtwoorden Komen Overeen
+							<span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Wachtwoorden komen overeen
 						</div>
 					</div><br>
 					<?php

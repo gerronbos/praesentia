@@ -15,7 +15,7 @@ if (!Auth::user()->can('import')) {
         <div class="row" style="text-align: center">
             <div class="col-lg-4">
                 <span class="fa fa-users fa-5x" style="font-size: 150px; margin-bottom: 1%"></span>
-                <a href="<?php echo MapStructureRepositorie::view(); ?>user/userAddOption.php" class="btn btn-primary btn-block">Gebruikers updaten</a>
+                <a href="<?php echo MapStructureRepositorie::view(); ?>user/userAddOption.php" class="btn btn-primary btn-block">Gebruikers bijwerken</a>
             </div>
             <div class="col-lg-4">
                 <span class="fa fa-calendar fa-5x" style="font-size: 150px; margin-bottom: 1%"></span>
@@ -23,7 +23,7 @@ if (!Auth::user()->can('import')) {
             </div>
             <div class="col-lg-4">
                 <span class="fa fa-camera-retro fa-5x" style="font-size: 150px; margin-bottom: 1%"></span>
-                <a href="<?php echo MapStructureRepositorie::view(); ?>user/profilePic.php" class="btn btn-primary btn-block">Profiel fotos updaten</a>
+                <a href="<?php echo MapStructureRepositorie::view(); ?>user/profilePic.php" class="btn btn-primary btn-block">Profiel fotos bijwerken</a>
             </div>
         </div>
     </div>
