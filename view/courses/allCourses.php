@@ -37,7 +37,7 @@ if(!Auth::user()->can('courses')){
 			<td>".$course->name."</td>
 			<td>".$course->year."</td>
 			<td>".$course->period."</td>
-			<td><a href='".MapStructureRepositorie::view()."courses/editCourse.php'class='btn btn-primary'>Wijzigen</a>
+			<td><a href='".MapStructureRepositorie::view()."courses/editCourse.php?course_id=".$course->id."'class='btn btn-primary'>Wijzigen</a>
 			<a href='".MapStructureRepositorie::controller()."courses/courseController.php?delete_course=1&course_id=$course->id' class='btn btn-danger'>Verwijderen</a>
 			</tr>";
 		}

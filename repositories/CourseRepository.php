@@ -13,19 +13,14 @@ class CourseRepositorie extends Repository
 		return $course;
 	}
 
-	public function update($course ,$data = array()){
-        if (isset($data['name'])) {
-            $course->name = $data['name'];
-        }
-        if (isset($data['year'])) {
-            $course->year = $data['year'];
-        }
-        if (isset($data['period'])) {
-            $course->period = $data['period'];
-        }
-        $course->save();
+	public function update($course, $name, $year, $period){
 
-        return $course;
-    }
+		$course->name = $_POST['name'];
+		$course->year = $_POST['year'];
+		$course->period = $_POST['period'];
+		$course->save();
+
+		return $course;
+	}
 
 }

@@ -13,7 +13,7 @@ if(!Auth::user()->can('courses')){
 	</div>
 	<div class="x_content">
 		<?php
-		$course = model\Course::get('course_id');
+		$course = model\Course::find($_GET['course_id']);
 
 		echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller(). 'courses/courseController.php?id='.$course->id.'&update=1', 'method' => 'POST']);
 		echo FormRepositorie::text("Vak naam", $course->name, ["name" => "name"]);

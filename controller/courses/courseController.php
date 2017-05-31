@@ -10,7 +10,8 @@ if (isset($_GET['create'])) {
 }
 
 if(isset($_GET['update'])){
-  CourseRepository::update($course, $_POST);
+	$course = model\Course::find($_GET['id']);
+  CourseRepositorie::update($course, $_POST['name'], $_POST['year'], $_POST['period']);
 
   Services\SessionHandler::setSession('course_edit', 'Vak succesvol gewijzigd.');
   header('location:'.MapStructureRepositorie::view().'courses/allCourses.php');
