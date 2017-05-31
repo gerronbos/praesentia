@@ -15,7 +15,7 @@ if (!Auth::user()->can('import')) {
 		<div style="text-align: center;">
 			<?php
 
-			echo "<a href='".MapStructureRepositorie::view()."user/createuser.php' class='btn btn-primary'>Enkel gebruiker toevoegen</a>";
+			echo "<a href='".MapStructureRepositorie::view()."user/createuser.php' class='btn btn-primary'>Enkele gebruiker toevoegen</a>";
 			echo "<h3 style='text-align: center'>Of</h3>";
 
 		/*echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller(). 'user/userController.php', 'file'=> 1, 'method' => 'POST']);
