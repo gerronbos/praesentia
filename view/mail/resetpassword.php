@@ -85,7 +85,7 @@ Licensed under MIT
                             <!-- padding -->
                             <table width="90%" border="0" cellspacing="0" cellpadding="0">
                                 <tr><td align="right">
-                                        <img src="'.MapStructureRepositorie::view().'images/wf-logo-sm.png" alt="Windesheim Flevoland">
+                                        <img src="cid:wf-logo-sm.png" alt="Windesheim Flevoland">
 
                                     </td>
                                     <td align="right">

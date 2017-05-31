@@ -71,6 +71,7 @@ class UserRepositorie extends Repository{
         $text = str_replace('::fullname::',$user->fullname(),$text);
         $text = str_replace('::email::',$user->email,$text);
         $text = str_replace('::password::',$password,$text);
+        $mail->addImages($_SERVER['DOCUMENT_ROOT'].'/view/images/wf-logo-sm.png');
         $mail->setBody($text);
 
         $mail->send();

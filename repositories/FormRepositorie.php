@@ -183,8 +183,17 @@ class FormRepositorie extends Repository{
             $itemlist = "";
             foreach($this->list as $key=>$l){
                 $itemlist .= "<option value='$key'";
-                if(strval($this->value) == strval($key)){
-                    $itemlist .= "selected";
+                if(is_array($this->value)){
+                    foreach($this->value as $value){
+                        if(strval($value) == strval($key)){
+                            $itemlist .= "selected";
+                        }
+                    }
+                }
+                else {
+                    if (strval($this->value) == strval($key)) {
+                        $itemlist .= "selected";
+                    }
                 }
                 $itemlist .= ">$l</option>";
             }

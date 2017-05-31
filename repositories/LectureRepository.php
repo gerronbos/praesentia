@@ -57,10 +57,26 @@ class LectureRepository extends Repository{
     }
 
     public function assign($group,$lecture){
+        if(is_object($group)){
+            $group = $group->id;
+        }
+        if(is_object($lecture)){
+            $lecture = $lecture->id;
+        }
         $lhg = new Lecture_has_groups();
-        $lhg->group_id = $group->id;
-        $lhg->lecture_id = $lecture->id;
+        $lhg->group_id = $group;
+        $lhg->lecture_id = $lecture;
         $lhg->save();
+    }
+    public function deleteGroupConnection($group,$lecture){
+        if(is_object($group)){
+            $group = $group->id;
+        }
+        if(is_object($lecture)){
+            $lecture = $lecture->id;
+        }
+        $lecture_has_groups = Lecture_has_groups::where('group_id','=',$group)->where('lecture_id','=',$lecture)->first();
+        $lecture_has_groups->delete();
     }
 
     public function edit(Lecture $lecture,$date, $start_time, $end_time, $room_id, $course_id, $user_id){
@@ -70,6 +86,7 @@ class LectureRepository extends Repository{
         $lecture->room_id = $room_id;
         $lecture->course_id = $course_id;
         $lecture->user_id = $user_id;
+
 
         $lecture->save();
 

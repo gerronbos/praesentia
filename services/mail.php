@@ -15,6 +15,7 @@ class Mail{
     private $subject = '';
     private $body = '';
     private $send_to = [];
+    private $images = [];
 
 
 
@@ -37,6 +38,11 @@ class Mail{
             return self::init()->setBody($body);
         }
         return $this;
+    }
+
+    public function addImages($image)
+    {
+        $this->images[] = $image;
     }
 
     public function setSubject($subject)
@@ -84,8 +90,12 @@ class Mail{
         $mail->Subject = $this->subject;
         $mail->Body    = $this->body;
         $mail->addAddress(implode(',',$this->send_to));
-
+        foreach($this->images as $image){
+            $mail->AddEmbeddedImage($image, basename($image), basename($image));
+        }
         $mail->send();
+        exit;
+
 
     }
 
