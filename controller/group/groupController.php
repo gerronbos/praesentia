@@ -5,7 +5,16 @@ if (!Auth::user()->can('groups')) {
     exit;
 }
 	if(isset($_GET['create'])){
+		$group_exists = model\Group::where('name','=',$_POST['name'])->first();
+        
+        if($group_exists->active==1){
+        	Services\SessionHandler::setSession('inputdata', $_POST);
+            Services\SessionHandler::setSession('group_exists_or_active', 'Groep bestaat al en/of is ingesteld als actief.');
+            header("location:".MapStructureRepositorie::view()."group/creategroup.php");
+            exit;
+        }elseif($group_exists->active==0){
 		GroupRepository::create($_POST['name'],$_POST['school_year'],$_POST['period'],$_POST['education_id']);
+		}
 
 		Services\SessionHandler::setSession('group_add_succes', 'Groep succesvol toegevoegd.');
 		header("location:".MapStructureRepositorie::view()."group/allgroups.php");

@@ -21,6 +21,11 @@ $group = model\Group::find(Services\SessionHandler::getSession('group_data'));
 		echo FormRepositorie::text('Naam', $group->name,['name'=>'name', 'required' => 1]);
 		echo FormRepositorie::text('Schooljaar', $group->school_year, ['name'=>'school_year', 'required' => 1]);
 		echo FormRepositorie::text('Periode', $group->period, ['name'=>'period', 'required' => 1]);
+		if($group->active==0){
+			echo FormRepositorie::checkbox('Status', ['Groep is actief'=>1], ['checked' => 1]);
+		}else{
+			echo FormRepositorie::checkbox('Status', ['Groep is actief'=>1], ['Groep is actief'], ['checked' => 1]);
+		}
 		echo FormRepositorie::formSaveButton("javascript:history.back()");
 		echo FormRepositorie::closeForm();
 		?>

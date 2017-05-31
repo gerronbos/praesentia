@@ -8,10 +8,11 @@ class GroupRepository extends Repository{
         $group->name = $name;
         $group->school_year = $school_year;
         $group->period = $period;
+        $group->active = 1;
         $group->save();
 
         return $group;
-    }
+        }
 
     public function delete($group){
         foreach(model\Group_has_users::where('group_id','=',$group->id)->get() as $g){
@@ -29,6 +30,12 @@ class GroupRepository extends Repository{
         }
         if (isset($data['period'])) {
             $group->period = $data['period'];
+        }
+        if (!isset($data['Status'])){
+            $group->active = 0;
+        }
+        if (isset($data['Status'])){
+            $group->active = 1;
         }
         $group->save();
     }
