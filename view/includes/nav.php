@@ -30,6 +30,16 @@
                 </li>
             <?php
             }
+            if (Auth::user()->can('courses')) {
+                ?>
+                <li>
+                    <a><i class="fa fa-book"></i> Vakken <span class="fa fa-chevron-down"></span></a>
+                    <ul class="nav child_menu">
+                        <li><a href="<?php echo MapStructureRepositorie::view(); ?>courses/allCourses.php">Alle Vakken</a></li>
+                    </ul>
+                </li>
+                <?php
+            }
             if(Auth::user()->can('user')) {
                 ?>
                 <li><a><i class="fa fa-user"></i> Gebruikers <span class="fa fa-chevron-down"></span></a>

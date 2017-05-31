@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Auth' => $baseDir . '/services/auth.php',
     'ConfigRepositorie' => $baseDir . '/repositories/ConfigRepositorie.php',
+    'CourseRepositorie' => $baseDir . '/repositories/CourseRepository.php',
     'EasyPeasyICS' => $vendorDir . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
     'FormRepositorie' => $baseDir . '/repositories/FormRepositorie.php',
     'GroupRepository' => $baseDir . '/repositories/GroupRepository.php',

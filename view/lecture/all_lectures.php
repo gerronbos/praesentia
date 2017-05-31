@@ -26,7 +26,7 @@ else {
                 else{
                     echo "<a href='" . MapStructureRepositorie::view() . "lecture/all_lectures.php' class='btn btn-primary' style='float: right'>Verberg oude lessen</a>";
                 }
-                echo "<a href='".MapStructureRepositorie::view()."lecture/importlecture.php' class='btn btn-primary' style='float: right'>Nieuwe Les</a>";
+                echo "<a href='".MapStructureRepositorie::view()."lecture/createlecture.php' class='btn btn-primary' style='float: right'>Nieuwe Les</a>";
 				echo "</div>";
 				?>
 			</div>
