@@ -39,6 +39,7 @@ class ComposerStaticInitcd537467c5ba460042f21d53039c1010
     public static $classMap = array (
         'Auth' => __DIR__ . '/../..' . '/services/auth.php',
         'ConfigRepositorie' => __DIR__ . '/../..' . '/repositories/ConfigRepositorie.php',
+        'CourseRepositorie' => __DIR__ . '/../..' . '/repositories/CourseRepository.php',
         'EasyPeasyICS' => __DIR__ . '/..' . '/phpmailer/phpmailer/extras/EasyPeasyICS.php',
         'FormRepositorie' => __DIR__ . '/../..' . '/repositories/FormRepositorie.php',
         'GroupRepository' => __DIR__ . '/../..' . '/repositories/GroupRepository.php',
