@@ -28,7 +28,7 @@ if (!Auth::user()->can('groups')) {
 
 		echo "<table class='table table-bordered'><tr><th>Naam</th><th>Schooljaar</th><th>Periode</th><th>Actief</th><th>Opties</th></tr>";
 		foreach (model\Group::orderBy('name','asc')->get() as $group) {
-			echo "<tr><td>".$group->name."</td><td>$group->school_year</td><td>$group->period</td><td>$group->active</td><td>
+			echo "<tr><td>".$group->name."</td><td>$group->school_year</td><td>$group->period</td><td>".trueorfalse($group->active)."</td><td>
 			<a href='".MapStructureRepositorie::controller()."group/groupController.php?update_view=1&group_id=$group->id' class='btn btn-primary'>Wijzigen</a>
 			<button group_id='$group->id' class='btn btn-danger delete_group'>Verwijderen</button>
 			<a href='".MapStructureRepositorie::view()."group/groupProfile.php?group_id=$group->id' class='btn btn-info'>Weergeven</a>
