@@ -11,6 +11,7 @@ else {
     $lectures = LectureRepository::get()->where('date', '>=', date('Y-m-d'))->get();
 }
 ?>
+
 <div class="x_panel">
 	<div class="x_title">
 		<div class="col-lg-12">
@@ -18,21 +19,23 @@ else {
 				<div class="col-lg-7">
 					<h2>Lessen </h2>
 				</div>
-				<?php
-				echo "<div class='col-lg-5'>";
-                if(!isset($_GET['show_all'])) {
-                    echo "<a href='" . MapStructureRepositorie::view() . "lecture/all_lectures.php?show_all=1' class='btn btn-primary' style='float: right'>Laat Alle lessen zien</a>";
-                }
-                else{
-                    echo "<a href='" . MapStructureRepositorie::view() . "lecture/all_lectures.php' class='btn btn-primary' style='float: right'>Verberg oude lessen</a>";
-                }
-                echo "<a href='".MapStructureRepositorie::view()."lecture/createlecture.php' class='btn btn-primary' style='float: right'>Nieuwe Les</a>";
-				echo "</div>";
-				?>
+                <div class='col-lg-5'>
+                    <?php
+                    if(!isset($_GET['show_all'])) {
+                        echo "<a href='" . MapStructureRepositorie::view() . "lecture/all_lectures.php?show_all=1' class='btn btn-primary' style='float: right'>Laat Alle lessen zien</a>";
+                    }
+                    else{
+                        echo "<a href='" . MapStructureRepositorie::view() . "lecture/all_lectures.php' class='btn btn-primary' style='float: right'>Verberg oude lessen</a>";
+                    }
+                    echo "<a href='".MapStructureRepositorie::view()."lecture/createlecture.php' class='btn btn-primary' style='float: right'>Nieuwe Les</a>";
+                    ?>
+                </div>
 			</div>
 		</div>
 		<ul class="nav navbar-right panel_toolbox"></ul>
-	</div>
+        <div class="clearfix"></div>
+
+    </div>
 	<div class="x_content">
 		<?php
 		if(Services\SessionHandler::has('delete_lecture')){
