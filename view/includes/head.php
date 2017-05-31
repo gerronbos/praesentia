@@ -94,7 +94,7 @@
                         <span class=" fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">
-                        <li><a href="<?php echo MapStructureRepositorie::controller()."user/userController.php?show=1&user_id=".Auth::user()->id; ?>"> Profile</a></li>
+                        <li><a href="<?php echo MapStructureRepositorie::controller()."user/userController.php?show=1&user_id=".Auth::user()->id; ?>"> Profiel</a></li>
                         <li>
                             <a href="<?php echo MapStructureRepositorie::view(); ?>user/changePassword.php">
                                 Wachtwoord veranderen

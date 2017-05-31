@@ -7,14 +7,13 @@ if(Services\SessionHandler::has('alert_roles')){
 
 <div class="x_panel">
     <div class="x_title">
-        <h2>Rechten sjabloon</h2>
-        <a href="<?php echo MapStructureRepositorie::view()?>roles/new.php" class="btn btn-primary pull-right">Nieuwe lokaal toevoegen</a>
+        <h2>Lokaal toevoegen</h2>
         <ul class="nav navbar-right panel_toolbox"></ul>
         <div class="clearfix"></div>
     </div>
     <div class="x_content">
         <?php echo FormRepositorie::openForm(['method'=>'POST','send_type'=>'create','url'=>MapStructureRepositorie::controller().'room/roomController.php']); ?>
-        <?php echo FormRepositorie::text('Number','',['name'=>'number']); ?>
+        <?php echo FormRepositorie::text('Lokaalnummer','',['name'=>'number']); ?>
         <?php echo FormRepositorie::textarea('Locatie','',['name'=>'locatie']); ?>
         <?php echo FormRepositorie::formSaveButton("javascript:history.back()"); ?>
         <?php echo FormRepositorie::closeForm(); ?>
