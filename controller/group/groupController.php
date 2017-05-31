@@ -7,7 +7,7 @@ if (!Auth::user()->can('groups')) {
 	if(isset($_GET['create'])){
 		$group_exists = model\Group::where('name','=',$_POST['name'])->first();
         
-        if($group_exists->name == $_POST['name']){
+        if($group_exists->name == $_POST['name'] && $group_exists->active==1){
         	Services\SessionHandler::setSession('inputdata', $_POST);
             Services\SessionHandler::setSession('group_exists_or_active', 'Groep bestaat al.');
             header("location:".MapStructureRepositorie::view()."group/creategroup.php");
