@@ -99,13 +99,23 @@ if(isset($_GET['edit_lecture'])){
 
 }
 if(isset($_POST['edit_lecture'])){
-    $lecture = LectureRepository::create($_POST['date'], $_POST['start_time'], $_POST['end_time'], $_POST['room_id'], $_POST['course_id'], $_POST['user_id']);
-    foreach ($_POST['groups'] as $g){
-        $group = model\Group::find($g);
-        LectureRepository::assign($group,$lecture);
+    $lecture = model\Lecture::find($_POST['lecture_id']);
+    $lecture = LectureRepository::edit($lecture,$_POST['date'], $_POST['start_time'], $_POST['end_time'], $_POST['room_id'], $_POST['course_id'], $_POST['user_id']);
+    $connected_group_ids = model\Lecture_has_groups::where('lecture_id','=',$lecture->id)->groupBy('group_id')->lists('group_id');
+    foreach($connected_group_ids as $cgi){
+        if(!in_array($cgi,$_POST['groups'])){
+            LectureRepository::deleteGroupConnection($cgi,$lecture);
+        }
     }
-    header('location: '.MapStructureRepositorie::view().'lecture/all_lectures.php?q='.$q);
-    exit;
+    foreach($_POST['groups'] as $g){
+        if(!in_array($g,$connected_group_ids)){
+            LectureRepository::assign($g,$lecture);
+        }
+    }
+
+    Services\SessionHandler::setSession('edit_lecture',$_POST['lecture_id']);
+    header("location:".MapStructureRepositorie::view().'lecture/editlecture.php');
+
 }
 
 if (isset($_GET['delete_lecture'])) {

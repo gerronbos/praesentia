@@ -5,6 +5,14 @@ if (!Auth::user()->can('lectures')) {
     exit;
 }
 	$lecture = model\Lecture::find(Services\SessionHandler::getSession('edit_lecture'));
+$groups = model\Group::lists('name','id');
+$rooms = model\Room::lists('number','id');
+$courses = model\Course::lists('name','id');
+$users_list = UserRepositorie::getUsersByRole('presence')->get();
+$users = [];
+foreach($users_list as $user){
+    $users[$user->id] = "($user->user_number) ".$user->fullname().", ".$user->Roles()->title;
+}
 	?>
 	<div class="x_panel">
 		<div class="x_title">
@@ -16,15 +24,16 @@ if (!Auth::user()->can('lectures')) {
 	<?php
 
 
-	echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller(). 'lecture/lectureController.php', 'method' => 'POST','send_type'=>'update']);
-	echo FormRepositorie::text('Datum', $lecture->date,['name'=>'date']);
-	echo FormRepositorie::text('Begintijd', $lecture->start_time, ['name'=>'start_time']);
-	echo FormRepositorie::text('Eindtijd', $lecture->end_time, ['name'=>'end_time']);
-	echo FormRepositorie::text('Kamernummer', $lecture->room_id, ['name'=>'room_id']);
-	echo FormRepositorie::text('Vak', $lecture->Course()->name, ['name'=>'vak']);
-	echo FormRepositorie::text('Docentnummer', $lecture->User()->number, ['name'=>'user_id']);
-	echo FormRepositorie::text('Groep', '', ['name'=>'groups']);
-	echo FormRepositorie::formSaveButton("javascript:history.back()");
+	echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller(). 'lecture/lectureController.php', 'method' => 'POST','send_type'=>'edit_lecture']);
+    echo "<input type='hidden' name='lecture_id' value='$lecture->id'>";
+    echo FormRepositorie::text('Selecteer datum',$lecture->date,['id'=>'datetimepicker','name'=>'date']);
+    echo FormRepositorie::text('Begintijd', $lecture->start_time, ['name'=>'start_time', 'placeholder' => '00:00']);
+    echo FormRepositorie::text('Eindtijd', $lecture->end_time, ['name'=>'end_time', 'placeholder' => '00:00']);
+    echo FormRepositorie::select2('Kamernummer',$rooms, $lecture->room_id, ['name'=>'room_id']);
+    echo FormRepositorie::select2('Vak',$courses, $lecture->course_id, ['name'=>'course_id','class'=>'select2']);
+    echo FormRepositorie::select2('Docent',$users, $lecture->user_id, ['name'=>'user_id','class'=>'select2']);
+    echo FormRepositorie::select2('Groep',$groups, $lecture->Groups(['no_get'=>1])->lists('id'), ['name'=>'groups[]','class'=>'select2','multiple'=>1]);
+    echo FormRepositorie::formSaveButton("javascript:history.back()");
 	echo FormRepositorie::closeForm();
 ?>
 		</div>
