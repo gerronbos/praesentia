@@ -7,7 +7,7 @@ if(Services\SessionHandler::has('alert_roles')){
 
 <div class="x_panel">
     <div class="x_title">
-        <h2>Rechten sjabloon</h2>
+        <h2>Lokaal toevoegen</h2>
         <ul class="nav navbar-right panel_toolbox"></ul>
         <div class="clearfix"></div>
     </div>
