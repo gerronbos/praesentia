@@ -60,10 +60,10 @@ include_once('../includes/footer.php');
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				<h4 class="modal-title text-center">Gebruiker Verwijderen</h4>
+				<h4 class="modal-title text-center">Vak Verwijderen</h4>
 			</div>
 			<div class="modal-body">
-				<p class="text-center">Weet u zeker dat u de gebruiker wilt verwijderen?</p>
+				<p class="text-center">Weet u zeker dat u dit vak wilt verwijderen?</p>
 			</div>
 			<div class="modal-footer">
 				<a href="#" data-dismiss="modal" class="btn btn-danger">Nee</a>

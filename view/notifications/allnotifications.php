@@ -3,6 +3,7 @@
 ?>
 
 <!-- <a href="createnotification.php" class="btn btn-primary">Nieuw bericht</a> -->
+<div class="clearfix"></div>
 
 <div class="list-group">
 <?php
@@ -21,6 +22,7 @@ foreach(NotificationRepository::get(Auth::user()->id)->orderBy('id','DESC')->get
 }
 ?>
 </div>
+<div class="clearfix"></div>
 
 <?php
     include_once('../includes/footer.php');

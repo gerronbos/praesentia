@@ -194,9 +194,14 @@ class PresenceRepository extends Repository{
                 where('lecture_has_groups.group_id','=',$group->id)->
                 select('lectures.*')->
                 lists('id');
+            $amount_lectures = 0;
+            $amount_lectures_present = 0;
+            $amount_lectures_present_prec = 0;
             $amount_lectures = count(Presence::whereIn('lecture_id',$lecture_ids)->get());
             $amount_lectures_present = count(Presence::whereIn('lecture_id',$lecture_ids)->where('present','=',1)->get());
-            $amount_lectures_present_prec = number_format( 100/ $amount_lectures * $amount_lectures_present,0);
+            if($amount_lectures > 0 && $amount_lectures_present > 0) {
+                $amount_lectures_present_prec = number_format(100 / $amount_lectures * $amount_lectures_present, 0);
+            }
             if($amount_lectures > 0) {
                 $return[$course->id] = [
                     'title' => $course->name,
@@ -207,10 +212,7 @@ class PresenceRepository extends Repository{
             }
 
 
-            $lecture_ids = 0;
-            $amount_lectures = 0;
-            $amount_lectures_present = 0;
-            $amount_lectures_present_prec = 0;
+
 
         }
         return $return;

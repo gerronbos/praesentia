@@ -44,14 +44,14 @@ $data2 = PresenceRepository::getByCourse(model\Course::find(1),['group_id'=>48])
 								echo progressBar($data['amount_present_prec'],['item_id'=>$user->id])."</tr>";
 						}
 						?>
-					</table>
-					<a target="_blank" href="<?php echo MapStructureRepositorie::Controller() ?>pdfController.php?GroupSummary=1&gid=<?php echo $group->id ?>" class="btn btn-primary pull-right"><i class="fa fa-download"></i> Opslaan als PDF</a>
-				</div>
+                        </table>
+					    <a target="_blank" href="<?php echo MapStructureRepositorie::Controller() ?>pdfController.php?GroupSummary=1&gid=<?php echo $group->id ?>" class="btn btn-primary pull-right"><i class="fa fa-download"></i> Opslaan als PDF</a>
+				    </div>
 
-			</div>
-		</div>
-	</div>
-
+			    </div>
+		    </div>
+	    </div>
+    </div>
 </div>
 
 

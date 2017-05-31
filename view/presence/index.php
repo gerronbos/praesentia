@@ -27,6 +27,7 @@ $lectures = model\Lecture::where('user_id','=',Auth::user()->id)->where('date','
 
     </table>
 </div>
+<div class="clearfix"></div>
 
 <?php
 include_once('../includes/footer.php');
