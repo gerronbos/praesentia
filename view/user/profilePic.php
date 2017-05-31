@@ -7,7 +7,7 @@ if (!Auth::user()->can('import')) {
 ?>
 <div class="x_panel">
     <div class="x_titel">
-        <h2>Profiel fotos uploaden</h2>
+        <h2>Profiel foto`s uploaden</h2>
         <ul class="nav navbar-right panel_toolbox"></ul>
         <div class="clearfix"></div>
     </div>
