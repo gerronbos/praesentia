@@ -29,7 +29,7 @@ $user_data = $return['presence_data'];
         ?>
         <table class="table table-bordered">
     <tr>
-        <th></th><th>Naam</th><th>Student nummer</th><th>klas</th><th>Aanwezig</th>
+        <th></th><th>Naam</th><th>Studentnummer</th><th>Klas</th><th>Aanwezig</th>
     </tr>
     <?php
     foreach(UserRepositorie::getWithGroupsByIds($user_ids) as $users){
