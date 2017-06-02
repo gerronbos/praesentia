@@ -251,7 +251,7 @@ class PresenceRepository extends Repository{
 
         if($return['amount_users'] > 0){
             if($return['amount_present'] > 0){
-                $return['amount_present_perc'] = round(100 / $return['amount_users'] * $return['amount_present'],0);
+                $return['amount_present_perc'] = round(100 / $return['amount_users'] * $return['amount_present'],0) ;
             }
             else{
                 $return['amount_present_perc'] = 0;
