@@ -73,7 +73,7 @@ $user = model\Users::where('id','=',$upr->user_id)->first();
 						</div>
 					</div><br>
 					<?php
-					echo FormRepositorie::formSaveButton("javascript:history.back()");
+					echo FormRepositorie::formSaveButton(MapStructureRepositorie::view(). "login.php");
 					echo FormRepositorie::closeForm();
 					?>
 				</div><!--/col-sm-6--> 
