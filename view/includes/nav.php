@@ -35,7 +35,8 @@
                 <li>
                     <a><i class="fa fa-book"></i> Vakken <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                        <li><a href="<?php echo MapStructureRepositorie::view(); ?>courses/allCourses.php">Alle Vakken</a></li>
+                        <li><a href="<?php echo MapStructureRepositorie::view(); ?>courses/allCourses.php">Alle vakken</a></li>
+                        <li><a href="<?php echo MapStructureRepositorie::view(); ?>courses/presenceCourses.php">Vakken presentie</a></li>
                     </ul>
                 </li>
                 <?php

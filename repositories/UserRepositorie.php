@@ -7,15 +7,33 @@ class UserRepositorie extends Repository{
         return User::find($id);
     }
 
-    public function create($firstname, $lastname, $user_number, $email, $password){
+    public function create($firstname, $lastname, $user_number, $email, $password=null){
     	$user = new User();
     	$user->firstname = $firstname;
     	$user->lastname = $lastname;
     	$user->user_number = $user_number;
     	$user->email = $email;
+        if (is_null($password)){
+            $password = self::generateRandomPassword();
+        }
     	$user->password = self::makePassword($password);
         $user->actie = 1;
         $user->save();
+
+        $mail = new Services\Mail();
+        $mail->setSendTo($user->email);
+        $mail->setSubject('Aangemeld op praesentia');
+
+        $text = include_once($_SERVER['DOCUMENT_ROOT'].'/view/mail/register.php');
+        $text = str_replace('::fullname::',$user->fullname(),$text);
+        $text = str_replace('::email::',$user->email,$text);
+        $text = str_replace('::password::',$password,$text);
+        $mail->addImages($_SERVER['DOCUMENT_ROOT'].'/view/images/wf-logo-sm.png');
+        $mail->setBody($text);
+
+        $mail->send();
+
+
 
         return $user;
 
