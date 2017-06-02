@@ -50,34 +50,10 @@ include_once('../includes/footer.php');
 		});
 	});
 	
-	function setRows(){
-		var date = $('#datetimepicker').val();
-		var table = '';
-		
+
 
 		$('#datetimepicker').datepicker({
 			dateFormat:"yy-mm-dd"
 		});
 
-		$('.save_modal').click(function(){
-			var form = document.getElementById('form');
-			var input = document.createElement('input');
-			input.type = 'hidden';
-			input.name = 'reason';
-			input.className = 'form_input';
-			input.setAttribute('value',$('#reason').val());
-
-			var input_user = document.createElement('input');
-			input_user.type = 'hidden';
-			input_user.name = 'user';
-			input_user.className = 'form_input';
-			input_user.setAttribute('value',user_id);
-
-			$('.form_input').remove();
-
-			form.appendChild(input);
-			form.appendChild(input_user);
-
-			form.submit();
-		});
 	</script>
