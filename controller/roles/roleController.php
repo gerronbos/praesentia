@@ -38,6 +38,45 @@ if(isset($_POST['delete'])){
     exit;
 }
 
+if(isset($_POST['assignToRole'])){
+
+    foreach($_POST['users'] as $user_id){
+    $user_role = \model\UserRoles::where('user_id','=',$user_id)->first();
+    $role = \model\Role::find($_POST['role_id']);
+
+    if(!$user_role){
+        $user_role = new model\UserRoles();
+    }
+    $user_role->user_id = $user_id;
+    if($role->users){
+        $user_role->user = 1;
+    }
+    if($role->presence){
+        $user_role->presence = 1;
+    }
+    if($role->lectures){
+        $user_role->lectures = 1;
+    }
+    if($role->groups){
+        $user_role->groups = 1;
+    }
+    if($role->courses){
+        $user_role->courses = 1;
+    }
+    if($role->rooms){
+        $user_role->rooms = 1;
+    }
+    if($role->import){
+        $user_role->import = 1;
+    }
+
+    if(is_null($user_role->title)){$user_role->title = $role->title;}else{$user_role->title = $user_role->title.', '.$role->title;}
+    $user_role->save();
+    header("location:".MapStructureRepositorie::view()."roles/index.php");
+    exit;
+    }
+}
+
 if(isset($_GET['user_roles'])){
 
     $user_role = new \model\UserRoles();
