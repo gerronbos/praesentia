@@ -44,6 +44,7 @@ include_once('../build/app.php');
                 <?php echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller().'loginController.php?forgotPassword=1','method'=>'POST']); ?>
                     <h1>Wachtwoord vergeten</h1>
                     <p>Voer uw e-mail adres in om verder te gaan met dit proces.</p>
+					<p>Controleer uw spambox als u de mail niet in de inbox krijgt.</p>
                     <div>
                         <input type="text" name="email" class="form-control" placeholder="E-mail" required="" />
                     </div>
