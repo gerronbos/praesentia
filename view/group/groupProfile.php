@@ -68,6 +68,8 @@ $data = PresenceRepository::calcPresenceByGroup($group);
 
 		echo "labels.push('".$d['title']."');";
 		echo "data.push('".$d['amount_present_prec']."');";
+
+
 	}
 	?>
 	var canvas = document.getElementById("myChart");
@@ -77,17 +79,18 @@ $data = PresenceRepository::calcPresenceByGroup($group);
 		data: {
 			labels: labels,
 			datasets: [{
-				backgroundColor: [
-				"#2ecc71",
-				"#3498db",
-				"#95a5a6",
-				"#9b59b6",
-				"#f1c40f",
-				"#e74c3c",
-				"#34495e"
-				],
-				data: data
-			}]
+                label:'Procent aanwezig',
+                backgroundColor: [
+                    "#2ecc71",
+                    "#3498db",
+                    "#95a5a6",
+                    "#9b59b6",
+                    "#f1c40f",
+                    "#e74c3c",
+                    "#34495e"
+                ],
+                data: data
+            }]
 		},
 		options: {
 			scales: {
