@@ -20,7 +20,7 @@ $lectures = model\Lecture::where('user_id','=',Auth::user()->id)->where('date','
         </tr>
         <?php
         foreach($lectures as $l){
-            echo "<tr class='lectures'><td>$l->date</td><td>$l->start_time</td><td>$l->end_time</td><td>".$l->Course()->name."</td><td><a href='".MapStructureRepositorie::controller()."presence/presenceController.php?get=1&id=$l->id' class='btn btn-primary'>Aanwezigheid</a></td></tr>";
+            echo "<tr class='lectures'><td>$l->date</td><td>$l->start_time</td><td>$l->end_time</td><td>".$l->Course()->name."</td><td><a href='".MapStructureRepositorie::view().'presence/presenceUsers.php?id='.$l->id."' class='btn btn-primary'>Aanwezigheid</a></td></tr>";
         }
 
         ?>
