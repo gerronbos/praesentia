@@ -8,7 +8,7 @@ include_once('../includes/head.php');
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            <?php echo FormRepositorie::openForm(); ?>
+            <?php echo FormRepositorie::openForm(['method'=>'POST','url'=>MapStructureRepositorie::controller()."roles/roleController.php",'send_type'=>'assignToRole']); ?>
             <input type="hidden" name="role_id" value="<?php echo $_GET['role_id']; ?>">
             <button class="btn btn-primary">Opslaan</button>
             <div class="form-group">
@@ -22,7 +22,7 @@ include_once('../includes/head.php');
                 </tr>
                 <?php
                 foreach(model\Users::get() as $u){
-                    echo "<tr><td><input type='checkbox' id='user_$u->id' name='users[]' value='1'> </td><td>".$u->fullname()."</td></tr>";
+                    echo "<tr><td><input type='checkbox' id='user_$u->id' name='users[]' value='$u->id'> </td><td>".$u->fullname()."</td></tr>";
                 }
 
                 ?>
