@@ -8,7 +8,7 @@ if(!Auth::user()->can('courses')){
 
 <div class="x_panel">
 	<div class="x_title">
-		<h2>Vakken</h2>
+		<h2>Vakken presentie</h2>
 		<?php
 		echo "<a href='".MapStructureRepositorie::view()."courses/newCourse.php' class='btn btn-primary' style='float: right'>Nieuwe vak</a>";
 		?>
