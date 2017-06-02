@@ -1,8 +1,8 @@
 <?php
 use model\User_password_reset as User_password_reset;
 include_once('../../build/app.php');
-
-$upr = model\User_password_reset::where('token','=',$_GET['token'])->first();
+if(isset($_GET['upr'])){$upr = model\User_password_reset::where('id','=',$_GET['upr'])->first();}else{
+$upr = model\User_password_reset::where('token','=',$_GET['token'])->first();}
 $upr_time = strtotime($upr->timestamp);
 $lt1h = strtotime('-1 hour');
 if(is_null($upr) || $upr_time < $lt1h){
@@ -49,6 +49,12 @@ $user = model\Users::where('id','=',$upr->user_id)->first();
 			<div class="row">
 				<div class="col-sm-6 col-sm-offset-3">
 					<?php 	
+					if(Services\SessionHandler::has('user_edit_fail')){
+						echo '<div class="col-lg-12"><div class="alert alert-danger" role="alert">'.Services\SessionHandler::getAndDelete('user_edit_fail').'</div></div>';
+					}
+					if(Services\SessionHandler::has('user_edit_passfail')){
+						echo '<div class="col-lg-12"><div class="alert alert-danger" role="alert">'.Services\SessionHandler::getAndDelete('user_edit_passfail').'</div></div>';
+					}
 					echo FormRepositorie::openForm(['url' => MapStructureRepositorie::controller(). 'user/userController.php?user_id='.$user->id.'&passwordReset=1&upr='.$upr->id, 'file' => 1, 'method' => 'POST']); 
 
 					echo FormRepositorie::password('Nieuw Wachtwoord', '', ['name' => 'password', 'id' => 'password1', 'pattern' => '^(?=(.*\d){1})(?=.*[a-zA-Z])[0-9a-zA-Z!@#$%]{5,}' , 'placeholder' => 'Nieuw Wachtwoord', 'required' => 1]);

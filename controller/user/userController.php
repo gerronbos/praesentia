@@ -121,12 +121,26 @@ if(isset($_POST['jpg'])){
 }
 
 if(isset($_GET['passwordReset'])){
-    UserRepositorie::update($user, $_POST);
-    $upr = model\User_password_reset::where('id','=',$_GET['upr'])->first();
-    $upr->delete();
-    Services\SessionHandler::setSession('user_reset_succes', 'Nieuw wachtwoord toegepast.');
-    header('location:'.MapStructureRepositorie::view().'login.php');
-    exit;
+    if (strlen($_POST['password']) < 6) {
+        Services\SessionHandler::setSession('user_edit_passfail', 'Wachtwoord voldoet niet aan eisen');
+        header('location:'.MapStructureRepositorie::view().'user/resetPassword.php?upr='.$_GET['upr']);
+        exit;
+    }
+
+    elseif ($_POST['password2'] == $_POST['password']){
+        UserRepositorie::update($user, $_POST);
+        $upr = model\User_password_reset::where('id','=',$_GET['upr'])->first();
+        $upr->delete();
+        Services\SessionHandler::setSession('user_reset_succes', 'Nieuw wachtwoord toegepast.');
+        header('location:'.MapStructureRepositorie::view().'login.php');
+        exit;
+    }
+
+    elseif ($_POST['password2'] != $_POST['password']){
+        Services\SessionHandler::setSession('user_edit_fail', 'Wachtwoorden komen niet overeen.');
+        header('location:'.MapStructureRepositorie::view().'user/resetPassword.php?upr='.$_GET['upr']);
+        exit;
+    }  
 }
 
 if(isset($_GET['resetPassword'])){
