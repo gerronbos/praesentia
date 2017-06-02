@@ -14,12 +14,15 @@ if(!Auth::user()->can('user')){
 		<ul class="nav navbar-right panel_toolbox"></ul>
 		<div class="clearfix"></div>
 	</div>
-	<div class="x_content">
-		<?php
+	<?php
 
 		if(Services\SessionHandler::has('user_delete_succes')){
 			echo '<div class="col-lg-12"><div class="alert alert-success" role="alert">'.Services\SessionHandler::getAndDelete('user_delete_succes').'</div></div>';
 		}
+		?>
+	<div class="x_content">
+		
+		<?php
 		
 		echo "<div class='table-responsive'>";
 		echo "<table class='table table-bordered table-responsive'><tr><th>Naam</th><th>Gebruikersnummer</th><th>Email</th><th>Opties</th></tr>";
