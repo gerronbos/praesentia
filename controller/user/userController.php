@@ -58,6 +58,7 @@ if(isset($_POST['csv'])){
         $data[] = array_combine($header,$entry);
     }
     fclose($file);
+    $inserted_user_ids = [];
 
     foreach($data as $row){
         $active = 1;
@@ -80,6 +81,7 @@ if(isset($_POST['csv'])){
         else{
             $user = UserRepositorie::update($user,['ignore_notification'=>1,'firstname'=>$firstname,'lastname'=>$lastname,'email'=>$email]);
         }
+        $inserted_user_ids[] = $user->id;
 
 
         $group = model\Group::where('name','=',$row['Groepsnaam'])->first();
@@ -89,6 +91,12 @@ if(isset($_POST['csv'])){
         }
 
         GroupRepository::assignToGroup(intval($group->id),$user->id);
+    }
+    foreach(model\Users::get() as $user){
+        if(!in_array($user->id,$inserted_user_ids)){
+            $user->active = 0;
+            $user->save();
+        }
     }
     exit;
 }

@@ -7,7 +7,7 @@ class Auth{
     }
     public function login($params,$email,$password)
     {
-        $user = Users::where('email','=',$email)->first();
+        $user = Users::where('email','=',$email)->where('active','=',1)->first();
         if(is_null($user)){
             SessionHandler::setSession('error','Combinatie van wachtwoord en email klopt niet.');
             header('location: '.MapStructureRepositorie::view().'login.php');

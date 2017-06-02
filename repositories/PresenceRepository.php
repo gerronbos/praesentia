@@ -218,6 +218,50 @@ class PresenceRepository extends Repository{
         return $return;
     }
 
+    public function calcPresenceByAllCourses(){
+        $return = [];
+        foreach(Course::get() as $course){
+            $return[$course->id] = [
+                'title' => $course->name,
+                'data' => self::calcPresenceByCourse($course)
+            ];
+        }
+
+        return $return;
+    }
+
+
+    public function calcPresenceByCourse(Course $course)
+    {
+        $lectures = self::getByCourse($course)->lists('id');
+
+        $return = [
+            'amount_users' => 0,
+            'amount_present' => 0,
+            'amount_present_perc' => 0
+        ];
+        foreach(Presence::whereIn('lecture_id',$lectures)->get() as $present){
+            $return['amount_users']++;
+            if($present->present){
+                $return['amount_present']++;
+            }
+        }
+
+        if($return['amount_users'] > 0){
+            if($return['amount_present'] > 0){
+                $return['amount_present_perc'] = 100 / $return['amount_users'] * $return['amount_present'];
+            }
+            else{
+                $return['amount_present_perc'] = 0;
+            }
+        }
+        else{
+            $return['amount_present_perc'] = 100;
+        }
+
+        return $return;
+    }
+
     public function getByCourse($course, $params = array())
     {
         $lecture = Lecture::join('courses','id','course_id');

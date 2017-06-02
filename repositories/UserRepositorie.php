@@ -14,6 +14,7 @@ class UserRepositorie extends Repository{
     	$user->user_number = $user_number;
     	$user->email = $email;
     	$user->password = self::makePassword($password);
+        $user->actie = 1;
         $user->save();
 
         return $user;
@@ -121,6 +122,9 @@ class UserRepositorie extends Repository{
         if (isset($data['password'])) {
             $user->password = self::makePassword($data['password']);
         }
+        if (isset($data['active'])) {
+            $user->active = $data['active'];
+        }
         $user->save();
         if(isset($data['group_id'])) {
             GroupRepository::assignToGroup($data['group_id'], $user->id);
@@ -153,5 +157,16 @@ class UserRepositorie extends Repository{
         $users->select('users.*');
         return $users;
 
+    }
+
+    public function setInactive($user){
+        $user->active = 0;
+        $user->save();
+
+        $groups_has_users = model/Group_has_users::where('user_id','=',$user->id)->where('active','=',1)->get();
+        foreach($groups_has_users as $ghu){
+            $ghu->active = 0;
+            $ghu->save();
+        }
     }
 }

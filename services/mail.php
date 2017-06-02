@@ -94,8 +94,6 @@ class Mail{
             $mail->AddEmbeddedImage($image, basename($image), basename($image));
         }
         $mail->send();
-        exit;
-
 
     }
 

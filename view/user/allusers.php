@@ -23,7 +23,7 @@ if(!Auth::user()->can('user')){
 		
 		echo "<div class='table-responsive'>";
 		echo "<table class='table table-bordered table-responsive'><tr><th>Naam</th><th>Gebruikersnummer</th><th>Email</th><th>Opties</th></tr>";
-		foreach (model\Users::orderBy('lastname','asc')->get() as $user) {
+		foreach (model\Users::orderBy('lastname','asc')->where('active','=',1)->get() as $user) {
 			echo "<tr><td>".$user->fullnameReturned(['url'=>1])."</td><td>$user->user_number</td><td>$user->email</td><td>
 			<a href='".MapStructureRepositorie::controller()."user/userController.php?update_view=1&user_id=$user->id' class='btn btn-primary'>Wijzigen</a>
 			<button user_id='$user->id' class='btn btn-danger delete_user'>Verwijderen</button>
