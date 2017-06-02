@@ -71,7 +71,7 @@ if(isset($_POST['csv'])){
         }
         $user_number = $row['Stud.nr.'];
         $email = $row['E-mailadres'];
-        $password = '123';
+        
 
         $user = model\Users::where('user_number','=',$user_number)->first();
         if(!$user){
