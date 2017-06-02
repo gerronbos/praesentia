@@ -35,6 +35,12 @@ else {
 		<ul class="nav navbar-right panel_toolbox"></ul>
         <div class="clearfix"></div>
     </div>
+    <?php
+
+		if(Services\SessionHandler::has('edit_lecture_success')){
+			echo '<div class="col-lg-12"><div class="alert alert-success" role="alert">'.Services\SessionHandler::getAndDelete('edit_lecture_success').'</div></div>';
+		}
+		?>
 	<div class="x_content">
 		<?php
 		if(Services\SessionHandler::has('delete_lecture')){

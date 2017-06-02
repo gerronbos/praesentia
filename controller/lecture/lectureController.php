@@ -114,7 +114,10 @@ if(isset($_POST['edit_lecture'])){
     }
 
     Services\SessionHandler::setSession('edit_lecture',$_POST['lecture_id']);
-    header("location:".MapStructureRepositorie::view().'lecture/editlecture.php');
+    Services\SessionHandler::setSession('edit_lecture_success', 'Les is succesvol gewijzigd.');
+
+    header("location:".MapStructureRepositorie::view().'lecture/all_lectures.php');
+    exit;
 
 }
 
