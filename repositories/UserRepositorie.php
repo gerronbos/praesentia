@@ -17,7 +17,7 @@ class UserRepositorie extends Repository{
             $password = self::generateRandomPassword();
         }
     	$user->password = self::makePassword($password);
-        $user->actie = 1;
+        $user->active = 1;
         $user->save();
 
         $mail = new Services\Mail();
