@@ -61,6 +61,12 @@ include_once('../../includes/footer.php');
 <script>
     var user_id = "<?php echo Auth::user()->id; ?>";
     var url = '<?php echo MapStructureRepositorie::controller()."presence/presenceController.php?get=1&id=:id" ?>';
+    <?php if(is_object(Auth::user()->Group()) && Auth::user()->Group()->id){
+     ?> var group_id = '<?php echo Auth::user()->Group()->id ?>';<?php
+    }
+     else{
+        ?> var group_id = null; <?php
+     }?>
     $( function() {
         $( "#datetimepicker" ).datepicker({
             dateFormat: "yy-mm-dd"
@@ -73,7 +79,7 @@ include_once('../../includes/footer.php');
         $.ajax({
             url: "<?php echo MapStructureRepositorie::controller().'lecture/lectureController.php?get_by_group=1' ?>",
             method: "POST",
-            data: {date: date,'group_id':'<?php echo Auth::user()->Group()->id; ?>'},
+            data: {date: date,'group_id':group_id},
             success: function(data){
                 console.log(data);
 

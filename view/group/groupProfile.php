@@ -129,11 +129,11 @@ $data = PresenceRepository::calcPresenceByGroup($group);
 
 	};
 	$(document).ready(function(){
-		var url = '<?php echo MapStructureRepositorie::controller()."user/userController.php?show=1&user_id=".$user->id ?>';
+		var url = '<?php echo MapStructureRepositorie::controller()."user/userController.php?show=1&user_id=:id" ?>';
 		$('.progress-bar').click(function(){
             //do something
-            var courseId = $(this).attr('item_id');
-            window.location.href = url.replace(':id', courseId);
+            var userId = $(this).attr('item_id');
+            window.location.href = url.replace(':id', userId);
         });
 	});
 </script>

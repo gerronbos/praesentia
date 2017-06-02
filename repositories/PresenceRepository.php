@@ -114,7 +114,7 @@ class PresenceRepository extends Repository{
                 $lecture_ids = Lecture::where('course_id','=',$course->id)->lists('id');
             }
             $amount_lectures = count(Presence::whereIn('lecture_id',$lecture_ids)->where('user_id','=',$user->id)->get());
-            $amount_lectures_present = count(Presence::whereIn('lecture_id',$lecture_ids)->where('user_id','=',$user->id)->where('present','=',1)->get());
+                $amount_lectures_present = count(Presence::whereIn('lecture_id',$lecture_ids)->where('user_id','=',$user->id)->where('present','=',1)->get());
             if($amount_lectures == 0){
                 $amount_lectures_present_prec = 100;
             }
@@ -284,9 +284,9 @@ class PresenceRepository extends Repository{
 
         if(isset($params['user_id'])){
             $presence->join('lecture_has_groups', 'lecture_has_groups.lecture_id', 'lectures.id');
-            //$presence->join('groups', 'groups.id', 'lecture_has_groups.group_id');
             $presence->join('group_has_users', 'group_has_users.group_id', 'lecture_has_groups.group_id');
-            $presence->where('group_has_users.user_id', '=', $params['user_id']);
+            $presence->where('presence.user_id', '=', $params['user_id']);
+
         }
         $presence->select('presence.*, lectures.date, lectures.start_time, lectures.end_time');
         return $presence; 
