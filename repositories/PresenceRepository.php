@@ -222,7 +222,9 @@ class PresenceRepository extends Repository{
         $return = [];
         foreach(Course::get() as $course){
             $return[$course->id] = [
-                'title' => $course->name,
+                'name' => $course->name,
+                'year' => $course->year,
+                'period' => $course->period,
                 'data' => self::calcPresenceByCourse($course)
             ];
         }

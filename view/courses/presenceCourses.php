@@ -4,6 +4,8 @@ if(!Auth::user()->can('courses')){
 	header("location: ".MapStructureRepositorie::error('401'));
 	exit;
 }
+
+$course = PresenceRepository::calcPresenceByAllCourses();
 ?>
 
 <div class="x_panel">
@@ -18,8 +20,6 @@ if(!Auth::user()->can('courses')){
 	<div class="x_content">
 		<?php
 
-		$course = model\Course::get('course_id');
-
 		echo 	"<table class='table table-bordered'>";
 		echo 	"<tr>";
 		echo 	"<th>Vaknaam</th>
@@ -30,10 +30,10 @@ if(!Auth::user()->can('courses')){
 
 		foreach ($course as $course) {
 			echo "<tr>
-			<td>".$course->name."</td>
-			<td>".$course->year."</td>
-			<td>".$course->period."</td>
-			<td>".progressBar(60)."
+			<td>".$course['name']."</td>
+			<td>".$course['year']."</td>
+			<td>".$course['period']."</td>
+			<td>".progressBar($course['data']['amount_present_perc'])."
 			</tr>";
 		}
 		echo "</table>"
