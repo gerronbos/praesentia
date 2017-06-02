@@ -1,7 +1,7 @@
 <?php
 	//Create User
 include_once('../controller.php');
-if(!isset($_GET['show']) && !isset($_GET['passwordReset'])) {
+if(!isset($_GET['show']) && !isset($_GET['passwordReset']) && !isset($_POST['set_presence'])) {
     if (!Auth::user()->can('user')) {
         header("location: " . MapStructureRepositorie::error('401'));
         exit;

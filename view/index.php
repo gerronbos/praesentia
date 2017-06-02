@@ -1,5 +1,6 @@
 <?php
     include_once('includes/head.php');
+
     if(Auth::user()->can('presence')){
         header("location: " . MapStructureRepositorie::view().'presence/index.php');
         exit;
