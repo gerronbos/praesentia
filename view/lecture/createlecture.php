@@ -42,8 +42,15 @@ $rooms = model\Room::lists('number','id');
 <?php
 include_once('../includes/footer.php');
 ?>
-
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+	$(document).ready(function() {
+		$(".select2").select2({
+			placeholder: "Selecteer"
+		});
+	});
+
 	function setRows(){
 		var date = $('#datetimepicker').val();
 		var table = '';
