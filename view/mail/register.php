@@ -111,7 +111,7 @@ Licensed under MIT
                                                     </td></tr>
                                                 <tr><td align="center">
                                                         <div style="line-height: 24px;">
-                                                            <a href="#" target="_blank" class="btn btn-primary block-center">
+                                                            <a href="'.ConfigRepositorie::get('url').'" target="_blank" class="btn btn-primary block-center">
                                                                 Naar praesentia gaan
                                                             </a>
                                                         </div>

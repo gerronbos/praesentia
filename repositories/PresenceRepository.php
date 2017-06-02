@@ -82,7 +82,7 @@ class PresenceRepository extends Repository{
     public function setOwnPresence($input){
         $presence = new Presence();
         $presence->present = 0;
-        $presence->user_id = '';
+        $presence->user_id = $input['user'];
         $presence->lecture_id = $input['lecture_id'];
         $presence->reason = $input['reason'];
         $presence->save();

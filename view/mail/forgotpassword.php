@@ -109,7 +109,7 @@ Licensed under MIT
                                                     </td></tr>
                                                 <tr><td align="center">
                                                         <div style="line-height: 24px;">
-                                                            <a href="http://praesentia.loc/view/user/resetPassword.php?token=::token::" target="_blank" class="btn btn-primary block-center">
+                                                            <a href="'.MapStructureRepositorie::view().'user/resetPassword.php?token=::token::" target="_blank" class="btn btn-primary block-center">
                                                                 Wachtwoord opnieuw instellen
                                                             </a>
                                                         </div>
