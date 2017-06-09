@@ -10,4 +10,20 @@ class RoomRepository extends Repository{
         $room->save();
     }
 
+    public function update($room ,$data = array()){
+        if (isset($data['locatie'])) {
+            $room->locatie = $data['locatie'];
+        }
+        if (isset($data['number'])) {
+            $room->number = $data['number'];
+        }
+        $room->save();
+    
+        return $room;
+    }
+
+    public function delete($room){
+        $room->delete();
+    }
+
 }
