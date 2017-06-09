@@ -85,7 +85,7 @@ if(isset($_POST['csv'])){
 
 
         $group = model\Group::where('name','=',$row['Groepsnaam'])->first();
-        if(!$group){
+        if(!$group && is_null($row['Groepsnaam'])){
             GroupRepository::create($row['Groepsnaam'],date('Y'),'1','1');
             $group = model\Group::where('name','=',$row['Groepsnaam'])->first();
         }
