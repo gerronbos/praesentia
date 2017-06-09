@@ -48,21 +48,29 @@ if(Services\SessionHandler::has('user_edit_succes')){
               <li style="font-size: 12px;">
                 <i class="fa fa-envelope-o user-profile-icon"></i> <?php echo $user->email; ?>
               </li>
-            <div class="btn-group">
-              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Opties <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu">
-                <li><a href="<?php echo MapStructureRepositorie::controller()."user/userController.php?update_view=1&user_id=".$user->id ?>">Gebruiker wijzigen</a></li>
-                <li><a href="<?php echo MapStructureRepositorie::controller()."roles/roleController.php?user_roles=1&user_id=".$user->id ?>">Rechten wijzigen</a></li>
-                <li>
-                  <a href="<?php echo MapStructureRepositorie::view()."user/changePassword.php?resetPassword=1" ?> ">Wachtwoord veranderen</a>
-                </li>
-                <li>
-                  <a href="#myModal" data-toggle="modal" data-target="#myModal">Wachtwoord resetten</a>
-                </li>
-              </ul>
-            </div>
+                <?php
+                if (Auth::user()->can('user')) {
+                    ?>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                            Opties <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="<?php echo MapStructureRepositorie::controller() . "user/userController.php?update_view=1&user_id=" . $user->id ?>">Gebruiker
+                                    wijzigen</a></li>
+                            <li>
+                                <a href="<?php echo MapStructureRepositorie::controller() . "roles/roleController.php?user_roles=1&user_id=" . $user->id ?>">Rechten
+                                    wijzigen</a></li>
+                            <li>
+                                <a href="#myModal" data-toggle="modal" data-target="#myModal">Wachtwoord resetten</a>
+                            </li>
+                        </ul>
+                    </div>
+                <?php
+                }
+                ?>
                 <a href="<?php echo MapStructureRepositorie::view().'user/presence/index.php' ?>" class="btn btn-primary">Afmelden voor een college</a>
                 <br />
 

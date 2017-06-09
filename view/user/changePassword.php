@@ -1,9 +1,5 @@
 <?php
 include_once('../includes/head.php');
-if(!Auth::user()->can('user')){
-    header("location: ".MapStructureRepositorie::error('401'));
-    exit;
-}
 ?>
 <div class="x_panel">
 	<div class="x_title">
