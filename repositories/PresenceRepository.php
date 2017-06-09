@@ -87,7 +87,10 @@ class PresenceRepository extends Repository{
         $presence->reason = $input['reason'];
         $presence->save();
 
-        NotificationRepository::create(Auth::user()->id, $input['user'], 'Succesvol afgemeld voor les', 1);
+        $lecture = $presence->Lecutre();
+        $course = $lecture->course();
+
+        NotificationRepository::create(Auth::user()->id, $input['user'], "Succesvol afgemeld voor $course->name op ".date('y-m-d',strtotime($lecture->date)), 1);
     }
 
     public function calcPresenceByUser(Users $user,$params = array()){
