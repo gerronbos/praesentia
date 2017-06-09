@@ -12,8 +12,10 @@ class PresenceRepository extends Repository{
     {
         foreach($lecture->Groups() as $group){
             foreach($group->Users(['onlyIds'=>1]) as $u) {
+                $exists = model\Presence::where('user_id','=',$u)->where('lecture_id','=',$lecture->id)->first();
+                if($exists){self::edit($exists, ['user_id' => $u, 'lecture_id' => $lecture->id, 'present' => (in_array($u, $present) ? false : true)]);}else{
                 self::create(['user_id' => $u, 'lecture_id' => $lecture->id, 'present' => (in_array($u, $present) ? false : true)]);
-            }
+            }}
         }
 
     }
@@ -56,7 +58,7 @@ class PresenceRepository extends Repository{
             $presence->user_id = $input['user_id'];
         }
         if(isset($input['lecture_id'])) {
-            $presence->lecutre_id = $input['lecture_id'];
+            $presence->lecture_id = $input['lecture_id'];
         }
 
         $presence->save();
