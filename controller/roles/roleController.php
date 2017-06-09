@@ -69,6 +69,9 @@ if(isset($_POST['assignToRole'])){
     if($role->import){
         $user_role->import = 1;
     }
+    if ($role->courses) {
+        $user_role->courses = 1;
+    }
 
     if(is_null($user_role->title)){$user_role->title = $role->title;}else{$user_role->title = $user_role->title.', '.$role->title;}
     $user_role->save();

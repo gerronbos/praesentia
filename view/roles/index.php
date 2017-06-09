@@ -16,12 +16,12 @@ if(Services\SessionHandler::has('alert_roles')){
         
         <table class="table table-responsive">
             <tr>
-                <th>Titel</th><th>Gebruikers</th><th>Aanwezigheid</th><th>Colleges</th><th>Klassen</th><th>Lokalen</th><th>Opties</th>
+                <th>Titel</th><th>Gebruikers</th><th>Aanwezigheid</th><th>Colleges</th><th>Klassen</th><th>Lokalen</th><th>Vakken</th><th>Opties</th>
             </tr>
             <?php
             if(count(model\Role::get())) {
                 foreach (model\Role::get() as $role) {
-                    echo "<tr><td>$role->title</td><td>".trueorfalse($role->users)."</td><td>".trueorfalse($role->presence)."</td><td>".trueorfalse($role->lectures)."</td><td>".trueorfalse($role->groups)."</td><td>".trueorfalse($role->rooms)."</td><td><a href='".MapStructureRepositorie::controller()."roles/roleController.php?update=1&role_id=$role->id' class='btn btn-primary'>Wijzig</a><button class='btn btn-danger remove_item' item_id='$role->id'>Verwijder</button><a href='".MapStructureRepositorie::view()."roles/link.php?role_id=$role->id' class='btn btn-info'>Koppelen</a></td></tr>";
+                    echo "<tr><td>$role->title</td><td>".trueorfalse($role->users)."</td><td>".trueorfalse($role->presence)."</td><td>".trueorfalse($role->lectures)."</td><td>".trueorfalse($role->groups)."</td><td>".trueorfalse($role->rooms)."</td><td>".trueorfalse($role->courses)."</td><td><a href='".MapStructureRepositorie::controller()."roles/roleController.php?update=1&role_id=$role->id' class='btn btn-primary'>Wijzig</a><button class='btn btn-danger remove_item' item_id='$role->id'>Verwijder</button><a href='".MapStructureRepositorie::view()."roles/link.php?role_id=$role->id' class='btn btn-info'>Koppelen</a></td></tr>";
                 }
             }
             else{
